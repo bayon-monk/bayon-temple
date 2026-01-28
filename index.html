@@ -97,13 +97,21 @@
             margin-bottom: 2rem;
         }
 
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+.grid {
+            display: flex; /* Changed from grid to flex for better centering */
+            flex-wrap: wrap;
+            justify-content: center; /* This centers the items horizontally */
             gap: 2rem;
-            text-align: left;
+            text-align: left; /* Keeps the text inside the columns readable */
+            max-width: 900px; /* Prevents it from getting too wide on huge screens */
+            margin: 0 auto; /* Centers the container itself */
         }
-
+        
+        /* Add this new rule to force the items to have a consistent width */
+        .grid > div {
+            flex: 1 1 200px; /* Grow, Shrink, Basis */
+            max-width: 300px; /* Prevents them from getting huge */
+        }
         footer {
             padding: 4rem 0;
             font-size: 0.8rem;
@@ -166,7 +174,7 @@
     </section>
 
     <footer class="container">
-        <p>JOIN THE CHOIR</p>
+        <p>Connect with Bayon</p>
         <div style="margin-top: 1rem;">
             <input type="email" placeholder="Enter your email" style="padding: 0.5rem; border: 1px solid var(--ink); background: transparent; font-family: 'Space Mono'; outline: none; color: var(--ink);">
             <button style="padding: 0.5rem 1rem; background: var(--ink); color: var(--paper); border: none; font-family: 'Space Mono'; cursor: pointer;">→</button>
