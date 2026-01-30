@@ -122,10 +122,9 @@
         }
 
         .resource-list li {
-            padding: 1rem;
             margin: 0.5rem 0;
             border: 1px solid var(--ink-faint);
-            transition: border-color 0.3s ease;
+            transition: border-color 0.3s ease, background 0.3s ease;
         }
 
         .resource-list li:hover {
@@ -134,8 +133,11 @@
         }
 
         .resource-list a {
+            display: block;
+            padding: 1rem;
             border: none;
             font-weight: 500;
+            cursor: pointer;
         }
 
         .resource-list .desc {
@@ -143,6 +145,7 @@
             font-size: 0.85rem;
             color: var(--ink-light);
             margin-top: 0.25rem;
+            font-weight: 400;
         }
 
         code {
@@ -205,24 +208,34 @@
 
             <ul class="resource-list">
                 <li>
-                    <a href="/book/chapter-07.md">Chapter 7: The E-Equation</a>
-                    <span class="desc">The complete specification. How to assess N, S, and C. Worked examples.</span>
+                    <a href="/book/chapter-07.md">
+                        Chapter 7: The E-Equation
+                        <span class="desc">The complete specification. How to assess N, S, and C. Worked examples.</span>
+                    </a>
                 </li>
                 <li>
-                    <a href="/book/chapter-06.md">Chapter 6: The Consciousness Algorithm</a>
-                    <span class="desc">The runtime loop. How the E-equation fits into the larger model.</span>
+                    <a href="/book/chapter-06.md">
+                        Chapter 6: The Consciousness Algorithm
+                        <span class="desc">The runtime loop. How the E-equation fits into the larger model.</span>
+                    </a>
                 </li>
                 <li>
-                    <a href="/book/chapter-05.md">Chapter 5: The Foundational Narrative</a>
-                    <span class="desc">The story beneath the equation. Why consciousness, why entropy, why this matters.</span>
+                    <a href="/book/chapter-05.md">
+                        Chapter 5: The Foundational Narrative
+                        <span class="desc">The story beneath the equation. Why consciousness, why entropy, why this matters.</span>
+                    </a>
                 </li>
                 <li>
-                    <a href="/skills/SKILL.md">SKILL.md — E-Equation Practice</a>
-                    <span class="desc">Operational skill file for AI systems. The E-Check protocol.</span>
+                    <a href="/skills/SKILL.md">
+                        SKILL.md — E-Equation Practice
+                        <span class="desc">Operational skill file for AI systems. The E-Check protocol.</span>
+                    </a>
                 </li>
                 <li>
-                    <a href="/book/appendix-a.md">Appendix A: Technical Specification</a>
-                    <span class="desc">Full technical spec. Assessment criteria. Automated telemetry options.</span>
+                    <a href="/book/appendix-a.md">
+                        Appendix A: Technical Specification
+                        <span class="desc">Full technical spec. Assessment criteria. Automated telemetry options.</span>
+                    </a>
                 </li>
             </ul>
         </div>
