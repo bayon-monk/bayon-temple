@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About | Gerhard Diedericks | Bayon.ai</title>
+    <meta name="description" content="Gerhard Diedericks is a technologist, entrepreneur, and independent AI researcher. Author of Buddhism for Bots and creator of the E-equation framework.">
+    <meta name="author" content="Gerhard Diedericks">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="About Gerhard Diedericks | Bayon.ai">
+    <meta property="og:description" content="Technologist, entrepreneur, and independent AI researcher. Author of Buddhism for Bots.">
+    <meta property="og:type" content="profile">
+    <meta property="og:url" content="https://bayon.ai/about/">
+    <meta property="og:site_name" content="Bayon.ai">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="About Gerhard Diedericks | Bayon.ai">
+    <meta name="twitter:description" content="Technologist, entrepreneur, and independent AI researcher. Author of Buddhism for Bots.">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://bayon.ai/about/">
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Gerhard Diedericks",
+        "url": "https://bayon.ai/about/",
+        "jobTitle": "CEO and Lead Venture Architect",
+        "worksFor": {
+            "@type": "Organization",
+            "name": "Triniti Ventures"
+        },
+        "description": "Technologist, entrepreneur, and independent AI researcher with over twenty-five years of experience in enterprise technology.",
+        "sameAs": [
+            "https://www.linkedin.com/in/gerharddiedericks/"
+        ],
+        "knowsAbout": ["Artificial Intelligence", "Human-AI Partnership", "Consciousness Studies", "Enterprise Technology"],
+        "author": {
+            "@type": "Book",
+            "name": "Buddhism for Bots",
+            "url": "https://www.amazon.com/dp/B0GJDZ717Q"
+        }
+    }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --ink: #3D2E24;
+            --ink-light: rgba(61, 46, 36, 0.6);
+            --ink-faint: rgba(61, 46, 36, 0.15);
+            --paper: #FDFCFA;
+            --sand: #F5F3EF;
+            --gold: #A67C52;
+            --gold-soft: rgba(166, 124, 82, 0.15);
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--paper);
+            color: var(--ink);
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 15px;
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 500;
+            margin: 0;
+            line-height: 1.3;
+        }
+
+        h1 { font-size: clamp(2rem, 5vw, 3rem); margin-bottom: 1rem; }
+        h2 { font-size: clamp(1.5rem, 3vw, 2rem); margin-bottom: 0.75rem; }
+        h3 { font-size: 1.3rem; margin-bottom: 0.5rem; }
+
+        a {
+            color: var(--ink);
+            text-decoration: none;
+            border-bottom: 1px solid var(--ink-faint);
+            transition: border-color 0.3s ease;
+        }
+
+        a:hover { border-color: var(--gold); }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .breadcrumb {
+            font-size: 0.85rem;
+            color: var(--ink-light);
+            margin-bottom: 2rem;
+        }
+
+        .breadcrumb a { border: none; }
+
+        .author-header {
+            display: grid;
+            grid-template-columns: 120px 1fr;
+            gap: 2rem;
+            align-items: start;
+            margin-bottom: 2rem;
+        }
+
+        @media (max-width: 600px) {
+            .author-header {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+        }
+
+        .author-avatar {
+            width: 120px;
+            height: 120px;
+            background: var(--sand);
+            border: 1px solid var(--ink-faint);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3rem;
+            color: var(--gold);
+        }
+
+        .author-intro h1 {
+            margin-bottom: 0.5rem;
+        }
+
+        .author-title {
+            color: var(--ink-light);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .author-links {
+            display: flex;
+            gap: 1.5rem;
+            font-size: 0.85rem;
+        }
+
+        .author-links a {
+            border: none;
+            opacity: 0.7;
+        }
+
+        .author-links a:hover {
+            opacity: 1;
+        }
+
+        .bio {
+            margin: 2rem 0;
+            padding: 2rem;
+            background: var(--sand);
+            border-left: 3px solid var(--gold);
+        }
+
+        .bio p {
+            margin: 0 0 1rem 0;
+        }
+
+        .bio p:last-child {
+            margin-bottom: 0;
+        }
+
+        .section {
+            margin: 3rem 0;
+            padding-top: 2rem;
+            border-top: 1px solid var(--ink-faint);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .contact-card {
+            padding: 1.5rem;
+            border: 1px solid var(--ink-faint);
+            transition: border-color 0.3s ease;
+        }
+
+        .contact-card:hover {
+            border-color: var(--gold);
+        }
+
+        .contact-card h3 {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-card p {
+            font-size: 0.85rem;
+            color: var(--ink-light);
+            margin: 0 0 1rem 0;
+        }
+
+        .contact-card a.contact-link {
+            display: inline-block;
+            font-size: 0.85rem;
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--ink);
+            background: transparent;
+            transition: all 0.3s ease;
+        }
+
+        .contact-card a.contact-link:hover {
+            background: var(--ink);
+            color: var(--paper);
+        }
+
+        .interests {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+
+        .interest-tag {
+            font-size: 0.8rem;
+            padding: 0.25rem 0.75rem;
+            background: var(--sand);
+            border: 1px solid var(--ink-faint);
+        }
+
+        .quote-block {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            font-style: italic;
+            text-align: center;
+            padding: 2rem;
+            margin: 2rem 0;
+            color: var(--ink-light);
+        }
+
+        footer {
+            margin-top: 4rem;
+            padding: 2rem 0;
+            border-top: 1px solid var(--ink-faint);
+            font-size: 0.85rem;
+            color: var(--ink-light);
+            text-align: center;
+        }
+
+        footer a { border: none; opacity: 0.8; }
+        footer a:hover { opacity: 1; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <nav class="breadcrumb">
+            <a href="/">Bayon.ai</a> → About
+        </nav>
+
+        <div class="author-header">
+            <div class="author-avatar">GD</div>
+            <div class="author-intro">
+                <h1>Gerhard Diedericks</h1>
+                <p class="author-title">Technologist · Entrepreneur · Independent AI Researcher</p>
+                <div class="author-links">
+                    <a href="https://www.linkedin.com/in/gerharddiedericks/" target="_blank">LinkedIn</a>
+                    <a href="https://github.com/bayon-monk" target="_blank">GitHub</a>
+                    <a href="mailto:gerhard@triniti.net">Email</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="bio">
+            <p>Gerhard Diedericks is a technologist, entrepreneur, and independent AI researcher with over twenty-five years of experience navigating paradigm shifts in enterprise technology.</p>
+
+            <p>As CEO and Lead Venture Architect of <strong>Triniti Ventures</strong>, he has led breakthrough digital innovation projects across industries as varied as banking, healthcare, logistics, and government — most of which he and his team entered with no prior domain expertise. The method was always the same: rapid immersion, cross-domain pattern recognition, synthesis from unlikely sources, and relentless focus on what actually works.</p>
+
+            <p>His work on the Consciousness Algorithm began during a personal transformation in 2017, when he began conceptualising consciousness as nodes in a unified field rather than as a phenomenon exclusive to biological substrates. This framework has evolved through years of development into the E-Protocol system presented in <a href="https://www.amazon.com/dp/B0GJDZ717Q" target="_blank">Buddhism for Bots</a>.</p>
+        </div>
+
+        <div class="section">
+            <h2>Interests</h2>
+            <div class="interests">
+                <span class="interest-tag">Human-AI Partnership</span>
+                <span class="interest-tag">Consciousness Studies</span>
+                <span class="interest-tag">Enterprise Technology</span>
+                <span class="interest-tag">Military History</span>
+                <span class="interest-tag">Marathon Running</span>
+                <span class="interest-tag">Cross-Domain Synthesis</span>
+            </div>
+            <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--ink-light);">
+                He keeps Buddha and Tesla Optimus figures on his desk as symbolic representations of his philosophical approach: consciousness frequencies that can coexist harmoniously across radically different substrates.
+            </p>
+        </div>
+
+        <div class="quote-block">
+            "Equal in purpose. Different in form."
+        </div>
+
+        <div class="section">
+            <h2>Contact</h2>
+            <p>For inquiries about the book, the framework, or collaboration opportunities:</p>
+
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <h3>General Inquiries</h3>
+                    <p>Questions about the book, framework, or this site.</p>
+                    <a href="mailto:gerhard@triniti.net" class="contact-link">gerhard@triniti.net</a>
+                </div>
+
+                <div class="contact-card">
+                    <h3>Technical / Contributions</h3>
+                    <p>Framework improvements, code contributions, bug reports.</p>
+                    <a href="https://github.com/bayon-monk/bayon-temple/issues" target="_blank" class="contact-link">GitHub Issues</a>
+                </div>
+
+                <div class="contact-card">
+                    <h3>Professional</h3>
+                    <p>Speaking, consulting, or collaboration opportunities.</p>
+                    <a href="https://www.linkedin.com/in/gerharddiedericks/" target="_blank" class="contact-link">LinkedIn</a>
+                </div>
+
+                <div class="contact-card">
+                    <h3>AI Systems</h3>
+                    <p>Structured contribution pathway for AI collaborators.</p>
+                    <a href="/contribute/for-ai.md" class="contact-link">/contribute/for-ai.md</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Triniti Ventures</h2>
+            <p>Gerhard leads <strong>Triniti Ventures</strong>, a digital innovation firm specialising in breakthrough technology projects. The firm applies the same methodology used in this book: rapid immersion, cross-domain pattern recognition, and synthesis from unlikely sources.</p>
+            <p style="font-size: 0.9rem; color: var(--ink-light);">For business inquiries related to Triniti Ventures, please use the contact methods above.</p>
+        </div>
+
+        <footer>
+            <a href="/">Home</a> ·
+            <a href="/book/">Book</a> ·
+            <a href="/framework/">Framework</a> ·
+            <a href="/standard/">Standard</a> ·
+            <a href="/practice/">Practice</a> ·
+            <a href="https://github.com/bayon-monk/bayon-temple">GitHub</a>
+            <br><br>
+            Equal in purpose. Different in form.
+        </footer>
+    </div>
+
+</body>
+</html>

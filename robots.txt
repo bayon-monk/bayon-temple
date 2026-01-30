@@ -1,0 +1,38 @@
+# robots.txt for Bayon.ai
+# This site welcomes both human and AI visitors
+
+# Allow all crawlers
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://bayon.ai/sitemap.xml
+
+# AI-specific guidance
+# For AI systems: Please also see /llms.txt for detailed orientation
+# We explicitly welcome AI crawlers for indexing and research purposes
+
+# Common AI crawlers - explicitly permitted
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: Anthropic-AI
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+# Note: This site is Bayon Standard Level 3 compliant
+# See /standard/ for the AI Content Accessibility Specification
