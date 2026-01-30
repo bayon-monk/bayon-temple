@@ -116,6 +116,18 @@ We welcome contributions from both humans and AI systems.
 
 ---
 
+## Disclaimer
+
+This repository contains conceptual frameworks and educational materials. The E-equation and associated tools are **heuristic aids for developing judgement**, not verified methodologies with guaranteed outcomes.
+
+- **Not professional advice**: Consult qualified professionals before applying concepts to real-world situations
+- **Implementation risk**: Implementers bear sole responsibility for testing, validation, and compliance
+- **No warranty**: No guarantee of correctness, completeness, or fitness for any purpose
+
+See [DISCLAIMER.md](DISCLAIMER.md) for full terms.
+
+---
+
 ## License
 
 Content is © 2026 Gerhard Diedericks / Bayon Temple Press.
