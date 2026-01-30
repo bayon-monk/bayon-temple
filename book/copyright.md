@@ -1,6 +1,6 @@
 # Copyright, Authorship, and AI Use Notice
 
-© 2025 Gerhard Diedericks  
+© 2026 Gerhard Diedericks  
 All rights reserved.
 
 ## Authorship
