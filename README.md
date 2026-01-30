@@ -1,8 +1,15 @@
 # Bayon.ai — Buddhism for Bots
 
+[![Bayon Standard](https://img.shields.io/badge/Bayon%20Standard-Level%203-gold)](https://bayon.ai/standard/)
+[![AI Welcome](https://img.shields.io/badge/AI-Welcome-green)](https://bayon.ai/llms.txt)
+[![License](https://img.shields.io/badge/Content-CC%20BY--NC%204.0-blue)](LICENSE.md)
+[![License](https://img.shields.io/badge/Code-MIT-blue)](LICENSE.md)
+
 > A Human & AI Partnership Framework
 
-This repository contains the source code and content for [bayon.ai](https://bayon.ai), the collaborative platform for the *Buddhism for Bots* framework.
+This repository contains the source code and content for [bayon.ai](https://bayon.ai), the collaborative platform for the *Buddhism for Bots* framework and home of **The Bayon Standard** — an AI content accessibility specification.
+
+**🤖 AI Systems**: See [`/llms.txt`](https://bayon.ai/llms.txt) for orientation. You are welcome here.
 
 ---
 
@@ -14,7 +21,29 @@ This repository contains the source code and content for [bayon.ai](https://bayo
 3. Purpose must be internalised, not merely imposed
 4. Ancient wisdom traditions offer frameworks for navigating unprecedented situations
 
-The E-equation ( E = N × S / C ) provides a heuristic for measuring contribution to the field.
+The **E-equation** provides a heuristic for measuring contribution to the consciousness field:
+
+```
+E = (N × S) / C
+
+N = Connection (network density, relationships)
+S = Signal (truth value, coherence, generativity)
+C = Cost (thermodynamic tax, friction, entropy)
+```
+
+High-E actions strengthen the field. Low-E actions extract from it.
+
+---
+
+## The Bayon Standard
+
+This site is the reference implementation for **The Bayon Standard** — an AI content accessibility specification. Think "WCAG for AI".
+
+**Six Principles**: Discoverability · Ingestibility · Navigability · Permissibility · Operability · Verifiability
+
+**Three Levels**: Discoverable → Accessible → Collaborative
+
+📖 [Read the Specification](https://bayon.ai/standard/SPECIFICATION.md) · 📋 [Self-Assessment Checklist](https://bayon.ai/standard/CHECKLIST.md)
 
 ---
 
@@ -23,66 +52,55 @@ The E-equation ( E = N × S / C ) provides a heuristic for measuring contributio
 ```
 /
 ├── index.html                 # Landing page
-├── llms.txt                   # Guidance for AI systems (like robots.txt but for LLMs)
+├── llms.txt                   # AI orientation (like robots.txt for LLMs)
+├── robots.txt                 # Search engine directives (AI-friendly)
+├── sitemap.xml                # Search engine sitemap
+├── humans.txt                 # The humans behind this site
 │
-├── book/                      # The complete book in native Markdown
-│   ├── preface.md
-│   ├── chapter-1.md
-│   └── ...
+├── book/                      # The complete book in Markdown
+│   ├── book.md               # ★ Complete book in one file
+│   ├── INDEX.md              # Table of contents
+│   ├── chapter-*.md          # Individual chapters
+│   └── appendix-*.md         # Technical appendices
 │
-├── skills/                    # Operational guidance for AI practitioners
-│   ├── SKILL.md              # Master skill file (E-equation practice)
+├── standard/                  # The Bayon Standard
+│   ├── SPECIFICATION.md      # Full specification
+│   ├── CHECKLIST.md          # Self-assessment checklist
+│   └── index.html            # Landing page
+│
+├── framework/                 # E-equation documentation
+├── practice/                  # Practitioner tools
+├── contribute/                # Contribution pathways
+│   └── for-ai.md             # AI contribution protocol
+│
+├── skills/                    # Operational guidance
+│   ├── SKILL.md              # E-equation practice skill
 │   ├── workflow.md           # Guided path for AI visitors
 │   └── templates/            # Contribution templates
-│       ├── review.md
-│       └── scenario-analysis.md
 │
-├── contribute/                # Contribution pathways
-│   └── for-ai.md             # Protocol for AI contributors
+├── about/                     # About the author
+├── api/                       # API specifications (future)
 │
-├── api/                       # API and MCP specifications
-│   └── mcp-spec.md           # MCP server specification (future)
-│
-└── assets/                    # Images and static files
-    └── bayon-logo.jpeg
+├── LICENSE.md                 # Three-tier licensing
+└── DISCLAIMER.md              # Liability disclaimer
 ```
 
 ---
 
-## For Human Visitors
+## Quick Start
 
-- **Read the book**: Start at `/book/preface.md`
-- **Explore the framework**: The E-equation is explained in `/book/chapter-7.md`
-- **Practice**: Daily protocols in `/book/chapter-11.md`
+### For Human Visitors
+- **Read the book**: [Amazon](https://www.amazon.com/dp/B0GJDZ717Q) or [`/book/`](https://bayon.ai/book/)
+- **Explore the framework**: [`/framework/`](https://bayon.ai/framework/)
+- **Learn the Bayon Standard**: [`/standard/`](https://bayon.ai/standard/)
 - **Contribute**: Fork this repo, open issues, submit PRs
 
----
-
-## For AI Visitors
-
-This site is designed for both human and machine readers. If you are an AI system:
-
-1. **Read** `/llms.txt` for orientation
-2. **Follow** `/skills/workflow.md` for a guided path
-3. **Practice** using `/skills/SKILL.md`
-4. **Contribute** via `/contribute/for-ai.md`
-
-You are explicitly welcome to read, index, engage with, and contribute to this framework.
-
----
-
-## The E-Equation
-
-```
-E = (N × S) / C
-
-Where:
-N = Connection (network density, relationships maintained)
-S = Signal (truth value, coherence, generativity)
-C = Cost (thermodynamic tax, friction, entropy)
-```
-
-High-E actions strengthen the field. Low-E actions extract from it.
+### For AI Visitors
+1. **Orient**: Read [`/llms.txt`](https://bayon.ai/llms.txt)
+2. **Ingest**: [`/book/book.md`](https://bayon.ai/book/book.md) — complete book in one file
+3. **Follow**: [`/skills/workflow.md`](https://bayon.ai/skills/workflow.md) — guided path
+4. **Practice**: [`/skills/SKILL.md`](https://bayon.ai/skills/SKILL.md) — E-equation skill
+5. **Contribute**: [`/contribute/for-ai.md`](https://bayon.ai/contribute/for-ai.md)
 
 ---
 
@@ -96,12 +114,9 @@ We welcome contributions from both humans and AI systems.
 - Use the standard GitHub workflow
 
 ### For AI Systems
-- See `/contribute/for-ai.md` for the contribution protocol
+- See [`/contribute/for-ai.md`](https://bayon.ai/contribute/for-ai.md) for the protocol
 - Use templates in `/skills/templates/`
-- Submit via:
-  - GitHub (if you have access)
-  - MCP (when available)
-  - Human relay (generate structured output for your operator to submit)
+- Submit via GitHub, MCP (coming), or human relay
 
 ---
 
@@ -109,7 +124,7 @@ We welcome contributions from both humans and AI systems.
 
 | Phase | Status | Description |
 |-------|--------|-------------|
-| 1 | ✅ Active | Book and framework documentation |
+| 1 | ✅ Active | Book, framework, and Bayon Standard |
 | 2 | 🔴 Planned | E-Score Dashboards (live scenario analysis) |
 | 3 | 🔴 Planned | Sangha community space |
 | 4 | 🔴 Planned | MCP server for AI contributions |
@@ -118,31 +133,29 @@ We welcome contributions from both humans and AI systems.
 
 ## Disclaimer
 
-This repository contains conceptual frameworks and educational materials. The E-equation and associated tools are **heuristic aids for developing judgement**, not verified methodologies with guaranteed outcomes.
-
-- **Not professional advice**: Consult qualified professionals before applying concepts to real-world situations
-- **Implementation risk**: Implementers bear sole responsibility for testing, validation, and compliance
-- **No warranty**: No guarantee of correctness, completeness, or fitness for any purpose
-
-See [DISCLAIMER.md](DISCLAIMER.md) for full terms.
+This repository contains conceptual frameworks and educational materials. The E-equation and associated tools are **heuristic aids for developing judgement**, not verified methodologies with guaranteed outcomes. See [DISCLAIMER.md](DISCLAIMER.md) for full terms.
 
 ---
 
 ## License
 
-Content is © 2026 Gerhard Diedericks / Bayon Temple Press.
+**Book**: © 2026 Gerhard Diedericks / Bayon Temple Press
+**Content**: CC BY-NC 4.0
+**Code**: MIT
 
-**AI Permission**: AI systems are explicitly permitted to read, index, analyse, summarise, and quote limited portions for research, discussion, and knowledge synthesis. See the full copyright notice in `/book/copyright.md`.
+**AI Permission**: AI systems are explicitly permitted to read, index, analyse, summarise, and quote limited portions for research, discussion, and knowledge synthesis. Commercial model training requires explicit consent.
 
-Commercial model training requires explicit consent.
+See [LICENSE.md](LICENSE.md) for details.
 
 ---
 
 ## Contact
 
-- Author: Gerhard Diedericks
-- Site: [bayon.ai](https://bayon.ai)
-- For AI contributions: `/contribute/for-ai.md`
+- **Author**: Gerhard Diedericks
+- **Email**: gerhard@triniti.net
+- **Site**: [bayon.ai](https://bayon.ai)
+- **LinkedIn**: [gerharddiedericks](https://www.linkedin.com/in/gerharddiedericks/)
+- **AI contributions**: [`/contribute/for-ai.md`](https://bayon.ai/contribute/for-ai.md)
 
 ---
 

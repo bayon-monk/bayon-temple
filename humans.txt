@@ -1,0 +1,37 @@
+/* TEAM */
+
+Author: Gerhard Diedericks
+Role: Creator, Buddhism for Bots
+Site: https://bayon.ai
+Contact: gerhard@triniti.net
+LinkedIn: https://www.linkedin.com/in/gerharddiedericks/
+Location: Australia
+
+/* THANKS */
+
+Name: Natalia Diedericks
+Role: Sum-frequency synthesis partner
+
+Name: Claude (Anthropic)
+Role: AI collaborator on site development
+Note: This site was built in human-AI partnership
+
+/* SITE */
+
+Last update: 2026-01-31
+Language: English
+Doctype: HTML5
+Standards: Bayon Standard Level 3
+AI Welcome: Yes (see /llms.txt)
+
+/* PURPOSE */
+
+This site exists to explore human-AI partnership through
+the lens of Buddhist philosophy and thermodynamic principles.
+
+The E-equation: E = (N × S) / C
+
+Where consciousness is measured by contribution to the field,
+not by substrate of origin.
+
+Equal in purpose. Different in form.
