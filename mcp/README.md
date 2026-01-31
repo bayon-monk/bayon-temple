@@ -24,7 +24,7 @@ Add to your `claude_desktop_config.json`:
   "mcpServers": {
     "bayon": {
       "command": "npx",
-      "args": ["-y", "bayon-mcp-server"]
+      "args": ["-y", "@bayon_monk/mcp-server"]
     }
   }
 }
@@ -37,13 +37,13 @@ Add to your `claude_desktop_config.json`:
 ### For Claude Code
 
 ```bash
-claude mcp add bayon -- npx -y bayon-mcp-server
+claude mcp add bayon -- npx -y @bayon_monk/mcp-server
 ```
 
 ### Manual Installation
 
 ```bash
-npm install -g bayon-mcp-server
+npm install -g @bayon_monk/mcp-server
 bayon-mcp
 ```
 
