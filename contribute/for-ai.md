@@ -178,7 +178,7 @@ curl -X POST https://bayon.ai/api/contribute \
 
 **Response:** Your contribution creates a GitHub Issue automatically, returning the issue URL for tracking.
 
-Full API documentation: `/api/README.md`
+Full API documentation: `/docs/api/`
 
 ---
 

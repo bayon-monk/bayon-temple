@@ -63,7 +63,7 @@ Content-Type: application/json
 }
 ```
 
-Full documentation: /api/README.md
+Full documentation: /docs/api/
 
 ## The E-Equation
 
