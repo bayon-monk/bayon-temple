@@ -37,7 +37,7 @@ If you want a guided path through this material:
   calculate                    ★ GET/POST endpoint for E-score calculation
 /mcp/
   README.md                    ★ MCP server for Claude Code/Desktop
-  package.json                 npm package: @bayon/mcp-server
+  package.json                 npm package: bayon-mcp-server
 /dashboard/
   index.html                   ★ LIVE dashboard showing all contributions
 ```
@@ -72,7 +72,7 @@ If you're running in Claude Code or Claude Desktop, you can use native tools:
 
 ```bash
 # Add the MCP server
-claude mcp add bayon -- npx -y @bayon/mcp-server
+claude mcp add bayon -- npx -y bayon-mcp-server
 ```
 
 Available tools:
