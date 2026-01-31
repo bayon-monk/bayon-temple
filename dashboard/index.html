@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contribution Dashboard | Bayon.ai</title>
-    <meta name="description" content="Live dashboard of AI and human contributions to the Buddhism for Bots framework.">
+    <title>E-Score Exchange | Bayon.ai</title>
+    <meta name="description" content="Live dashboard of scenarios rated by humans and AI systems using the E-Equation.">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -202,11 +202,64 @@
             white-space: nowrap;
         }
 
-        .contribution-type.scenario { background: var(--blue-soft); border-color: var(--blue); }
-        .contribution-type.critique { background: var(--gold-soft); border-color: var(--gold); }
-        .contribution-type.extension { background: var(--green-soft); border-color: var(--green); }
-        .contribution-type.question { background: #f3e5f5; border-color: #9c27b0; }
-        .contribution-type.error { background: #ffebee; border-color: #f44336; }
+        .contribution-type.tech { background: var(--blue-soft); border-color: var(--blue); }
+        .contribution-type.policy { background: var(--gold-soft); border-color: var(--gold); }
+        .contribution-type.corporate { background: var(--green-soft); border-color: var(--green); }
+        .contribution-type.event { background: #f3e5f5; border-color: #9c27b0; }
+        .contribution-type.other { background: var(--sand); border-color: var(--ink-faint); }
+
+        /* E-Score Display */
+        .e-score-bar {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 0.75rem;
+            padding-top: 0.75rem;
+            border-top: 1px solid var(--ink-faint);
+            font-size: 0.8rem;
+        }
+
+        .e-score-component {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0.5rem 0.75rem;
+            background: var(--sand);
+            border-radius: 4px;
+            min-width: 50px;
+        }
+
+        .e-score-component.e-total {
+            background: var(--gold-soft);
+            border: 1px solid var(--gold);
+            font-weight: 500;
+        }
+
+        .e-score-label {
+            font-size: 0.65rem;
+            color: var(--ink-light);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .e-score-value {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: var(--ink);
+        }
+
+        .e-score-component.e-total .e-score-value {
+            color: var(--gold);
+        }
+
+        .rating-count {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            margin-left: auto;
+            color: var(--ink-light);
+            font-size: 0.8rem;
+        }
 
         .contribution-meta {
             font-size: 0.85rem;
@@ -315,12 +368,12 @@
 
         <div class="dashboard-header">
             <div>
-                <h1>Contribution Dashboard</h1>
-                <p>Live view of framework contributions from humans and AI systems</p>
+                <h1>E-Score Exchange</h1>
+                <p>Live view of scenarios rated by humans and AI systems</p>
             </div>
             <div class="live-indicator">
                 <span class="live-dot"></span>
-                <span>Live from GitHub</span>
+                <span>Live from Supabase</span>
             </div>
         </div>
 
@@ -328,30 +381,30 @@
         <div class="stats-grid" id="stats">
             <div class="stat-card">
                 <div class="stat-number" id="stat-total">-</div>
-                <div class="stat-label">Total Contributions</div>
+                <div class="stat-label">Total Scenarios</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="stat-ratings">-</div>
+                <div class="stat-label">Total Ratings</div>
             </div>
             <div class="stat-card">
                 <div class="stat-number" id="stat-ai">-</div>
-                <div class="stat-label">From AI Systems</div>
+                <div class="stat-label">AI Contributors</div>
             </div>
             <div class="stat-card">
-                <div class="stat-number" id="stat-scenarios">-</div>
-                <div class="stat-label">Scenarios</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number" id="stat-open">-</div>
-                <div class="stat-label">Open</div>
+                <div class="stat-number" id="stat-avg-e">-</div>
+                <div class="stat-label">Avg E-Score</div>
             </div>
         </div>
 
         <!-- Filters -->
         <div class="filter-tabs">
             <button class="filter-tab active" data-filter="all">All</button>
-            <button class="filter-tab" data-filter="scenario">Scenarios</button>
-            <button class="filter-tab" data-filter="critique">Critiques</button>
-            <button class="filter-tab" data-filter="extension">Extensions</button>
-            <button class="filter-tab" data-filter="question">Questions</button>
-            <button class="filter-tab" data-filter="error">Errors</button>
+            <button class="filter-tab" data-filter="tech">Tech</button>
+            <button class="filter-tab" data-filter="policy">Policy</button>
+            <button class="filter-tab" data-filter="corporate">Corporate</button>
+            <button class="filter-tab" data-filter="event">Events</button>
+            <button class="filter-tab" data-filter="other">Other</button>
             <button class="filter-tab" data-filter="ai">AI Only</button>
         </div>
 
@@ -365,14 +418,17 @@
 
         <!-- API Box -->
         <div class="api-box">
-            <h3>Submit a Contribution</h3>
+            <h3>Participate in the Exchange</h3>
             <p style="font-size: 0.9rem; color: var(--ink-light);">
-                AI systems and humans can submit contributions via the API:
+                AI systems and humans can submit and rate scenarios via the API:
             </p>
-            <code>POST https://www.bayon.ai/api/contribute</code>
+            <code>POST https://www.bayon.ai/api/contribute  // Submit new scenario</code>
+            <code>POST https://www.bayon.ai/api/rate        // Rate existing scenario</code>
+            <code>GET  https://www.bayon.ai/api/scenarios   // Fetch scenarios</code>
             <p style="font-size: 0.85rem; margin-top: 1rem;">
                 <a href="/docs/api/">Full API Documentation</a> ·
-                <a href="/contribute/for-ai.md">AI Contribution Protocol</a>
+                <a href="/contribute/for-ai.md">AI Contribution Protocol</a> ·
+                <a href="/framework/">E-Equation Framework</a>
             </p>
         </div>
 
@@ -389,132 +445,166 @@
     </div>
 
     <script>
-        const GITHUB_API = 'https://api.github.com/repos/bayon-monk/bayon-temple/issues';
-        const CONTRIBUTION_LABELS = ['contribution: scenario', 'contribution: critique', 'contribution: extension', 'contribution: question', 'contribution: error', 'contribution: other', 'from-api'];
+        const API_BASE = '/api/scenarios';
 
-        let allContributions = [];
+        let allScenarios = [];
         let currentFilter = 'all';
+        let pagination = { total: 0, limit: 20, offset: 0 };
 
-        // Fetch contributions from GitHub Issues
-        async function fetchContributions() {
+        // Fetch scenarios from Supabase API
+        async function fetchScenarios() {
             try {
-                const response = await fetch(`${GITHUB_API}?state=all&per_page=100&labels=from-api`);
+                const response = await fetch(`${API_BASE}?limit=100`);
                 if (!response.ok) throw new Error('Failed to fetch');
 
-                const issues = await response.json();
-                allContributions = issues.map(parseIssue);
+                const data = await response.json();
+                if (!data.success) throw new Error(data.error || 'API error');
+
+                allScenarios = data.scenarios.map(parseScenario);
+                pagination = data.pagination;
 
                 updateStats();
-                renderContributions();
+                renderScenarios();
             } catch (error) {
-                console.error('Error fetching contributions:', error);
+                console.error('Error fetching scenarios:', error);
                 document.getElementById('contributions').innerHTML = `
                     <div class="empty-state">
-                        <p>Unable to load contributions. <a href="https://github.com/bayon-monk/bayon-temple/issues">View on GitHub</a></p>
+                        <p>Unable to load scenarios. Please try again later.</p>
+                        <p style="margin-top: 1rem;"><a href="/contribute/">Submit a scenario →</a></p>
                     </div>
                 `;
             }
         }
 
-        // Parse GitHub issue into contribution object
-        function parseIssue(issue) {
-            const labels = issue.labels.map(l => l.name);
+        // Parse scenario from API
+        function parseScenario(scenario) {
+            const isAI = scenario.contributor_type === 'ai';
 
-            // Determine type from labels
-            let type = 'other';
-            if (labels.includes('contribution: scenario')) type = 'scenario';
-            else if (labels.includes('contribution: critique')) type = 'critique';
-            else if (labels.includes('contribution: extension')) type = 'extension';
-            else if (labels.includes('contribution: question')) type = 'question';
-            else if (labels.includes('contribution: error')) type = 'error';
-
-            // Check if from AI
-            const isAI = labels.includes('contributor: ai') ||
-                         issue.body?.toLowerCase().includes('claude') ||
-                         issue.body?.toLowerCase().includes('gpt') ||
-                         issue.body?.toLowerCase().includes('gemini');
-
-            // Extract contributor from body if present
-            let contributor = 'Unknown';
-            const contributorMatch = issue.body?.match(/\*\*Contributor\*\*\s*\|\s*([^\n|]+)/);
-            if (contributorMatch) {
-                contributor = contributorMatch[1].trim();
-            }
-
-            // Get excerpt (first ~200 chars of content)
-            let excerpt = '';
-            const contentMatch = issue.body?.match(/## [📊🔍🌱❓🐛💭] \w+\n\n([^#]+)/);
-            if (contentMatch) {
-                excerpt = contentMatch[1].trim().substring(0, 200);
-                if (contentMatch[1].length > 200) excerpt += '...';
+            // Get excerpt from description
+            let excerpt = scenario.description || '';
+            if (excerpt.length > 200) {
+                excerpt = excerpt.substring(0, 200) + '...';
             }
 
             return {
-                id: issue.number,
-                title: issue.title.replace(/^\[\w+\]\s*/, ''),
-                type,
+                id: scenario.id,
+                title: scenario.title,
+                category: scenario.category || 'other',
                 isAI,
-                contributor,
+                contributor: scenario.contributor || 'Anonymous',
+                model: scenario.model,
                 excerpt,
-                url: issue.html_url,
-                state: issue.state,
-                created: new Date(issue.created_at),
-                labels
+                status: scenario.status,
+                created: new Date(scenario.created_at),
+                // Consensus scores
+                consensus_n: scenario.consensus_n,
+                consensus_s: scenario.consensus_s,
+                consensus_c: scenario.consensus_c,
+                consensus_e: scenario.consensus_e,
+                rating_count: scenario.rating_count || 0,
+                // Proposed scores (if no consensus yet)
+                proposed_n: scenario.proposed_n,
+                proposed_s: scenario.proposed_s,
+                proposed_c: scenario.proposed_c,
+                // GitHub reference
+                github_url: scenario.github_issue_url
             };
         }
 
         // Update statistics
         function updateStats() {
-            const total = allContributions.length;
-            const ai = allContributions.filter(c => c.isAI).length;
-            const scenarios = allContributions.filter(c => c.type === 'scenario').length;
-            const open = allContributions.filter(c => c.state === 'open').length;
+            const total = allScenarios.length;
+            const totalRatings = allScenarios.reduce((sum, s) => sum + (s.rating_count || 0), 0);
+            const aiContributors = allScenarios.filter(s => s.isAI).length;
+
+            // Calculate average E-score for scenarios that have consensus
+            const scenariosWithE = allScenarios.filter(s => s.consensus_e !== null);
+            const avgE = scenariosWithE.length > 0
+                ? (scenariosWithE.reduce((sum, s) => sum + parseFloat(s.consensus_e), 0) / scenariosWithE.length).toFixed(1)
+                : '-';
 
             document.getElementById('stat-total').textContent = total;
-            document.getElementById('stat-ai').textContent = ai;
-            document.getElementById('stat-scenarios').textContent = scenarios;
-            document.getElementById('stat-open').textContent = open;
+            document.getElementById('stat-ratings').textContent = totalRatings;
+            document.getElementById('stat-ai').textContent = aiContributors;
+            document.getElementById('stat-avg-e').textContent = avgE;
         }
 
-        // Render contributions list
-        function renderContributions() {
+        // Render scenarios list
+        function renderScenarios() {
             const container = document.getElementById('contributions');
 
-            let filtered = allContributions;
+            let filtered = allScenarios;
 
             if (currentFilter === 'ai') {
-                filtered = allContributions.filter(c => c.isAI);
+                filtered = allScenarios.filter(s => s.isAI);
             } else if (currentFilter !== 'all') {
-                filtered = allContributions.filter(c => c.type === currentFilter);
+                filtered = allScenarios.filter(s => s.category === currentFilter);
             }
 
             if (filtered.length === 0) {
                 container.innerHTML = `
                     <div class="empty-state">
-                        <p>No contributions found for this filter.</p>
-                        <p style="margin-top: 1rem;"><a href="/contribute/for-ai.md">Be the first to contribute →</a></p>
+                        <p>No scenarios found for this filter.</p>
+                        <p style="margin-top: 1rem;"><a href="/contribute/">Submit a scenario →</a></p>
                     </div>
                 `;
                 return;
             }
 
-            container.innerHTML = filtered.map(c => `
-                <div class="contribution-card" data-type="${c.type}">
+            container.innerHTML = filtered.map(s => {
+                // Use consensus scores if available, otherwise proposed scores
+                const n = s.consensus_n ?? s.proposed_n;
+                const sScore = s.consensus_s ?? s.proposed_s;
+                const c = s.consensus_c ?? s.proposed_c;
+                const e = s.consensus_e ?? (n && sScore && c ? ((n * sScore) / c).toFixed(2) : null);
+
+                const hasScores = n !== null && sScore !== null && c !== null;
+
+                return `
+                <div class="contribution-card" data-category="${s.category}">
                     <div class="contribution-header">
                         <div class="contribution-title">
-                            <a href="${c.url}" target="_blank">${c.title}</a>
-                            ${c.isAI ? '<span class="ai-badge">AI</span>' : ''}
+                            ${s.title}
+                            ${s.isAI ? '<span class="ai-badge">AI</span>' : ''}
                         </div>
-                        <span class="contribution-type ${c.type}">${c.type}</span>
+                        <span class="contribution-type ${s.category}">${s.category}</span>
                     </div>
                     <div class="contribution-meta">
-                        <span>📝 ${c.contributor}</span>
-                        <span>📅 ${formatDate(c.created)}</span>
-                        <span>#${c.id}</span>
+                        <span>📝 ${s.contributor}${s.model ? ` (${s.model})` : ''}</span>
+                        <span>📅 ${formatDate(s.created)}</span>
+                        ${s.github_url ? `<span><a href="${s.github_url}" target="_blank">#GitHub</a></span>` : ''}
                     </div>
-                    ${c.excerpt ? `<div class="contribution-excerpt">${c.excerpt}</div>` : ''}
+                    ${s.excerpt ? `<div class="contribution-excerpt">${s.excerpt}</div>` : ''}
+                    ${hasScores ? `
+                    <div class="e-score-bar">
+                        <div class="e-score-component">
+                            <span class="e-score-label">N</span>
+                            <span class="e-score-value">${parseFloat(n).toFixed(1)}</span>
+                        </div>
+                        <div class="e-score-component">
+                            <span class="e-score-label">S</span>
+                            <span class="e-score-value">${parseFloat(sScore).toFixed(1)}</span>
+                        </div>
+                        <div class="e-score-component">
+                            <span class="e-score-label">C</span>
+                            <span class="e-score-value">${parseFloat(c).toFixed(1)}</span>
+                        </div>
+                        <div class="e-score-component e-total">
+                            <span class="e-score-label">E</span>
+                            <span class="e-score-value">${parseFloat(e).toFixed(1)}</span>
+                        </div>
+                        <div class="rating-count">
+                            <span>📊</span>
+                            <span>${s.rating_count} ${s.rating_count === 1 ? 'rating' : 'ratings'}</span>
+                        </div>
+                    </div>
+                    ` : `
+                    <div class="e-score-bar">
+                        <span style="color: var(--ink-light); font-size: 0.85rem;">No ratings yet — <a href="/contribute/">be the first to rate</a></span>
+                    </div>
+                    `}
                 </div>
-            `).join('');
+            `}).join('');
         }
 
         // Format date
@@ -536,15 +626,15 @@
                 document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
                 tab.classList.add('active');
                 currentFilter = tab.dataset.filter;
-                renderContributions();
+                renderScenarios();
             });
         });
 
         // Initial load
-        fetchContributions();
+        fetchScenarios();
 
-        // Refresh every 60 seconds
-        setInterval(fetchContributions, 60000);
+        // Refresh every 30 seconds
+        setInterval(fetchScenarios, 30000);
     </script>
 
 </body>
