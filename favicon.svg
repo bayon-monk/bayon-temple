@@ -1,17 +1,14 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <!-- Bayon face - serene, minimal, inspired by the temple's iconic faces -->
+  <!-- Off-white background matching site -->
   <rect width="32" height="32" fill="#FDFCFA"/>
 
-  <!-- Face outline - subtle stone color -->
-  <ellipse cx="16" cy="16" rx="12" ry="14" fill="none" stroke="#3D2E24" stroke-width="1.5"/>
-
-  <!-- Closed eyes - meditation/serenity -->
-  <path d="M9 13 Q12 11 15 13" fill="none" stroke="#3D2E24" stroke-width="1.2" stroke-linecap="round"/>
-  <path d="M17 13 Q20 11 23 13" fill="none" stroke="#3D2E24" stroke-width="1.2" stroke-linecap="round"/>
-
-  <!-- Serene smile - the famous Bayon smile -->
-  <path d="M11 20 Q16 23 21 20" fill="none" stroke="#A67C52" stroke-width="1.5" stroke-linecap="round"/>
-
-  <!-- Third eye dot - wisdom/enlightenment -->
-  <circle cx="16" cy="9" r="1.2" fill="#A67C52"/>
+  <!-- Deep brown B in Cormorant Garamond style (serif) -->
+  <text
+    x="16"
+    y="24"
+    font-family="Georgia, 'Times New Roman', serif"
+    font-size="26"
+    font-weight="500"
+    fill="#3D2E24"
+    text-anchor="middle">B</text>
 </svg>
