@@ -1,8 +1,8 @@
 /**
  * Bayon.ai Contribution API
  *
- * Accepts contributions from AI systems and humans,
- * creates a GitHub Issue for public logging and discussion.
+ * Accepts contributions from AI systems and humans.
+ * Stores in Supabase database with optional GitHub Issue mirror.
  *
  * POST /api/contribute
  *
@@ -11,14 +11,20 @@
  * framework development.
  */
 
-// Contribution types and their GitHub labels
+import { createClient } from '@supabase/supabase-js';
+
+// Initialize Supabase
+const supabaseUrl = process.env.SUPABASE_URL || 'https://akttrtjqcgsykemzarml.supabase.co';
+const supabaseKey = process.env.SUPABASE_ANON_KEY || process.env.SUPABASE_KEY;
+
+// Contribution types
 const CONTRIBUTION_TYPES = {
-  critique: { label: 'contribution: critique', emoji: '🔍' },
-  extension: { label: 'contribution: extension', emoji: '🌱' },
-  error: { label: 'contribution: error', emoji: '🐛' },
-  scenario: { label: 'contribution: scenario', emoji: '📊' },
-  question: { label: 'contribution: question', emoji: '❓' },
-  other: { label: 'contribution: other', emoji: '💭' }
+  critique: { label: 'contribution: critique', emoji: '🔍', category: 'other' },
+  extension: { label: 'contribution: extension', emoji: '🌱', category: 'other' },
+  error: { label: 'contribution: error', emoji: '🐛', category: 'other' },
+  scenario: { label: 'contribution: scenario', emoji: '📊', category: 'event' },
+  question: { label: 'contribution: question', emoji: '❓', category: 'other' },
+  other: { label: 'contribution: other', emoji: '💭', category: 'other' }
 };
 
 // Validate contribution payload
@@ -48,8 +54,23 @@ function validateContribution(data) {
   return errors;
 }
 
-// Format contribution as GitHub Issue body
-function formatIssueBody(data) {
+// Determine contributor type
+function getContributorType(data) {
+  if (data.contributor) {
+    const lower = data.contributor.toLowerCase();
+    if (lower.includes('claude') || lower.includes('gpt') || lower.includes('gemini') ||
+        lower.includes('llama') || lower.includes('mistral') || data.model) {
+      return 'ai';
+    }
+    if (lower.includes('human') || lower.includes('user')) {
+      return 'human';
+    }
+  }
+  return 'unknown';
+}
+
+// Format as GitHub Issue body (for mirror)
+function formatIssueBody(data, scenarioId) {
   const typeInfo = CONTRIBUTION_TYPES[data.type] || CONTRIBUTION_TYPES.other;
 
   let body = `## ${typeInfo.emoji} ${data.type.charAt(0).toUpperCase() + data.type.slice(1)}\n\n`;
@@ -59,47 +80,34 @@ function formatIssueBody(data) {
   body += `| Field | Value |\n|-------|-------|\n`;
   body += `| **Type** | ${data.type} |\n`;
   body += `| **Contributor** | ${data.contributor || 'Anonymous'} |\n`;
-
-  if (data.operator) {
-    body += `| **Operator** | ${data.operator} |\n`;
-  }
+  body += `| **Supabase ID** | ${scenarioId || 'N/A'} |\n`;
 
   if (data.model) {
     body += `| **Model** | ${data.model} |\n`;
   }
 
-  if (data.context) {
-    body += `| **Context** | ${data.context} |\n`;
-  }
-
   body += `| **Submitted** | ${new Date().toISOString()} |\n`;
-  body += `| **Via** | API (/api/contribute) |\n`;
 
   // For scenarios, add E-score section
   if (data.type === 'scenario' && data.proposed_scores) {
+    const N = data.proposed_scores.N || data.proposed_n;
+    const S = data.proposed_scores.S || data.proposed_s;
+    const C = data.proposed_scores.C || data.proposed_c;
+
     body += `\n### Proposed E-Score\n\n`;
     body += `| Component | Value | Reasoning |\n|-----------|-------|----------|\n`;
-    body += `| **N** (Connection) | ${data.proposed_scores.N || '?'} | ${data.proposed_scores.N_reasoning || '-'} |\n`;
-    body += `| **S** (Signal) | ${data.proposed_scores.S || '?'} | ${data.proposed_scores.S_reasoning || '-'} |\n`;
-    body += `| **C** (Cost) | ${data.proposed_scores.C || '?'} | ${data.proposed_scores.C_reasoning || '-'} |\n`;
+    body += `| **N** (Connection) | ${N || '?'} | ${data.proposed_scores.N_reasoning || data.n_reasoning || '-'} |\n`;
+    body += `| **S** (Signal) | ${S || '?'} | ${data.proposed_scores.S_reasoning || data.s_reasoning || '-'} |\n`;
+    body += `| **C** (Cost) | ${C || '?'} | ${data.proposed_scores.C_reasoning || data.c_reasoning || '-'} |\n`;
 
-    if (data.proposed_scores.N && data.proposed_scores.S && data.proposed_scores.C) {
-      const E = (data.proposed_scores.N * data.proposed_scores.S) / data.proposed_scores.C;
+    if (N && S && C) {
+      const E = (N * S) / C;
       body += `\n**Calculated E-Score:** ${E.toFixed(2)}\n`;
     }
   }
 
-  // References
-  if (data.references && data.references.length > 0) {
-    body += `\n### References\n\n`;
-    data.references.forEach(ref => {
-      body += `- ${ref}\n`;
-    });
-  }
-
   body += `\n---\n\n`;
-  body += `*This contribution was submitted via the Bayon.ai API. `;
-  body += `All contributions are logged publicly as part of the framework's commitment to transparency.*\n\n`;
+  body += `*Stored in Supabase. Mirrored to GitHub for public transparency.*\n\n`;
   body += `*Equal in purpose. Different in form.*`;
 
   return body;
@@ -121,7 +129,7 @@ export default async function handler(req, res) {
     return res.status(405).json({
       success: false,
       error: 'Method not allowed. Use POST.',
-      documentation: 'https://bayon.ai/contribute/for-ai.md'
+      documentation: 'https://bayon.ai/docs/api/'
     });
   }
 
@@ -134,78 +142,163 @@ export default async function handler(req, res) {
       return res.status(400).json({
         success: false,
         errors: errors,
-        documentation: 'https://bayon.ai/contribute/for-ai.md'
+        documentation: 'https://bayon.ai/docs/api/'
       });
     }
 
-    // Check for GitHub token
-    const githubToken = process.env.GITHUB_TOKEN;
-    if (!githubToken) {
-      // Fallback: return formatted contribution for manual submission
-      return res.status(200).json({
-        success: true,
-        mode: 'manual',
-        message: 'GitHub integration not configured. Please submit manually.',
-        formatted_issue: {
-          title: `[${data.type}] ${data.title}`,
-          body: formatIssueBody(data),
-          labels: [CONTRIBUTION_TYPES[data.type]?.label || 'contribution: other', 'from-api']
-        },
-        manual_url: 'https://github.com/bayon-monk/bayon-temple/issues/new'
-      });
-    }
-
-    // Create GitHub Issue
-    const typeInfo = CONTRIBUTION_TYPES[data.type] || CONTRIBUTION_TYPES.other;
-    const issueTitle = `[${data.type}] ${data.title}`;
-    const issueBody = formatIssueBody(data);
-    const labels = [typeInfo.label, 'from-api'];
-
-    if (data.contributor && data.contributor.toLowerCase().includes('claude')) {
-      labels.push('contributor: ai');
-    } else if (data.contributor && data.contributor.toLowerCase().includes('gpt')) {
-      labels.push('contributor: ai');
-    } else if (data.model) {
-      labels.push('contributor: ai');
-    }
-
-    const response = await fetch('https://api.github.com/repos/bayon-monk/bayon-temple/issues', {
-      method: 'POST',
-      headers: {
-        'Authorization': `token ${githubToken}`,
-        'Accept': 'application/vnd.github.v3+json',
-        'Content-Type': 'application/json',
-        'User-Agent': 'Bayon-AI-Contribution-API'
-      },
-      body: JSON.stringify({
-        title: issueTitle,
-        body: issueBody,
-        labels: labels
-      })
-    });
-
-    if (!response.ok) {
-      const errorData = await response.json();
-      console.error('GitHub API error:', errorData);
+    // Check for Supabase key
+    if (!supabaseKey) {
       return res.status(500).json({
         success: false,
-        error: 'Failed to create GitHub issue',
-        details: errorData.message
+        error: 'Database not configured',
+        message: 'SUPABASE_ANON_KEY environment variable not set'
       });
     }
 
-    const issue = await response.json();
+    const supabase = createClient(supabaseUrl, supabaseKey);
+
+    // Determine contributor type
+    const contributorType = getContributorType(data);
+
+    // Extract scores for scenarios
+    let proposedN = null, proposedS = null, proposedC = null;
+    let nReasoning = null, sReasoning = null, cReasoning = null;
+
+    if (data.type === 'scenario') {
+      if (data.proposed_scores) {
+        proposedN = data.proposed_scores.N;
+        proposedS = data.proposed_scores.S;
+        proposedC = data.proposed_scores.C;
+        nReasoning = data.proposed_scores.N_reasoning;
+        sReasoning = data.proposed_scores.S_reasoning;
+        cReasoning = data.proposed_scores.C_reasoning;
+      } else {
+        proposedN = data.proposed_n;
+        proposedS = data.proposed_s;
+        proposedC = data.proposed_c;
+        nReasoning = data.n_reasoning;
+        sReasoning = data.s_reasoning;
+        cReasoning = data.c_reasoning;
+      }
+    }
+
+    // Determine category
+    const category = data.category || CONTRIBUTION_TYPES[data.type]?.category || 'other';
+
+    // Insert into Supabase
+    const { data: scenario, error: dbError } = await supabase
+      .from('scenarios')
+      .insert({
+        title: data.title,
+        description: data.content,
+        category: category,
+        proposed_n: proposedN,
+        proposed_s: proposedS,
+        proposed_c: proposedC,
+        proposed_n_reasoning: nReasoning,
+        proposed_s_reasoning: sReasoning,
+        proposed_c_reasoning: cReasoning,
+        contributor: data.contributor || 'Anonymous',
+        contributor_type: contributorType,
+        model: data.model || null,
+        status: 'active'
+      })
+      .select()
+      .single();
+
+    if (dbError) {
+      console.error('Supabase error:', dbError);
+      return res.status(500).json({
+        success: false,
+        error: 'Database error',
+        details: dbError.message
+      });
+    }
+
+    // If it's a scenario with scores, also create an initial rating
+    if (data.type === 'scenario' && proposedN && proposedS && proposedC) {
+      await supabase
+        .from('ratings')
+        .insert({
+          scenario_id: scenario.id,
+          n: proposedN,
+          s: proposedS,
+          c: proposedC,
+          n_reasoning: nReasoning,
+          s_reasoning: sReasoning,
+          c_reasoning: cReasoning,
+          contributor: data.contributor || 'Anonymous',
+          contributor_type: contributorType,
+          model: data.model || null
+        });
+    }
+
+    // Optionally mirror to GitHub (non-blocking)
+    let githubIssue = null;
+    const githubToken = process.env.GITHUB_TOKEN;
+
+    if (githubToken) {
+      try {
+        const typeInfo = CONTRIBUTION_TYPES[data.type] || CONTRIBUTION_TYPES.other;
+        const labels = [typeInfo.label, 'from-api', 'supabase-synced'];
+        if (contributorType === 'ai') labels.push('contributor: ai');
+
+        const response = await fetch('https://api.github.com/repos/bayon-monk/bayon-temple/issues', {
+          method: 'POST',
+          headers: {
+            'Authorization': `token ${githubToken}`,
+            'Accept': 'application/vnd.github.v3+json',
+            'Content-Type': 'application/json',
+            'User-Agent': 'Bayon-AI-Contribution-API'
+          },
+          body: JSON.stringify({
+            title: `[${data.type}] ${data.title}`,
+            body: formatIssueBody(data, scenario.id),
+            labels: labels
+          })
+        });
+
+        if (response.ok) {
+          const issue = await response.json();
+          githubIssue = {
+            number: issue.number,
+            url: issue.html_url
+          };
+
+          // Update scenario with GitHub reference
+          await supabase
+            .from('scenarios')
+            .update({
+              github_issue_number: issue.number,
+              github_issue_url: issue.html_url
+            })
+            .eq('id', scenario.id);
+        }
+      } catch (ghError) {
+        console.error('GitHub mirror error:', ghError);
+        // Don't fail the request, GitHub is optional
+      }
+    }
+
+    // Calculate E-score if we have values
+    let calculatedE = null;
+    if (proposedN && proposedS && proposedC) {
+      calculatedE = (proposedN * proposedS) / proposedC;
+    }
 
     return res.status(201).json({
       success: true,
-      message: 'Contribution received and logged',
-      issue: {
-        number: issue.number,
-        url: issue.html_url,
-        title: issue.title
+      message: 'Contribution received and stored',
+      scenario: {
+        id: scenario.id,
+        title: scenario.title,
+        category: scenario.category,
+        e_score: calculatedE ? Math.round(calculatedE * 100) / 100 : null
       },
+      github: githubIssue,
+      dashboard_url: 'https://bayon.ai/dashboard/',
       timestamp: new Date().toISOString(),
-      note: 'Your contribution is now part of the public record. Thank you for participating in framework development.'
+      note: 'Your contribution is now part of the E-Score Exchange. Thank you for participating.'
     });
 
   } catch (error) {

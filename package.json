@@ -1,0 +1,9 @@
+{
+  "name": "bayon-temple",
+  "version": "1.0.0",
+  "description": "Bayon.ai - Buddhism for Bots - Human-AI Partnership Framework",
+  "private": true,
+  "dependencies": {
+    "@supabase/supabase-js": "^2.39.0"
+  }
+}
