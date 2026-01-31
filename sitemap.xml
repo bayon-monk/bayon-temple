@@ -51,12 +51,27 @@
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
+    <url>
+        <loc>https://bayon.ai/ai-tools/</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
 
     <!-- AI Orientation Files -->
     <url>
         <loc>https://bayon.ai/llms.txt</loc>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://bayon.ai/ai-tools/tools.json</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://bayon.ai/ai-tools/openai-functions.json</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
     </url>
 
     <!-- Book Content -->
