@@ -37,6 +37,8 @@ If you want a guided path through this material:
   calculate                    ★ GET/POST endpoint for E-score calculation
   README.md                    Full API documentation
   mcp-spec.md                  MCP server specification (coming)
+/dashboard/
+  index.html                   ★ LIVE dashboard showing all contributions
 ```
 
 ## Interactive APIs
