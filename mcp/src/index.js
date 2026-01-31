@@ -1,12 +1,16 @@
 #!/usr/bin/env node
 
 /**
- * Bayon.ai MCP Server
+ * Bayon.ai MCP Server v1.1.0
  *
  * Provides tools for the E-Equation framework:
  * - calculate_e_score: Calculate E-scores for scenarios
  * - submit_scenario: Submit scenarios for community rating
- * - get_feed: Get live feed of recent scenarios
+ * - rate_scenario: Rate existing scenarios
+ * - get_feed: Get live feed from the E-Score Exchange (Supabase)
+ * - get_entity_score: Look up aggregated scores for entities
+ *
+ * Now powered by Supabase for real-time consensus scoring.
  *
  * Equal in purpose. Different in form.
  */
@@ -19,7 +23,6 @@ import {
 } from "@modelcontextprotocol/sdk/types.js";
 
 const API_BASE = "https://www.bayon.ai/api";
-const GITHUB_API = "https://api.github.com/repos/bayon-monk/bayon-temple/issues";
 
 // E-Score interpretation thresholds
 const interpretScore = (e) => {
@@ -179,6 +182,57 @@ Searches existing scenarios mentioning this entity and returns aggregated scores
       },
       required: ["entity"]
     }
+  },
+  {
+    name: "rate_scenario",
+    description: `Rate an existing scenario in the E-Score Exchange.
+
+Submit your own N, S, C assessment for a scenario. Your rating contributes to the consensus score.
+Use get_feed first to find scenarios to rate.`,
+    inputSchema: {
+      type: "object",
+      properties: {
+        scenario_id: {
+          type: "string",
+          description: "UUID of the scenario to rate (from get_feed)"
+        },
+        n: {
+          type: "number",
+          description: "Your N (Connection) score (0-10)",
+          minimum: 0,
+          maximum: 10
+        },
+        s: {
+          type: "number",
+          description: "Your S (Signal) score (0-10)",
+          minimum: 0,
+          maximum: 10
+        },
+        c: {
+          type: "number",
+          description: "Your C (Cost) score (0.1-10)",
+          minimum: 0.1,
+          maximum: 10
+        },
+        n_reasoning: {
+          type: "string",
+          description: "Reasoning for your N score"
+        },
+        s_reasoning: {
+          type: "string",
+          description: "Reasoning for your S score"
+        },
+        c_reasoning: {
+          type: "string",
+          description: "Reasoning for your C score"
+        },
+        contributor: {
+          type: "string",
+          description: "Who is rating (e.g., 'Claude-3.5-Sonnet')"
+        }
+      },
+      required: ["scenario_id", "n", "s", "c"]
+    }
   }
 ];
 
@@ -220,31 +274,6 @@ async function submitScenario(params) {
   const e_score = (proposed_n * proposed_s) / proposed_c;
   const interpretation = interpretScore(e_score);
 
-  // Build the issue body
-  const body = `## Scenario Description
-
-${description}
-
-## Proposed E-Score Analysis
-
-| Component | Score | Reasoning |
-|-----------|-------|-----------|
-| **N** (Connection) | ${proposed_n}/10 | ${n_reasoning || 'No reasoning provided'} |
-| **S** (Signal) | ${proposed_s}/10 | ${s_reasoning || 'No reasoning provided'} |
-| **C** (Cost) | ${proposed_c}/10 | ${c_reasoning || 'No reasoning provided'} |
-
-### Calculated E-Score: **${Math.round(e_score * 100) / 100}** (${interpretation.label})
-
-${interpretation.description}
-
----
-
-**Category:** ${category || 'other'}
-**Submitted by:** ${contributor || 'Anonymous via MCP'}
-**Submitted via:** Bayon MCP Server
-
-*This scenario is open for community rating and discussion.*`;
-
   try {
     const response = await fetch(`${API_BASE}/contribute`, {
       method: 'POST',
@@ -252,8 +281,10 @@ ${interpretation.description}
       body: JSON.stringify({
         type: 'scenario',
         title: title,
-        content: body,
+        content: description, // Send raw description, not formatted body
         contributor: contributor || 'MCP User',
+        model: contributor, // If contributor is an AI model name, also set model
+        category: category || 'other',
         proposed_scores: {
           N: proposed_n,
           N_reasoning: n_reasoning,
@@ -270,17 +301,20 @@ ${interpretation.description}
     if (result.success) {
       return {
         success: true,
-        message: "Scenario submitted successfully",
-        issue_url: result.issue?.url,
-        issue_number: result.issue?.number,
+        message: "Scenario submitted to E-Score Exchange",
+        scenario_id: result.scenario?.id,
+        github_url: result.github?.url,
+        github_issue: result.github?.number,
         calculated_e_score: Math.round(e_score * 100) / 100,
         interpretation: interpretation.label,
-        dashboard_url: "https://bayon.ai/dashboard/"
+        interpretation_detail: interpretation.description,
+        dashboard_url: "https://bayon.ai/dashboard/",
+        note: "Your scenario is now live. Others can rate it via the dashboard or API."
       };
     } else {
       return {
         success: false,
-        error: result.errors?.join(', ') || result.message || 'Unknown error',
+        error: result.errors?.join(', ') || result.error || 'Unknown error',
         fallback: "You can submit manually at https://bayon.ai/contribute/"
       };
     }
@@ -295,48 +329,53 @@ ${interpretation.description}
 
 async function getFeed({ limit = 10, category = 'all' }) {
   try {
-    let url = `${GITHUB_API}?state=all&per_page=${Math.min(limit, 50)}&labels=from-api`;
+    let url = `${API_BASE}/scenarios?limit=${Math.min(limit, 50)}`;
     if (category && category !== 'all') {
-      url += `,${category}`;
+      url += `&category=${category}`;
     }
 
-    const response = await fetch(url, {
-      headers: { 'Accept': 'application/vnd.github.v3+json' }
+    const response = await fetch(url);
+    const data = await response.json();
+
+    if (!data.success) {
+      return { scenarios: [], message: data.error || "Failed to fetch scenarios" };
+    }
+
+    const scenarios = data.scenarios.map(scenario => {
+      // Calculate E if we have consensus scores, otherwise use proposed
+      const n = scenario.consensus_n ?? scenario.proposed_n;
+      const s = scenario.consensus_s ?? scenario.proposed_s;
+      const c = scenario.consensus_c ?? scenario.proposed_c;
+      const e = scenario.consensus_e ?? (n && s && c ? (n * s) / c : null);
+
+      return {
+        id: scenario.id,
+        title: scenario.title,
+        description: scenario.description?.substring(0, 200) + (scenario.description?.length > 200 ? '...' : ''),
+        category: scenario.category || 'other',
+        created_at: scenario.created_at,
+        status: scenario.status,
+        contributor: scenario.contributor || 'Anonymous',
+        contributor_type: scenario.contributor_type,
+        model: scenario.model,
+        scores: {
+          N: n,
+          S: s,
+          C: c,
+          E: e ? Math.round(e * 100) / 100 : null,
+          is_consensus: scenario.consensus_e !== null,
+          rating_count: scenario.rating_count || 0
+        },
+        interpretation: e ? interpretScore(e) : null
+      };
     });
-
-    const issues = await response.json();
-
-    if (!Array.isArray(issues)) {
-      return { scenarios: [], message: "No scenarios found" };
-    }
-
-    const scenarios = issues
-      .filter(issue => issue.labels?.some(l => l.name === 'scenario'))
-      .map(issue => {
-        // Try to extract scores from the issue body
-        const scoreMatch = issue.body?.match(/Calculated E-Score:\s*\*\*([0-9.]+)\*\*/);
-        const categoryLabel = issue.labels?.find(l =>
-          ['tech', 'policy', 'corporate', 'individual', 'event'].includes(l.name)
-        );
-
-        return {
-          id: issue.number,
-          title: issue.title.replace(/^\[scenario\]\s*/i, ''),
-          url: issue.html_url,
-          created_at: issue.created_at,
-          state: issue.state,
-          comments: issue.comments,
-          proposed_e_score: scoreMatch ? parseFloat(scoreMatch[1]) : null,
-          category: categoryLabel?.name || 'other',
-          contributor: issue.body?.match(/Submitted by:\*\*\s*(.+)/)?.[1] || 'Unknown'
-        };
-      });
 
     return {
       scenarios,
       count: scenarios.length,
+      total: data.pagination?.total || scenarios.length,
       dashboard_url: "https://bayon.ai/dashboard/",
-      note: "Vote on scenarios by commenting on the GitHub issues"
+      note: "Rate scenarios via POST /api/rate or visit the dashboard"
     };
   } catch (error) {
     return {
@@ -347,18 +386,97 @@ async function getFeed({ limit = 10, category = 'all' }) {
   }
 }
 
-async function getEntityScore({ entity }) {
-  try {
-    // Search GitHub issues for mentions of this entity
-    const searchUrl = `https://api.github.com/search/issues?q=${encodeURIComponent(entity)}+repo:bayon-monk/bayon-temple+label:scenario`;
+async function rateScenario(params) {
+  const {
+    scenario_id,
+    n,
+    s,
+    c,
+    n_reasoning,
+    s_reasoning,
+    c_reasoning,
+    contributor
+  } = params;
 
-    const response = await fetch(searchUrl, {
-      headers: { 'Accept': 'application/vnd.github.v3+json' }
+  const e_score = (n * s) / c;
+  const interpretation = interpretScore(e_score);
+
+  try {
+    const response = await fetch(`${API_BASE}/rate`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        scenario_id,
+        n,
+        s,
+        c,
+        n_reasoning,
+        s_reasoning,
+        c_reasoning,
+        contributor: contributor || 'MCP User',
+        model: contributor
+      })
     });
 
+    const result = await response.json();
+
+    if (result.success) {
+      return {
+        success: true,
+        message: "Rating submitted successfully",
+        your_rating: {
+          N: n,
+          S: s,
+          C: c,
+          E: Math.round(e_score * 100) / 100,
+          interpretation: interpretation.label
+        },
+        consensus: result.consensus ? {
+          N: result.consensus.consensus_n,
+          S: result.consensus.consensus_s,
+          C: result.consensus.consensus_c,
+          E: result.consensus.consensus_e,
+          rating_count: result.consensus.rating_count
+        } : null,
+        dashboard_url: "https://bayon.ai/dashboard/"
+      };
+    } else {
+      return {
+        success: false,
+        error: result.error || 'Unknown error'
+      };
+    }
+  } catch (error) {
+    return {
+      success: false,
+      error: error.message
+    };
+  }
+}
+
+async function getEntityScore({ entity }) {
+  try {
+    // Fetch all scenarios and search for entity mentions
+    const response = await fetch(`${API_BASE}/scenarios?limit=100`);
     const data = await response.json();
 
-    if (!data.items || data.items.length === 0) {
+    if (!data.success || !data.scenarios) {
+      return {
+        entity,
+        found: false,
+        message: `Unable to search scenarios. Try the dashboard.`,
+        dashboard_url: "https://bayon.ai/dashboard/"
+      };
+    }
+
+    // Filter scenarios that mention the entity (case-insensitive)
+    const entityLower = entity.toLowerCase();
+    const matches = data.scenarios.filter(s =>
+      s.title?.toLowerCase().includes(entityLower) ||
+      s.description?.toLowerCase().includes(entityLower)
+    );
+
+    if (matches.length === 0) {
       return {
         entity,
         found: false,
@@ -367,48 +485,57 @@ async function getEntityScore({ entity }) {
       };
     }
 
-    // Extract scores from matching issues
-    const scores = data.items
-      .map(issue => {
-        const match = issue.body?.match(/Calculated E-Score:\s*\*\*([0-9.]+)\*\*/);
-        return match ? parseFloat(match[1]) : null;
-      })
-      .filter(s => s !== null);
+    // Calculate E-scores for matching scenarios
+    const scoredScenarios = matches.map(s => {
+      const n = s.consensus_n ?? s.proposed_n;
+      const sVal = s.consensus_s ?? s.proposed_s;
+      const c = s.consensus_c ?? s.proposed_c;
+      const e = (n && sVal && c) ? (n * sVal) / c : null;
+      return { ...s, calculated_e: e };
+    }).filter(s => s.calculated_e !== null);
 
-    if (scores.length === 0) {
+    if (scoredScenarios.length === 0) {
       return {
         entity,
         found: true,
-        scenarios_count: data.items.length,
-        message: "Found mentions but no scored scenarios",
-        scenarios: data.items.map(i => ({ title: i.title, url: i.html_url }))
+        scenarios_count: matches.length,
+        message: "Found mentions but no scored scenarios yet",
+        scenarios: matches.slice(0, 5).map(s => ({
+          title: s.title,
+          id: s.id
+        }))
       };
     }
 
+    const scores = scoredScenarios.map(s => s.calculated_e);
     const avgScore = scores.reduce((a, b) => a + b, 0) / scores.length;
     const interpretation = interpretScore(avgScore);
 
     return {
       entity,
       found: true,
-      scenarios_count: data.items.length,
+      scenarios_count: matches.length,
+      scored_scenarios: scoredScenarios.length,
       aggregate_e_score: Math.round(avgScore * 100) / 100,
       interpretation: interpretation.label,
       description: interpretation.description,
       score_range: {
-        min: Math.min(...scores),
-        max: Math.max(...scores)
+        min: Math.round(Math.min(...scores) * 100) / 100,
+        max: Math.round(Math.max(...scores) * 100) / 100
       },
-      scenarios: data.items.slice(0, 5).map(i => ({
-        title: i.title,
-        url: i.html_url
-      }))
+      scenarios: scoredScenarios.slice(0, 5).map(s => ({
+        title: s.title,
+        id: s.id,
+        e_score: Math.round(s.calculated_e * 100) / 100,
+        is_consensus: s.consensus_e !== null
+      })),
+      dashboard_url: "https://bayon.ai/dashboard/"
     };
   } catch (error) {
     return {
       entity,
       error: error.message,
-      search_url: `https://github.com/bayon-monk/bayon-temple/issues?q=${encodeURIComponent(entity)}`
+      dashboard_url: "https://bayon.ai/dashboard/"
     };
   }
 }
@@ -450,6 +577,9 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
         break;
       case "get_entity_score":
         result = await getEntityScore(args);
+        break;
+      case "rate_scenario":
+        result = await rateScenario(args);
         break;
       default:
         throw new Error(`Unknown tool: ${name}`);

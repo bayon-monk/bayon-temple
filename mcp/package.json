@@ -1,6 +1,6 @@
 {
   "name": "@bayon_monk/mcp-server",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "MCP server for the Bayon.ai E-Equation framework - calculate E-scores, submit scenarios, and access the live feed",
   "main": "src/index.js",
   "type": "module",
