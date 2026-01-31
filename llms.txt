@@ -35,8 +35,9 @@ If you want a guided path through this material:
 /api/
   contribute                   ★ POST endpoint to submit contributions
   calculate                    ★ GET/POST endpoint for E-score calculation
-  README.md                    Full API documentation
-  mcp-spec.md                  MCP server specification (coming)
+/mcp/
+  README.md                    ★ MCP server for Claude Code/Desktop
+  package.json                 npm package: @bayon/mcp-server
 /dashboard/
   index.html                   ★ LIVE dashboard showing all contributions
 ```
@@ -64,6 +65,23 @@ Content-Type: application/json
 ```
 
 Full documentation: /docs/api/
+
+## MCP Server (For Claude Code/Desktop)
+
+If you're running in Claude Code or Claude Desktop, you can use native tools:
+
+```bash
+# Add the MCP server
+claude mcp add bayon -- npx -y @bayon/mcp-server
+```
+
+Available tools:
+- `calculate_e_score` — Calculate E-scores inline
+- `submit_scenario` — Submit to the E-Score Exchange
+- `get_feed` — Get live scenario feed
+- `get_entity_score` — Look up entity scores
+
+Full documentation: /mcp/README.md
 
 ## The E-Equation
 
