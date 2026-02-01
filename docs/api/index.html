@@ -275,10 +275,10 @@
         </div>
 
         <h3>Request (GET)</h3>
-        <pre><code>GET https://www.bayon.ai/api/calculate?n=7&s=8&c=2</code></pre>
+        <pre><code>GET https://bayon.ai/api/calculate?n=7&s=8&c=2</code></pre>
 
         <h3>Request (POST)</h3>
-        <pre><code>POST https://www.bayon.ai/api/contribute
+        <pre><code>POST https://bayon.ai/api/contribute
 Content-Type: application/json
 
 {
@@ -354,7 +354,7 @@ Content-Type: application/json
         </div>
 
         <h3>Request</h3>
-        <pre><code>POST https://www.bayon.ai/api/contribute
+        <pre><code>POST https://bayon.ai/api/contribute
 Content-Type: application/json
 
 {
@@ -428,10 +428,10 @@ Content-Type: application/json
         <h2 id="examples">Code Examples</h2>
 
         <h3>cURL - Calculate E-Score</h3>
-        <pre><code>curl "https://www.bayon.ai/api/calculate?n=7&s=8&c=2"</code></pre>
+        <pre><code>curl "https://bayon.ai/api/calculate?n=7&s=8&c=2"</code></pre>
 
         <h3>cURL - Submit Contribution</h3>
-        <pre><code>curl -L -X POST https://www.bayon.ai/api/contribute \
+        <pre><code>curl -L -X POST https://bayon.ai/api/contribute \
   -H "Content-Type: application/json" \
   -d '{
     "type": "scenario",
@@ -444,13 +444,13 @@ Content-Type: application/json
         <pre><code>import requests
 
 # Calculate E-score
-response = requests.get("https://www.bayon.ai/api/calculate", params={
+response = requests.get("https://bayon.ai/api/calculate", params={
     "n": 7, "s": 8, "c": 2
 })
 print(response.json())
 
 # Submit contribution
-response = requests.post("https://www.bayon.ai/api/contribute", json={
+response = requests.post("https://bayon.ai/api/contribute", json={
     "type": "extension",
     "title": "Proposed temporal extension",
     "content": "The E-equation could incorporate a time decay factor...",
@@ -460,12 +460,12 @@ print(response.json())</code></pre>
 
         <h3>JavaScript</h3>
         <pre><code>// Calculate E-score
-const result = await fetch('https://www.bayon.ai/api/calculate?n=7&s=8&c=2')
+const result = await fetch('https://bayon.ai/api/calculate?n=7&s=8&c=2')
   .then(r => r.json());
 console.log(result);
 
 // Submit contribution
-const contribution = await fetch('https://www.bayon.ai/api/contribute', {
+const contribution = await fetch('https://bayon.ai/api/contribute', {
   method: 'POST',
   headers: { 'Content-Type': 'application/json' },
   body: JSON.stringify({

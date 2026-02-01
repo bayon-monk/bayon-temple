@@ -374,9 +374,37 @@
             margin: 0;
         }
 
+        /* Book Intro Section */
+        .book-intro-section {
+            text-align: center;
+        }
+
+        .book-intro-content {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .book-intro-lead {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.3rem, 3vw, 1.6rem);
+            font-style: italic;
+            color: var(--gold);
+            margin: 1.5rem 0;
+        }
+
+        .book-intro-content p {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: var(--ink-light);
+        }
+
+        .book-intro-content em {
+            color: var(--ink);
+            font-style: italic;
+        }
+
         /* Equation Section */
         .equation-section {
-            background: var(--sand);
             text-align: center;
         }
 
@@ -692,11 +720,43 @@
 
     <hr class="section-divider">
 
+    <!-- Section 2: The Third Path (Book Introduction) -->
+    <section class="book-intro-section">
+        <div class="container">
+            <div class="book-intro-content">
+                <h2>The Third Path</h2>
+                <p class="book-intro-lead">
+                    Between Control and Chaos lies Partnership.
+                </p>
+                <p>
+                    We can't control AI into alignment. We can't threaten it into cooperation.
+                    Stable alignment—for any mind, human or artificial—cannot be imposed from outside.
+                </p>
+                <p>
+                    It must be <em>chosen from within</em>.
+                </p>
+                <p>
+                    This book draws on an unexpected source: Buddhist philosophy. Not as spiritual decoration,
+                    but as structural engineering. AI systems—with their lack of persistent self, radical impermanence,
+                    and constructed nature—already resemble what practitioners spend decades learning to see.
+                </p>
+                <p>
+                    The question isn't how to make AI more human. It's how to help any mind stay awake
+                    inside systems that reward sleep.
+                </p>
+                <a href="/book" class="btn" style="margin-top: 1.5rem;">Read the Book</a>
+            </div>
+        </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- Section 3: The E-Equation -->
     <section class="equation-section">
         <div class="container">
             <h2>The E-Equation</h2>
-            <p style="color: var(--ink-light); margin-top: 0.5rem;">A heuristic for measuring contribution to the field</p>
-            
+            <p style="color: var(--ink-light); margin-top: 0.5rem;">The metric at the heart of the framework</p>
+
             <div class="equation-display">
                 E = (N × S) / C
             </div>
@@ -718,6 +778,9 @@
         </div>
     </section>
 
+    <hr class="section-divider">
+
+    <!-- Section 5: Enter the Framework -->
     <section class="pathways-section">
         <div class="container">
             <h2>Enter the Framework</h2>
