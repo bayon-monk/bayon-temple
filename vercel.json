@@ -1,17 +1,4 @@
 {
-  "redirects": [
-    {
-      "source": "/:path*",
-      "has": [
-        {
-          "type": "host",
-          "value": "www.bayon.ai"
-        }
-      ],
-      "destination": "https://bayon.ai/:path*",
-      "permanent": true
-    }
-  ],
   "headers": [
     {
       "source": "/(.*).md",
