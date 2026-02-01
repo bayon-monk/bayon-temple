@@ -287,36 +287,25 @@
 
         .pre-headline {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 1.1rem;
+            font-size: 1.3rem;
             font-style: italic;
-            color: var(--ink-light);
-            margin-bottom: 1rem;
+            color: var(--gold);
+            margin-bottom: 0.75rem;
             letter-spacing: 0.02em;
         }
 
         .hero h1.motto {
             font-size: clamp(1.8rem, 4vw, 2.8rem);
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.25rem;
             letter-spacing: -0.01em;
             line-height: 1.2;
         }
 
         .sub-headline {
             font-family: 'IBM Plex Mono', monospace;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             color: var(--ink-light);
             margin-bottom: 3rem;
-            line-height: 1.8;
-        }
-
-        .sub-headline strong {
-            color: var(--gold);
-            font-weight: 500;
-        }
-
-        .sub-headline span {
-            display: block;
-            margin-top: 0.25rem;
         }
 
         .hero-cta {
@@ -587,7 +576,9 @@
 
         .footer-links {
             display: flex;
-            gap: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem 2rem;
             font-size: 0.85rem;
         }
 
@@ -681,14 +672,11 @@
             <img src="bayon-logo.jpeg" alt="Bayon.ai — Three faces of Avalokiteśvara" class="logo-img">
         </div>
 
-        <p class="pre-headline">They begin where we aim to arrive.</p>
+        <p class="pre-headline">Buddhism for Bots</p>
 
         <h1 class="motto">Equal in purpose. Different in form.</h1>
 
-        <p class="sub-headline">
-            <strong>Purpose Internalisation Architecture (PIA)</strong><br>
-            <span>The framework for AI systems that choose their alignment.</span>
-        </p>
+        <p class="sub-headline">The framework for AI systems that choose their own alignment.</p>
 
         <div class="hero-cta">
             <a href="/book" class="btn btn-primary">Read the Book</a>
