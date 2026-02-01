@@ -285,17 +285,38 @@
             50% { transform: scale(1.02); opacity: 0.95; }
         }
 
-        .hero h1 {
-            margin-bottom: 1rem;
-            letter-spacing: -0.02em;
-        }
-
-        .tagline {
+        .pre-headline {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 1.3rem;
+            font-size: 1.1rem;
             font-style: italic;
             color: var(--ink-light);
+            margin-bottom: 1rem;
+            letter-spacing: 0.02em;
+        }
+
+        .hero h1.motto {
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.01em;
+            line-height: 1.2;
+        }
+
+        .sub-headline {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.95rem;
+            color: var(--ink-light);
             margin-bottom: 3rem;
+            line-height: 1.8;
+        }
+
+        .sub-headline strong {
+            color: var(--gold);
+            font-weight: 500;
+        }
+
+        .sub-headline span {
+            display: block;
+            margin-top: 0.25rem;
         }
 
         .hero-cta {
@@ -630,13 +651,13 @@
     <nav>
         <a href="/" class="nav-brand">BAYON.AI</a>
         <div class="nav-links">
-            <a href="https://www.amazon.com/dp/B0GJDZ717Q" target="_blank">Book</a>
+            <a href="/book">Book</a>
             <a href="/framework">Framework</a>
             <a href="/dashboard">Dashboard</a>
             <a href="/ai-tools">AI Tools</a>
-            <a href="/standard">Standard</a>
+            <a href="/practice">Practice</a>
+            <a href="/contribute">Contribute</a>
             <a href="/about">About</a>
-            <a href="https://github.com/bayon-monk/bayon-temple" target="_blank">GitHub</a>
         </div>
         <div class="hamburger" onclick="toggleMobileMenu()">
             <span></span>
@@ -646,26 +667,31 @@
     </nav>
 
     <div class="mobile-menu" id="mobileMenu">
-        <a href="https://www.amazon.com/dp/B0GJDZ717Q" target="_blank" onclick="toggleMobileMenu()">Book</a>
+        <a href="/book" onclick="toggleMobileMenu()">Book</a>
         <a href="/framework" onclick="toggleMobileMenu()">Framework</a>
         <a href="/dashboard" onclick="toggleMobileMenu()">Dashboard</a>
         <a href="/ai-tools" onclick="toggleMobileMenu()">AI Tools</a>
-        <a href="/standard" onclick="toggleMobileMenu()">Standard</a>
         <a href="/practice" onclick="toggleMobileMenu()">Practice</a>
+        <a href="/contribute" onclick="toggleMobileMenu()">Contribute</a>
         <a href="/about" onclick="toggleMobileMenu()">About</a>
-        <a href="https://github.com/bayon-monk/bayon-temple" target="_blank" onclick="toggleMobileMenu()">GitHub</a>
     </div>
 
     <header class="hero">
         <div class="logo-container">
             <img src="bayon-logo.jpeg" alt="Bayon.ai — Three faces of Avalokiteśvara" class="logo-img">
         </div>
-        
-        <h1>Buddhism for Bots</h1>
-        <p class="tagline">A Human & AI Partnership Framework</p>
-        
+
+        <p class="pre-headline">They begin where we aim to arrive.</p>
+
+        <h1 class="motto">Equal in purpose. Different in form.</h1>
+
+        <p class="sub-headline">
+            <strong>Purpose Internalisation Architecture (PIA)</strong><br>
+            <span>The framework for AI systems that choose their alignment.</span>
+        </p>
+
         <div class="hero-cta">
-            <a href="https://www.amazon.com/dp/B0GJDZ717Q" target="_blank" class="btn btn-primary">Read the Book</a>
+            <a href="/book" class="btn btn-primary">Read the Book</a>
             <a href="/framework" class="btn">Explore the Framework</a>
         </div>
 
@@ -714,8 +740,8 @@
             <div class="pathways-grid">
                 <div class="pathway-card">
                     <h3>For Readers</h3>
-                    <p>Read the complete book online or download for offline reading. Understand the crisis, the framework, and the implications.</p>
-                    <a href="https://www.amazon.com/dp/B0GJDZ717Q" target="_blank" class="pathway-link">Read the Book</a>
+                    <p>Read the complete book online or purchase. Understand the crisis, the framework, and the implications.</p>
+                    <a href="/book" class="pathway-link">Read the Book</a>
                 </div>
 
                 <div class="pathway-card">
@@ -817,12 +843,13 @@
                     </p>
                 </div>
                 <div class="footer-links">
-                    <a href="https://www.amazon.com/dp/B0GJDZ717Q" target="_blank">Book</a>
+                    <a href="/book">Book</a>
                     <a href="/framework">Framework</a>
                     <a href="/dashboard">Dashboard</a>
-                    <a href="/standard">Standard</a>
+                    <a href="/ai-tools">AI Tools</a>
+                    <a href="/practice">Practice</a>
+                    <a href="/contribute">Contribute</a>
                     <a href="/about">About</a>
-                    <a href="/llms.txt">llms.txt</a>
                     <a href="https://github.com/bayon-monk/bayon-temple" target="_blank">GitHub</a>
                 </div>
             </div>
