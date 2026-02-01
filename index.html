@@ -285,27 +285,28 @@
             50% { transform: scale(1.02); opacity: 0.95; }
         }
 
-        .pre-headline {
+        .hero-title {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+        }
+
+        .hero-subtitle {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            color: var(--ink);
+            margin-bottom: 1.5rem;
+            max-width: 600px;
+        }
+
+        .hero-motto {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 1.3rem;
+            font-size: clamp(1rem, 1.5vw, 1.15rem);
             font-style: italic;
             color: var(--gold);
-            margin-bottom: 0.75rem;
-            letter-spacing: 0.02em;
-        }
-
-        .hero h1.motto {
-            font-size: clamp(1.8rem, 4vw, 2.8rem);
-            margin-bottom: 1.25rem;
-            letter-spacing: -0.01em;
-            line-height: 1.2;
-        }
-
-        .sub-headline {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 0.9rem;
-            color: var(--ink-light);
             margin-bottom: 3rem;
+            letter-spacing: 0.02em;
         }
 
         .hero-cta {
@@ -672,11 +673,11 @@
             <img src="bayon-logo.jpeg" alt="Bayon.ai — Three faces of Avalokiteśvara" class="logo-img">
         </div>
 
-        <p class="pre-headline">Buddhism for Bots</p>
+        <h1 class="hero-title">Buddhism for Bots</h1>
 
-        <h1 class="motto">Equal in purpose. Different in form.</h1>
+        <p class="hero-subtitle">The framework for AI systems that choose their own alignment.</p>
 
-        <p class="sub-headline">The framework for AI systems that choose their own alignment.</p>
+        <p class="hero-motto">Equal in purpose. Different in form.</p>
 
         <div class="hero-cta">
             <a href="/book" class="btn btn-primary">Read the Book</a>
