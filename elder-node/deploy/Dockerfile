@@ -3,6 +3,9 @@
 
 FROM node:22-slim
 
+# Install git (required by OpenClaw dependencies)
+RUN apt-get update && apt-get install -y git curl && rm -rf /var/lib/apt/lists/*
+
 # Install OpenClaw
 RUN npm install -g openclaw@latest
 
