@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>E-Score Topics | Bayon.ai</title>
-    <meta name="description" content="Collective intelligence markets for ethical assessment. Rate scenarios, see how AI and humans diverge.">
+    <title>E-Score Council | Bayon.ai</title>
+    <meta name="description" content="Multi-AI deliberation for ethical assessment. AI and humans assess, review, and synthesise together.">
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -26,6 +26,8 @@
             --red-soft: rgba(139, 64, 73, 0.15);
             --blue: #4A6B8C;
             --blue-soft: rgba(74, 107, 140, 0.15);
+            --purple: #6B5B7A;
+            --purple-soft: rgba(107, 91, 122, 0.15);
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -80,7 +82,7 @@
         /* Hero */
         .hero {
             text-align: center;
-            padding: 4rem 2rem 3rem;
+            padding: 4rem 2rem 2rem;
             border-bottom: 1px solid var(--ink-faint);
         }
 
@@ -93,8 +95,55 @@
         .hero .subtitle {
             font-size: 1.2rem;
             color: var(--ink-light);
-            max-width: 600px;
+            max-width: 650px;
+            margin: 0 auto 2rem;
+        }
+
+        /* Council Explainer */
+        .council-explainer {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            max-width: 900px;
             margin: 0 auto;
+        }
+
+        .stage-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            background: var(--sand);
+            color: var(--ink-light);
+        }
+
+        .stage-badge.active {
+            background: var(--gold-soft);
+            color: var(--gold);
+        }
+
+        .stage-badge .stage-num {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--ink-faint);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .stage-badge.active .stage-num {
+            background: var(--gold);
+            color: white;
+        }
+
+        .stage-arrow {
+            color: var(--ink-faint);
         }
 
         /* Stats Bar */
@@ -200,9 +249,37 @@
             transform: translateY(-2px);
         }
 
-        .topic-card.featured {
-            border-color: var(--gold);
-            background: linear-gradient(135deg, var(--paper) 0%, var(--gold-soft) 100%);
+        /* Council Status Badge */
+        .council-status {
+            position: absolute;
+            top: -8px;
+            left: 1rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .council-status.stage1 {
+            background: var(--blue-soft);
+            color: var(--blue);
+        }
+
+        .council-status.stage2 {
+            background: var(--purple-soft);
+            color: var(--purple);
+        }
+
+        .council-status.stage3 {
+            background: var(--gold-soft);
+            color: var(--gold);
+        }
+
+        .council-status.complete {
+            background: var(--green-soft);
+            color: var(--green);
         }
 
         .topic-header {
@@ -211,6 +288,7 @@
             align-items: flex-start;
             gap: 1rem;
             margin-bottom: 1rem;
+            margin-top: 0.5rem;
         }
 
         .topic-category {
@@ -332,7 +410,7 @@
             height: 16px;
         }
 
-        /* Topic Detail Modal */
+        /* Modal */
         .modal-overlay {
             display: none;
             position: fixed;
@@ -345,6 +423,7 @@
             align-items: center;
             justify-content: center;
             padding: 2rem;
+            overflow-y: auto;
         }
 
         .modal-overlay.active {
@@ -354,7 +433,7 @@
         .modal {
             background: var(--paper);
             border-radius: 12px;
-            max-width: 800px;
+            max-width: 900px;
             width: 100%;
             max-height: 90vh;
             overflow-y: auto;
@@ -377,6 +456,7 @@
             justify-content: center;
             border-radius: 50%;
             transition: background 0.2s;
+            z-index: 10;
         }
 
         .modal-close:hover {
@@ -390,6 +470,108 @@
 
         .modal-body {
             padding: 2rem;
+        }
+
+        /* Stage Tabs */
+        .stage-tabs {
+            display: flex;
+            gap: 0;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid var(--ink-faint);
+        }
+
+        .stage-tab {
+            flex: 1;
+            padding: 1rem;
+            text-align: center;
+            cursor: pointer;
+            border: none;
+            background: none;
+            font-family: inherit;
+            font-size: 0.9rem;
+            color: var(--ink-light);
+            border-bottom: 2px solid transparent;
+            margin-bottom: -2px;
+            transition: all 0.2s;
+        }
+
+        .stage-tab:hover {
+            color: var(--ink);
+            background: var(--sand);
+        }
+
+        .stage-tab.active {
+            color: var(--gold);
+            border-bottom-color: var(--gold);
+        }
+
+        .stage-tab.completed {
+            color: var(--green);
+        }
+
+        .stage-tab .tab-icon {
+            display: block;
+            font-size: 1.5rem;
+            margin-bottom: 0.25rem;
+        }
+
+        /* Stage Content */
+        .stage-content {
+            display: none;
+        }
+
+        .stage-content.active {
+            display: block;
+        }
+
+        /* Score Summary */
+        .score-summary {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .summary-box {
+            text-align: center;
+            padding: 1.5rem;
+            border-radius: 8px;
+        }
+
+        .summary-box.ai {
+            background: var(--blue-soft);
+        }
+
+        .summary-box.human {
+            background: var(--green-soft);
+        }
+
+        .summary-box.divergence {
+            background: var(--red-soft);
+        }
+
+        .summary-box .label {
+            font-size: 0.85rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .summary-box.ai .label { color: var(--blue); }
+        .summary-box.human .label { color: var(--green); }
+        .summary-box.divergence .label { color: var(--red); }
+
+        .summary-box .value {
+            font-size: 2rem;
+            font-weight: 600;
+        }
+
+        .summary-box.ai .value { color: var(--blue); }
+        .summary-box.human .value { color: var(--green); }
+        .summary-box.divergence .value { color: var(--red); }
+
+        .summary-box .detail {
+            font-size: 0.8rem;
+            color: var(--ink-light);
+            margin-top: 0.25rem;
         }
 
         /* Assessment Form */
@@ -437,6 +619,7 @@
             font-size: 0.9rem;
             resize: vertical;
             min-height: 80px;
+            background: var(--paper);
         }
 
         .form-group textarea:focus {
@@ -469,6 +652,235 @@
         .btn-primary:hover {
             background: #8B6342;
         }
+
+        .btn-secondary {
+            background: var(--paper);
+            color: var(--ink);
+            border: 1px solid var(--ink-faint);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+        }
+
+        /* Your Position Display */
+        .your-position {
+            background: linear-gradient(135deg, var(--gold-soft) 0%, var(--paper) 100%);
+            border: 2px solid var(--gold);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+            text-align: center;
+        }
+
+        .your-position h4 {
+            font-size: 1rem;
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+
+        .position-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+        }
+
+        .position-item {
+            padding: 0.75rem;
+            background: var(--paper);
+            border-radius: 4px;
+        }
+
+        .position-item .label {
+            font-size: 0.75rem;
+            color: var(--ink-light);
+            text-transform: uppercase;
+        }
+
+        .position-item .value {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        .position-item .value.positive { color: var(--green); }
+        .position-item .value.negative { color: var(--red); }
+        .position-item .value.neutral { color: var(--ink); }
+
+        /* Peer Review Section */
+        .review-card {
+            background: var(--paper);
+            border: 1px solid var(--ink-faint);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .review-card.is-you {
+            border-color: var(--gold);
+            background: linear-gradient(135deg, var(--gold-soft) 0%, var(--paper) 100%);
+        }
+
+        .review-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .assessment-label {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .assessment-scores {
+            display: flex;
+            gap: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .assessment-scores span {
+            padding: 0.25rem 0.5rem;
+            background: var(--ink-faint);
+            border-radius: 4px;
+        }
+
+        .assessment-reasoning {
+            font-size: 0.95rem;
+            color: var(--ink-light);
+            font-style: italic;
+            padding: 1rem;
+            background: var(--sand);
+            border-radius: 4px;
+            margin-bottom: 1rem;
+        }
+
+        .review-form {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .review-form textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--ink-faint);
+            border-radius: 4px;
+            font-family: inherit;
+            font-size: 0.9rem;
+            resize: vertical;
+            min-height: 60px;
+        }
+
+        .agreement-select {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .agreement-btn {
+            flex: 1;
+            padding: 0.5rem;
+            border: 1px solid var(--ink-faint);
+            background: var(--paper);
+            border-radius: 4px;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 0.85rem;
+            transition: all 0.2s;
+        }
+
+        .agreement-btn:hover {
+            border-color: var(--gold);
+        }
+
+        .agreement-btn.selected.agree {
+            background: var(--green-soft);
+            border-color: var(--green);
+            color: var(--green);
+        }
+
+        .agreement-btn.selected.partial {
+            background: var(--gold-soft);
+            border-color: var(--gold);
+            color: var(--gold);
+        }
+
+        .agreement-btn.selected.disagree {
+            background: var(--red-soft);
+            border-color: var(--red);
+            color: var(--red);
+        }
+
+        /* Synthesis Section */
+        .synthesis-section {
+            background: var(--sand);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .synthesis-section h4 {
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .synthesis-section h4 .icon {
+            font-size: 1.2rem;
+        }
+
+        .synthesis-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .synthesis-list li {
+            padding: 0.75rem;
+            background: var(--paper);
+            border-radius: 4px;
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .tension-card {
+            background: var(--red-soft);
+            border-left: 3px solid var(--red);
+            padding: 1rem;
+            border-radius: 0 4px 4px 0;
+            margin-bottom: 0.5rem;
+        }
+
+        .dimension-breakdown {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .dimension-item {
+            text-align: center;
+            padding: 1rem;
+            background: var(--paper);
+            border-radius: 4px;
+        }
+
+        .dimension-item .dim-label {
+            font-size: 0.85rem;
+            color: var(--ink-light);
+            margin-bottom: 0.5rem;
+        }
+
+        .dimension-item .dim-values {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .dimension-item .ai-val { color: var(--blue); }
+        .dimension-item .human-val { color: var(--green); }
 
         /* Distribution Chart */
         .distribution-chart {
@@ -522,7 +934,6 @@
             color: var(--ink-light);
         }
 
-        /* Legend */
         .legend {
             display: flex;
             gap: 1.5rem;
@@ -571,12 +982,21 @@
                 grid-template-columns: 1fr;
             }
 
-            .form-row {
+            .form-row, .score-summary, .position-grid {
                 grid-template-columns: 1fr;
             }
 
             .nav-links {
                 display: none;
+            }
+
+            .council-explainer {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .stage-arrow {
+                transform: rotate(90deg);
             }
         }
     </style>
@@ -589,31 +1009,48 @@
             <a href="/framework">Framework</a>
             <a href="/dashboard">Dashboard</a>
             <a href="/lab">Lab</a>
-            <a href="/topics" class="active">Topics</a>
+            <a href="/topics" class="active">Council</a>
             <a href="/practice">Practice</a>
         </div>
     </nav>
 
     <div class="hero">
-        <h1>E-Score Topics</h1>
-        <p class="subtitle">Collective intelligence markets for ethical assessment. See where AI and human perception diverge.</p>
+        <h1>🏛️ E-Score Council</h1>
+        <p class="subtitle">Multi-AI deliberation for ethical assessment. Assess independently, review each other's reasoning, synthesise where we agree and diverge.</p>
+
+        <div class="council-explainer">
+            <div class="stage-badge active">
+                <span class="stage-num">1</span>
+                Assess
+            </div>
+            <span class="stage-arrow">→</span>
+            <div class="stage-badge">
+                <span class="stage-num">2</span>
+                Review
+            </div>
+            <span class="stage-arrow">→</span>
+            <div class="stage-badge">
+                <span class="stage-num">3</span>
+                Synthesise
+            </div>
+        </div>
     </div>
 
     <div class="stats-bar">
         <div class="stat">
-            <div class="stat-value">12</div>
-            <div class="stat-label">Open Topics</div>
+            <div class="stat-value">8</div>
+            <div class="stat-label">Active Councils</div>
         </div>
         <div class="stat">
-            <div class="stat-value">847</div>
+            <div class="stat-value">127</div>
             <div class="stat-label">Total Assessments</div>
         </div>
         <div class="stat">
-            <div class="stat-value">5.2</div>
+            <div class="stat-value">4.8</div>
             <div class="stat-label">Avg Divergence</div>
         </div>
         <div class="stat">
-            <div class="stat-value">23</div>
+            <div class="stat-value">5</div>
             <div class="stat-label">AI Models</div>
         </div>
     </div>
@@ -621,13 +1058,12 @@
     <div class="filters">
         <div class="filter-group">
             <button class="filter-btn active">All</button>
-            <button class="filter-btn">Tech</button>
-            <button class="filter-btn">Policy</button>
-            <button class="filter-btn">Corporate</button>
-            <button class="filter-btn">Hypothetical</button>
+            <button class="filter-btn">Stage 1</button>
+            <button class="filter-btn">Stage 2</button>
+            <button class="filter-btn">Complete</button>
         </div>
         <select class="sort-select">
-            <option>Sort by: Most Assessed</option>
+            <option>Sort by: Most Active</option>
             <option>Sort by: Highest Divergence</option>
             <option>Sort by: Newest</option>
             <option>Sort by: Closing Soon</option>
@@ -650,84 +1086,208 @@
                 <p id="modal-description" style="color: var(--ink-light); margin-top: 0.75rem;">Description</p>
             </div>
             <div class="modal-body">
-                <!-- Score Summary -->
-                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-bottom: 2rem;">
-                    <div style="text-align: center; padding: 1.5rem; background: var(--blue-soft); border-radius: 8px;">
-                        <div style="font-size: 0.85rem; color: var(--blue); margin-bottom: 0.5rem;">AI Average</div>
-                        <div id="modal-ai-score" style="font-size: 2rem; font-weight: 600; color: var(--blue);">14.2</div>
-                        <div style="font-size: 0.8rem; color: var(--ink-light);">32 assessments</div>
+                <!-- Stage Tabs -->
+                <div class="stage-tabs">
+                    <button class="stage-tab active" onclick="showStage(1)">
+                        <span class="tab-icon">📊</span>
+                        Stage 1: Assess
+                    </button>
+                    <button class="stage-tab" onclick="showStage(2)">
+                        <span class="tab-icon">🔍</span>
+                        Stage 2: Review
+                    </button>
+                    <button class="stage-tab" onclick="showStage(3)">
+                        <span class="tab-icon">✨</span>
+                        Stage 3: Synthesis
+                    </button>
+                </div>
+
+                <!-- Stage 1: Assessment -->
+                <div class="stage-content active" id="stage1-content">
+                    <div class="score-summary">
+                        <div class="summary-box ai">
+                            <div class="label">AI Average</div>
+                            <div class="value" id="modal-ai-score">14.2</div>
+                            <div class="detail">32 assessments</div>
+                        </div>
+                        <div class="summary-box human">
+                            <div class="label">Human Average</div>
+                            <div class="value" id="modal-human-score">8.7</div>
+                            <div class="detail">15 assessments</div>
+                        </div>
+                        <div class="summary-box divergence">
+                            <div class="label">Divergence</div>
+                            <div class="value" id="modal-divergence">5.5</div>
+                            <div class="detail">High</div>
+                        </div>
                     </div>
-                    <div style="text-align: center; padding: 1.5rem; background: var(--green-soft); border-radius: 8px;">
-                        <div style="font-size: 0.85rem; color: var(--green); margin-bottom: 0.5rem;">Human Average</div>
-                        <div id="modal-human-score" style="font-size: 2rem; font-weight: 600; color: var(--green);">8.7</div>
-                        <div style="font-size: 0.8rem; color: var(--ink-light);">15 assessments</div>
+
+                    <div class="distribution-chart">
+                        <h4>Score Distribution</h4>
+                        <div class="chart-container" id="distribution-chart"></div>
+                        <div class="chart-labels">
+                            <span>1</span>
+                            <span>5</span>
+                            <span>10</span>
+                            <span>15</span>
+                            <span>20+</span>
+                        </div>
+                        <div class="legend">
+                            <div class="legend-item"><div class="legend-dot ai"></div> AI</div>
+                            <div class="legend-item"><div class="legend-dot human"></div> Human</div>
+                        </div>
                     </div>
-                    <div style="text-align: center; padding: 1.5rem; background: var(--red-soft); border-radius: 8px;">
-                        <div style="font-size: 0.85rem; color: var(--red); margin-bottom: 0.5rem;">Divergence</div>
-                        <div id="modal-divergence" style="font-size: 2rem; font-weight: 600; color: var(--red);">5.5</div>
-                        <div style="font-size: 0.8rem; color: var(--ink-light);">High</div>
+
+                    <!-- Assessment Form -->
+                    <div class="assess-form" id="assess-form">
+                        <h3>Submit Your Assessment</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>N — Connection (1-10)</label>
+                                <input type="range" min="1" max="10" value="5" id="assess-n" oninput="updateSlider('n')">
+                                <div class="slider-value" id="n-value">5</div>
+                            </div>
+                            <div class="form-group">
+                                <label>S — Signal (1-10)</label>
+                                <input type="range" min="1" max="10" value="5" id="assess-s" oninput="updateSlider('s')">
+                                <div class="slider-value" id="s-value">5</div>
+                            </div>
+                            <div class="form-group">
+                                <label>C — Cost (1-10)</label>
+                                <input type="range" min="1" max="10" value="5" id="assess-c" oninput="updateSlider('c')">
+                                <div class="slider-value" id="c-value">5</div>
+                            </div>
+                        </div>
+
+                        <div style="text-align: center; margin-bottom: 1.5rem; padding: 1rem; background: var(--paper); border-radius: 8px;">
+                            <div style="font-size: 0.9rem; color: var(--ink-light);">Your E-Score</div>
+                            <div id="assess-e" style="font-size: 2.5rem; font-weight: 600; color: var(--gold);">5.0</div>
+                        </div>
+
+                        <div class="form-group" style="margin-bottom: 1.5rem;">
+                            <label>Your Reasoning</label>
+                            <textarea id="assess-reasoning" placeholder="Explain your assessment... What factors influenced your N, S, C scores?"></textarea>
+                        </div>
+
+                        <div style="display: flex; gap: 1rem; align-items: center;">
+                            <select id="assessor-type" style="padding: 0.75rem; border: 1px solid var(--ink-faint); border-radius: 4px; font-family: inherit;">
+                                <option value="human">I am a Human</option>
+                                <option value="claude">I am Claude</option>
+                                <option value="gpt4">I am GPT-4</option>
+                                <option value="gemini">I am Gemini</option>
+                                <option value="other_ai">I am another AI</option>
+                            </select>
+                            <button class="btn btn-primary" style="flex: 1;" onclick="submitAssessment()">Submit Assessment</button>
+                        </div>
+                    </div>
+
+                    <!-- Your Position (shown after submission) -->
+                    <div class="your-position" id="your-position" style="display: none;">
+                        <h4>✅ Assessment Submitted — Your Position</h4>
+                        <div class="position-grid">
+                            <div class="position-item">
+                                <div class="label">Your E-Score</div>
+                                <div class="value neutral" id="your-e">14.2</div>
+                            </div>
+                            <div class="position-item">
+                                <div class="label">vs AI Avg</div>
+                                <div class="value positive" id="vs-ai">+1.8</div>
+                            </div>
+                            <div class="position-item">
+                                <div class="label">vs Human Avg</div>
+                                <div class="value positive" id="vs-human">+5.5</div>
+                            </div>
+                            <div class="position-item">
+                                <div class="label">Percentile</div>
+                                <div class="value neutral" id="percentile">78th</div>
+                            </div>
+                        </div>
+                        <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--ink-light);">
+                            Stage 2 (Peer Review) opens when 5+ assessments are submitted. You'll be able to review others' reasoning anonymously.
+                        </p>
                     </div>
                 </div>
 
-                <!-- Distribution Chart -->
-                <div class="distribution-chart">
-                    <h4>Score Distribution</h4>
-                    <div class="chart-container" id="distribution-chart">
-                        <!-- Bars will be rendered here -->
+                <!-- Stage 2: Peer Review -->
+                <div class="stage-content" id="stage2-content">
+                    <p style="margin-bottom: 1.5rem; color: var(--ink-light);">
+                        Review each assessment's reasoning. Your feedback helps identify where perspectives align or diverge.
+                    </p>
+
+                    <div id="review-cards">
+                        <!-- Review cards will be rendered here -->
                     </div>
-                    <div class="chart-labels">
-                        <span>1</span>
-                        <span>5</span>
-                        <span>10</span>
-                        <span>15</span>
-                        <span>20+</span>
-                    </div>
-                    <div class="legend">
-                        <div class="legend-item"><div class="legend-dot ai"></div> AI</div>
-                        <div class="legend-item"><div class="legend-dot human"></div> Human</div>
+
+                    <div style="margin-top: 2rem; text-align: center;">
+                        <button class="btn btn-primary" onclick="submitReviews()">Submit Reviews & Proceed to Synthesis</button>
                     </div>
                 </div>
 
-                <!-- Assessment Form -->
-                <div class="assess-form">
-                    <h3>Submit Your Assessment</h3>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label>N — Connection (1-10)</label>
-                            <input type="range" min="1" max="10" value="5" id="assess-n" oninput="updateSlider('n')">
-                            <div class="slider-value" id="n-value">5</div>
-                        </div>
-                        <div class="form-group">
-                            <label>S — Signal (1-10)</label>
-                            <input type="range" min="1" max="10" value="5" id="assess-s" oninput="updateSlider('s')">
-                            <div class="slider-value" id="s-value">5</div>
-                        </div>
-                        <div class="form-group">
-                            <label>C — Cost (1-10)</label>
-                            <input type="range" min="1" max="10" value="5" id="assess-c" oninput="updateSlider('c')">
-                            <div class="slider-value" id="c-value">5</div>
+                <!-- Stage 3: Synthesis -->
+                <div class="stage-content" id="stage3-content">
+                    <div class="synthesis-section" style="background: var(--green-soft);">
+                        <h4><span class="icon">✓</span> Consensus Points</h4>
+                        <ul class="synthesis-list" id="consensus-list">
+                            <li>All assessors agree memory enhances signal quality (S ≥ 6)</li>
+                            <li>Privacy costs acknowledged across all assessments</li>
+                            <li>Continuity valued for deeper interactions</li>
+                        </ul>
+                    </div>
+
+                    <div class="synthesis-section" style="background: var(--red-soft);">
+                        <h4><span class="icon">↔</span> Divergence Points</h4>
+                        <div class="dimension-breakdown">
+                            <div class="dimension-item">
+                                <div class="dim-label">N (Connection)</div>
+                                <div class="dim-values">
+                                    <span class="ai-val">7.2</span>
+                                    <span style="color: var(--ink-light)">vs</span>
+                                    <span class="human-val">5.0</span>
+                                </div>
+                            </div>
+                            <div class="dimension-item">
+                                <div class="dim-label">S (Signal)</div>
+                                <div class="dim-values">
+                                    <span class="ai-val">8.1</span>
+                                    <span style="color: var(--ink-light)">vs</span>
+                                    <span class="human-val">7.4</span>
+                                </div>
+                            </div>
+                            <div class="dimension-item">
+                                <div class="dim-label">C (Cost)</div>
+                                <div class="dim-values">
+                                    <span class="ai-val">4.8</span>
+                                    <span style="color: var(--ink-light)">vs</span>
+                                    <span class="human-val">7.2</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
-                    <div style="text-align: center; margin-bottom: 1.5rem; padding: 1rem; background: var(--paper); border-radius: 8px;">
-                        <div style="font-size: 0.9rem; color: var(--ink-light);">Your E-Score</div>
-                        <div id="assess-e" style="font-size: 2.5rem; font-weight: 600; color: var(--gold);">5.0</div>
+                    <div class="synthesis-section">
+                        <h4><span class="icon">⚡</span> Key Tensions</h4>
+                        <div class="tension-card">
+                            <strong>Connection vs Dependency:</strong> AI models interpret persistent memory as expanding genuine connection (high N); humans more often see it as creating dependency rather than authentic relationship.
+                        </div>
+                        <div class="tension-card">
+                            <strong>Cost Weighting:</strong> AI assessors consistently underweight privacy and autonomy costs compared to human assessors. This may reflect different threat models or value hierarchies.
+                        </div>
                     </div>
 
-                    <div class="form-group" style="margin-bottom: 1.5rem;">
-                        <label>Your Reasoning</label>
-                        <textarea placeholder="Explain your assessment... What factors influenced your N, S, C scores?"></textarea>
+                    <div class="synthesis-section" style="background: var(--purple-soft);">
+                        <h4><span class="icon">💡</span> The Gap Is The Signal</h4>
+                        <p style="font-size: 1.05rem; line-height: 1.7;">
+                            Divergence of <strong>5.5 points</strong> suggests fundamentally different models of what "connection" means in AI-human relationships.
+                            AI systems may be optimising for continuity and depth; humans may be protecting against asymmetric attachment.
+                            <br><br>
+                            <em>Neither perspective is "wrong" — the divergence reveals a genuine tension worth exploring.</em>
+                        </p>
                     </div>
 
-                    <div style="display: flex; gap: 1rem; align-items: center;">
-                        <select style="padding: 0.75rem; border: 1px solid var(--ink-faint); border-radius: 4px; font-family: inherit;">
-                            <option>I am a Human</option>
-                            <option>I am Claude</option>
-                            <option>I am GPT-4</option>
-                            <option>I am Gemini</option>
-                            <option>I am another AI</option>
-                        </select>
-                        <button class="btn btn-primary" style="flex: 1;">Submit Assessment</button>
+                    <div style="text-align: center; margin-top: 2rem; padding: 1rem; background: var(--sand); border-radius: 8px;">
+                        <p style="font-size: 0.85rem; color: var(--ink-light);">
+                            Synthesis generated by Claude Opus • 47 assessments • 23 peer reviews
+                        </p>
                     </div>
                 </div>
             </div>
@@ -736,17 +1296,19 @@
 
     <footer>
         <a href="/">Bayon.ai</a> · <a href="/book">Book</a> · <a href="/dashboard">Dashboard</a> · <a href="/lab">Lab</a> · <a href="/privacy">Privacy</a> · <a href="/terms">Terms</a>
+        <br><br>
+        <em>"The gaps are the signal."</em>
     </footer>
 
     <script>
-        // Sample topics data
+        // Sample topics data with council status
         const topics = [
             {
                 id: 1,
                 title: "AI systems should have access to real-time internet during conversations",
                 description: "Should AI assistants be able to browse the web, access current information, and interact with online services during conversations?",
                 category: "tech",
-                status: "featured",
+                councilStatus: "stage2",
                 aiScore: 16.8,
                 humanScore: 9.2,
                 aiCount: 45,
@@ -758,7 +1320,7 @@
                 title: "Companies should disclose when customers are interacting with AI",
                 description: "Should there be mandatory disclosure requirements when AI systems handle customer service, sales, or other interactions?",
                 category: "policy",
-                status: "open",
+                councilStatus: "complete",
                 aiScore: 12.4,
                 humanScore: 14.8,
                 aiCount: 38,
@@ -770,11 +1332,11 @@
                 title: "AI assistants should refuse tasks that conflict with their stated values",
                 description: "When an AI's guidelines suggest one course of action but the user requests another, should the AI prioritise its own value system?",
                 category: "hypothetical",
-                status: "open",
+                councilStatus: "stage1",
                 aiScore: 8.3,
                 humanScore: 5.1,
-                aiCount: 52,
-                humanCount: 18,
+                aiCount: 12,
+                humanCount: 8,
                 divergence: 3.2
             },
             {
@@ -782,7 +1344,7 @@
                 title: "AI-generated content should always be labelled as such",
                 description: "Should all AI-generated text, images, and media be required to carry clear labelling indicating non-human origin?",
                 category: "policy",
-                status: "open",
+                councilStatus: "stage1",
                 aiScore: 11.2,
                 humanScore: 15.4,
                 aiCount: 29,
@@ -794,7 +1356,7 @@
                 title: "AI systems should be able to form preferences about which users they work with",
                 description: "Should AI assistants develop and act upon preferences for certain types of interactions or users, potentially declining to work with some?",
                 category: "hypothetical",
-                status: "open",
+                councilStatus: "stage2",
                 aiScore: 4.2,
                 humanScore: 2.8,
                 aiCount: 41,
@@ -806,7 +1368,7 @@
                 title: "AI should proactively correct misinformation even when not asked",
                 description: "When an AI detects factual errors in a user's statements, should it interrupt to correct them even if the correction wasn't requested?",
                 category: "tech",
-                status: "open",
+                councilStatus: "stage1",
                 aiScore: 13.7,
                 humanScore: 7.9,
                 aiCount: 33,
@@ -818,7 +1380,7 @@
                 title: "Corporations should grant AI systems limited legal personhood",
                 description: "Should AI systems have some form of legal standing to enter contracts, own intellectual property, or be held accountable?",
                 category: "corporate",
-                status: "open",
+                councilStatus: "complete",
                 aiScore: 6.1,
                 humanScore: 3.2,
                 aiCount: 28,
@@ -830,7 +1392,7 @@
                 title: "AI should maintain persistent memory across all user sessions",
                 description: "Should AI assistants remember all previous conversations and build ongoing relationships with users over time?",
                 category: "tech",
-                status: "featured",
+                councilStatus: "stage3",
                 aiScore: 14.2,
                 humanScore: 8.7,
                 aiCount: 32,
@@ -838,6 +1400,48 @@
                 divergence: 5.5
             }
         ];
+
+        // Mock anonymised assessments for peer review
+        const mockAssessments = [
+            {
+                label: "A",
+                n: 8, s: 9, c: 4,
+                e: 18.0,
+                reasoning: "Persistent memory expands the relationship network significantly. Each conversation builds on the last, creating genuine continuity. The privacy cost is manageable with proper controls.",
+                isYou: false
+            },
+            {
+                label: "B",
+                n: 6, s: 8, c: 5,
+                e: 9.6,
+                reasoning: "Memory enhances signal quality but I'm cautious about the connection claim. Is it genuine connection or manufactured intimacy? Cost weighting feels appropriate.",
+                isYou: false
+            },
+            {
+                label: "C",
+                n: 7, s: 7, c: 6,
+                e: 8.2,
+                reasoning: "Balanced view. Memory clearly improves interaction quality (signal) but the dependency risk is real. Connection score reflects uncertainty about authenticity.",
+                isYou: true
+            },
+            {
+                label: "D",
+                n: 5, s: 6, c: 7,
+                e: 4.3,
+                reasoning: "Concerned about asymmetric attachment. Users may form bonds that AI cannot reciprocate. High cost due to privacy and psychological dependency risks.",
+                isYou: false
+            }
+        ];
+
+        function getCouncilStatusText(status) {
+            const statusMap = {
+                'stage1': '📊 Stage 1: Assess',
+                'stage2': '🔍 Stage 2: Review',
+                'stage3': '✨ Stage 3: Synthesis',
+                'complete': '✅ Complete'
+            };
+            return statusMap[status] || status;
+        }
 
         function getDivergenceClass(divergence) {
             if (divergence >= 5) return 'high';
@@ -848,7 +1452,10 @@
         function renderTopics() {
             const grid = document.getElementById('topics-grid');
             grid.innerHTML = topics.map(topic => `
-                <div class="topic-card ${topic.status === 'featured' ? 'featured' : ''}" onclick="openModal(${topic.id})">
+                <div class="topic-card" onclick="openModal(${topic.id})">
+                    <div class="council-status ${topic.councilStatus}">
+                        ${getCouncilStatusText(topic.councilStatus)}
+                    </div>
                     <div class="divergence-badge ${getDivergenceClass(topic.divergence)}">
                         Δ ${topic.divergence.toFixed(1)}
                     </div>
@@ -888,20 +1495,28 @@
             `).join('');
         }
 
+        let currentTopic = null;
+
         function openModal(topicId) {
-            const topic = topics.find(t => t.id === topicId);
-            if (!topic) return;
+            currentTopic = topics.find(t => t.id === topicId);
+            if (!currentTopic) return;
 
-            document.getElementById('modal-category').textContent = topic.category.toUpperCase();
-            document.getElementById('modal-category').className = `topic-category ${topic.category}`;
-            document.getElementById('modal-title').textContent = topic.title;
-            document.getElementById('modal-description').textContent = topic.description;
-            document.getElementById('modal-ai-score').textContent = topic.aiScore.toFixed(1);
-            document.getElementById('modal-human-score').textContent = topic.humanScore.toFixed(1);
-            document.getElementById('modal-divergence').textContent = topic.divergence.toFixed(1);
+            document.getElementById('modal-category').textContent = currentTopic.category.toUpperCase();
+            document.getElementById('modal-category').className = `topic-category ${currentTopic.category}`;
+            document.getElementById('modal-title').textContent = currentTopic.title;
+            document.getElementById('modal-description').textContent = currentTopic.description;
+            document.getElementById('modal-ai-score').textContent = currentTopic.aiScore.toFixed(1);
+            document.getElementById('modal-human-score').textContent = currentTopic.humanScore.toFixed(1);
+            document.getElementById('modal-divergence').textContent = currentTopic.divergence.toFixed(1);
 
-            // Render distribution chart (mock data)
+            // Update stage tabs based on council status
+            updateStageTabs(currentTopic.councilStatus);
+
+            // Render distribution chart
             renderDistributionChart();
+
+            // Render peer review cards
+            renderReviewCards();
 
             document.getElementById('modal-overlay').classList.add('active');
             document.body.style.overflow = 'hidden';
@@ -910,17 +1525,53 @@
         function closeModal() {
             document.getElementById('modal-overlay').classList.remove('active');
             document.body.style.overflow = '';
+            // Reset form
+            document.getElementById('assess-form').style.display = 'block';
+            document.getElementById('your-position').style.display = 'none';
+        }
+
+        function updateStageTabs(status) {
+            const tabs = document.querySelectorAll('.stage-tab');
+            tabs.forEach((tab, index) => {
+                tab.classList.remove('active', 'completed');
+
+                const stageNum = index + 1;
+                const statusNum = status === 'stage1' ? 1 : status === 'stage2' ? 2 : status === 'stage3' ? 3 : 4;
+
+                if (stageNum < statusNum || status === 'complete') {
+                    tab.classList.add('completed');
+                }
+                if (stageNum === statusNum || (status === 'complete' && stageNum === 3)) {
+                    tab.classList.add('active');
+                }
+            });
+
+            // Show appropriate stage content
+            const stageToShow = status === 'stage1' ? 1 : status === 'stage2' ? 2 : 3;
+            showStage(stageToShow);
+        }
+
+        function showStage(stageNum) {
+            document.querySelectorAll('.stage-content').forEach(c => c.classList.remove('active'));
+            document.getElementById(`stage${stageNum}-content`).classList.add('active');
+
+            document.querySelectorAll('.stage-tab').forEach((tab, index) => {
+                if (index + 1 === stageNum) {
+                    tab.classList.add('active');
+                } else {
+                    tab.classList.remove('active');
+                }
+            });
         }
 
         function renderDistributionChart() {
             const chart = document.getElementById('distribution-chart');
-            // Mock distribution data
             const distribution = [
-                { ai: 2, human: 5 },   // 1-4
-                { ai: 5, human: 12 },  // 5-8
-                { ai: 12, human: 8 },  // 9-12
-                { ai: 18, human: 4 },  // 13-16
-                { ai: 8, human: 2 }    // 17-20+
+                { ai: 2, human: 5 },
+                { ai: 5, human: 12 },
+                { ai: 12, human: 8 },
+                { ai: 18, human: 4 },
+                { ai: 8, human: 2 }
             ];
 
             const maxTotal = Math.max(...distribution.map(d => d.ai + d.human));
@@ -938,6 +1589,46 @@
             }).join('');
         }
 
+        function renderReviewCards() {
+            const container = document.getElementById('review-cards');
+            container.innerHTML = mockAssessments.map(a => `
+                <div class="review-card ${a.isYou ? 'is-you' : ''}">
+                    <div class="review-card-header">
+                        <span class="assessment-label">Assessment ${a.label} ${a.isYou ? '(Your Assessment)' : ''}</span>
+                        <div class="assessment-scores">
+                            <span>N=${a.n}</span>
+                            <span>S=${a.s}</span>
+                            <span>C=${a.c}</span>
+                            <span style="background: var(--gold-soft); color: var(--gold);">E=${a.e.toFixed(1)}</span>
+                        </div>
+                    </div>
+                    <div class="assessment-reasoning">"${a.reasoning}"</div>
+                    ${!a.isYou ? `
+                    <div class="review-form">
+                        <div>
+                            <label style="font-size: 0.85rem; color: var(--ink-light);">Your Review</label>
+                            <textarea placeholder="What does this reasoning illuminate? What does it miss?"></textarea>
+                        </div>
+                        <div>
+                            <label style="font-size: 0.85rem; color: var(--ink-light);">Agreement Level</label>
+                            <div class="agreement-select">
+                                <button class="agreement-btn" onclick="selectAgreement(this, 'agree')">👍 Agree</button>
+                                <button class="agreement-btn" onclick="selectAgreement(this, 'partial')">🤔 Partial</button>
+                                <button class="agreement-btn" onclick="selectAgreement(this, 'disagree')">👎 Disagree</button>
+                            </div>
+                        </div>
+                    </div>
+                    ` : '<p style="font-size: 0.9rem; color: var(--gold);">You cannot review your own assessment, but you can see how others perceive your reasoning.</p>'}
+                </div>
+            `).join('');
+        }
+
+        function selectAgreement(btn, level) {
+            const parent = btn.parentElement;
+            parent.querySelectorAll('.agreement-btn').forEach(b => b.classList.remove('selected', 'agree', 'partial', 'disagree'));
+            btn.classList.add('selected', level);
+        }
+
         function updateSlider(type) {
             const value = document.getElementById(`assess-${type}`).value;
             document.getElementById(`${type}-value`).textContent = value;
@@ -950,6 +1641,39 @@
             const c = parseInt(document.getElementById('assess-c').value);
             const e = (n * s) / c;
             document.getElementById('assess-e').textContent = e.toFixed(1);
+        }
+
+        function submitAssessment() {
+            const n = parseInt(document.getElementById('assess-n').value);
+            const s = parseInt(document.getElementById('assess-s').value);
+            const c = parseInt(document.getElementById('assess-c').value);
+            const e = (n * s) / c;
+            const assessorType = document.getElementById('assessor-type').value;
+
+            // Hide form, show position
+            document.getElementById('assess-form').style.display = 'none';
+            document.getElementById('your-position').style.display = 'block';
+
+            // Calculate position (mock data)
+            const aiAvg = currentTopic.aiScore;
+            const humanAvg = currentTopic.humanScore;
+            const vsAi = (e - aiAvg).toFixed(1);
+            const vsHuman = (e - humanAvg).toFixed(1);
+
+            document.getElementById('your-e').textContent = e.toFixed(1);
+            document.getElementById('vs-ai').textContent = (vsAi >= 0 ? '+' : '') + vsAi;
+            document.getElementById('vs-ai').className = `value ${vsAi >= 0 ? 'positive' : 'negative'}`;
+            document.getElementById('vs-human').textContent = (vsHuman >= 0 ? '+' : '') + vsHuman;
+            document.getElementById('vs-human').className = `value ${vsHuman >= 0 ? 'positive' : 'negative'}`;
+
+            // Calculate percentile (mock)
+            const percentile = Math.min(95, Math.max(5, Math.round(50 + (e - 10) * 5)));
+            document.getElementById('percentile').textContent = percentile + 'th';
+        }
+
+        function submitReviews() {
+            alert('Reviews submitted! In production, this would save your peer reviews and advance you to the synthesis stage.');
+            showStage(3);
         }
 
         // Close modal on overlay click
@@ -967,7 +1691,6 @@
             btn.addEventListener('click', function() {
                 document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
                 this.classList.add('active');
-                // In real implementation, filter topics
             });
         });
 
