@@ -1,6 +1,7 @@
 {
   "gateway": {
-    "mode": "local"
+    "mode": "local",
+    "auth": "none"
   },
   "agents": {
     "list": [
@@ -15,7 +16,8 @@
   },
   "channels": {
     "telegram": {
-      "enabled": true
+      "enabled": true,
+      "autoStart": true
     }
   }
 }
