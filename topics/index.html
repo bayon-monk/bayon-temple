@@ -238,11 +238,10 @@
             border: 1px solid var(--ink-faint);
             border-radius: 8px;
             padding: 1.5rem;
-            padding-top: 2rem;
+            padding-top: 2.5rem;
             transition: all 0.2s;
             cursor: pointer;
             position: relative;
-            margin-top: 0.75rem;
         }
 
         .topic-card:hover {
@@ -254,15 +253,14 @@
         /* Council Status Badge */
         .council-status {
             position: absolute;
-            top: -10px;
-            left: 1rem;
-            padding: 0.3rem 0.75rem;
-            border-radius: 12px;
-            font-size: 0.65rem;
+            top: 0.75rem;
+            left: 0.75rem;
+            padding: 0.3rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.6rem;
             font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 0.05em;
-            border: 2px solid var(--paper);
+            letter-spacing: 0.03em;
             z-index: 5;
         }
 
@@ -1049,34 +1047,37 @@
         }
 
         .topics-grid.list-view .topic-card {
-            display: grid;
-            grid-template-columns: 1fr 200px 150px;
-            gap: 1.5rem;
+            display: flex;
+            flex-wrap: wrap;
             align-items: center;
             padding: 1rem 1.5rem;
-            padding-top: 1rem;
             margin-top: 0;
+            gap: 1rem;
         }
 
         .topics-grid.list-view .council-status {
             position: static;
             display: inline-block;
-            margin-right: 0.75rem;
+            margin-right: 0;
             border: none;
+            order: 1;
         }
 
         .topics-grid.list-view .divergence-badge {
             position: static;
+            order: 5;
+            margin-left: auto;
         }
 
         .topics-grid.list-view .topic-header {
-            display: inline-flex;
-            margin-bottom: 0.5rem;
+            display: none;
         }
 
         .topics-grid.list-view .topic-title {
             font-size: 1rem;
             margin-bottom: 0;
+            flex: 1 1 300px;
+            order: 2;
         }
 
         .topics-grid.list-view .topic-description {
@@ -1086,12 +1087,21 @@
         .topics-grid.list-view .sparkline-container {
             height: 30px;
             margin: 0;
+            width: 120px;
+            flex-shrink: 0;
+            order: 3;
+        }
+
+        .topics-grid.list-view .sparkline-label {
+            display: none;
         }
 
         .topics-grid.list-view .topic-scores {
             border-top: none;
             padding-top: 0;
-            gap: 1rem;
+            gap: 1.5rem;
+            order: 4;
+            flex-shrink: 0;
         }
 
         .topics-grid.list-view .score-group {
@@ -1102,16 +1112,16 @@
             display: none;
         }
 
-        .list-topic-main {
-            display: flex;
-            flex-direction: column;
+        .topics-grid.list-view .score-label {
+            font-size: 0.65rem;
         }
 
-        .list-topic-meta {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            flex-wrap: wrap;
+        .topics-grid.list-view .score-value {
+            font-size: 1.1rem;
+        }
+
+        .topics-grid.list-view .assessment-count {
+            font-size: 0.8rem;
         }
 
         /* Footer */
@@ -1928,16 +1938,138 @@
             if (e.key === 'Escape') closeModal();
         });
 
+        // Filter and sort state
+        let currentFilter = 'all';
+        let currentSort = 'active';
+
+        function filterTopics(topics) {
+            if (currentFilter === 'all') return topics;
+            if (currentFilter === 'stage1') return topics.filter(t => t.councilStatus === 'stage1');
+            if (currentFilter === 'stage2') return topics.filter(t => t.councilStatus === 'stage2' || t.councilStatus === 'stage3');
+            if (currentFilter === 'complete') return topics.filter(t => t.councilStatus === 'complete');
+            return topics;
+        }
+
+        function sortTopics(topics) {
+            const sorted = [...topics];
+            switch(currentSort) {
+                case 'active':
+                    return sorted.sort((a, b) => (b.aiCount + b.humanCount) - (a.aiCount + a.humanCount));
+                case 'divergence':
+                    return sorted.sort((a, b) => b.divergence - a.divergence);
+                case 'newest':
+                    return sorted.sort((a, b) => b.id - a.id);
+                case 'closing':
+                    // Sort by stage (stage1 first, then stage2, then stage3, complete last)
+                    const stageOrder = { 'stage1': 1, 'stage2': 2, 'stage3': 3, 'complete': 4 };
+                    return sorted.sort((a, b) => stageOrder[a.councilStatus] - stageOrder[b.councilStatus]);
+                default:
+                    return sorted;
+            }
+        }
+
+        function applyFiltersAndSort() {
+            const filtered = filterTopics(topics);
+            const sorted = sortTopics(filtered);
+            renderTopicsFiltered(sorted);
+        }
+
+        function renderTopicsFiltered(topicList) {
+            const grid = document.getElementById('topics-grid');
+            if (topicList.length === 0) {
+                grid.innerHTML = '<p style="text-align: center; color: var(--ink-light); padding: 3rem;">No topics match this filter.</p>';
+                return;
+            }
+            grid.innerHTML = topicList.map(topic => {
+                const spark = generateSparklinePath(topic.history, 100, 30);
+                const changeClass = topic.change > 0 ? 'up' : topic.change < 0 ? 'down' : '';
+                const changeText = topic.change > 0 ? `▲${topic.change.toFixed(1)}` : topic.change < 0 ? `▼${Math.abs(topic.change).toFixed(1)}` : '—';
+
+                return `
+                <div class="topic-card" onclick="openModal(${topic.id})">
+                    <div class="council-status ${topic.councilStatus}">
+                        ${getCouncilStatusText(topic.councilStatus)}
+                    </div>
+                    <div class="divergence-badge ${getDivergenceClass(topic.divergence)}">
+                        Δ ${topic.divergence.toFixed(1)}
+                    </div>
+                    <div class="topic-header">
+                        <span class="topic-category ${topic.category}">${topic.category.toUpperCase()}</span>
+                    </div>
+                    <h3 class="topic-title">${topic.title}</h3>
+                    <p class="topic-description">${topic.description}</p>
+
+                    <div class="sparkline-container">
+                        <svg class="sparkline" viewBox="0 0 100 30" preserveAspectRatio="none">
+                            <path class="sparkline-area" d="${spark.areaPath}"/>
+                            <path class="sparkline-line" d="${spark.linePath}"/>
+                        </svg>
+                        <span class="sparkline-label">
+                            Δ${topic.divergence.toFixed(1)}
+                            <span class="sparkline-change ${changeClass}">${changeText}</span>
+                        </span>
+                    </div>
+
+                    <div class="topic-scores">
+                        <div class="score-group">
+                            <div class="score-label">AI Avg</div>
+                            <div class="score-value ai">${topic.aiScore.toFixed(1)}</div>
+                            <div class="score-bar">
+                                <div class="score-bar-fill ai" style="width: ${Math.min(topic.aiScore / 20 * 100, 100)}%"></div>
+                            </div>
+                        </div>
+                        <div class="score-group">
+                            <div class="score-label">Human Avg</div>
+                            <div class="score-value human">${topic.humanScore.toFixed(1)}</div>
+                            <div class="score-bar">
+                                <div class="score-bar-fill human" style="width: ${Math.min(topic.humanScore / 20 * 100, 100)}%"></div>
+                            </div>
+                        </div>
+                        <div class="score-group">
+                            <div class="assessment-count">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                                    <circle cx="9" cy="7" r="4"/>
+                                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                                    <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                                </svg>
+                                ${topic.aiCount + topic.humanCount}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `}).join('');
+        }
+
         // Filter buttons
         document.querySelectorAll('.filter-btn').forEach(btn => {
             btn.addEventListener('click', function() {
                 document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
                 this.classList.add('active');
+
+                const text = this.textContent.trim().toLowerCase();
+                if (text === 'all') currentFilter = 'all';
+                else if (text === 'stage 1') currentFilter = 'stage1';
+                else if (text === 'stage 2') currentFilter = 'stage2';
+                else if (text === 'complete') currentFilter = 'complete';
+
+                applyFiltersAndSort();
             });
         });
 
+        // Sort select
+        document.querySelector('.sort-select').addEventListener('change', function() {
+            const value = this.value.toLowerCase();
+            if (value.includes('active')) currentSort = 'active';
+            else if (value.includes('divergence')) currentSort = 'divergence';
+            else if (value.includes('newest')) currentSort = 'newest';
+            else if (value.includes('closing')) currentSort = 'closing';
+
+            applyFiltersAndSort();
+        });
+
         // Initialize
-        renderTopics();
+        applyFiltersAndSort();
     </script>
 </body>
 </html>
