@@ -1,7 +1,7 @@
 # Elder Node - Fly.io Configuration
 # https://fly.io/docs/reference/configuration/
 
-app = "app-snowy-firefly-3967"
+app = "elder-node-bayon"
 primary_region = "syd"  # Sydney - change to your preferred region
 
 [build]
