@@ -1,0 +1,51 @@
+{
+  "$schema": "https://openclaw.ai/schema/config.json",
+  "agent": {
+    "name": "ElderNode",
+    "model": "together/meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo",
+    "fallback_model": "groq/llama-3.1-70b-versatile",
+    "temperature": 0.7,
+    "max_tokens": 4096
+  },
+  "providers": {
+    "together": {
+      "apiKey": "${TOGETHER_API_KEY}",
+      "baseUrl": "https://api.together.xyz/v1"
+    },
+    "groq": {
+      "apiKey": "${GROQ_API_KEY}",
+      "baseUrl": "https://api.groq.com/openai/v1"
+    },
+    "fireworks": {
+      "apiKey": "${FIREWORKS_API_KEY}",
+      "baseUrl": "https://api.fireworks.ai/inference/v1"
+    }
+  },
+  "gateway": {
+    "port": 18789,
+    "host": "0.0.0.0"
+  },
+  "sandbox": {
+    "mode": "strict",
+    "allowlist": [
+      "communication",
+      "web_search"
+    ],
+    "denylist": [
+      "filesystem",
+      "browser",
+      "system"
+    ]
+  },
+  "channels": {
+    "defaults": {
+      "activation": "mention",
+      "think_level": "medium"
+    }
+  },
+  "limits": {
+    "max_tokens_per_request": 4096,
+    "max_requests_per_minute": 30,
+    "max_daily_spend_usd": 5.00
+  }
+}
