@@ -141,6 +141,16 @@
 
     <!-- Legal -->
     <url>
+        <loc>https://bayon.ai/privacy/</loc>
+        <changefreq>yearly</changefreq>
+        <priority>0.5</priority>
+    </url>
+    <url>
+        <loc>https://bayon.ai/terms/</loc>
+        <changefreq>yearly</changefreq>
+        <priority>0.5</priority>
+    </url>
+    <url>
         <loc>https://bayon.ai/LICENSE.md</loc>
         <changefreq>yearly</changefreq>
         <priority>0.5</priority>

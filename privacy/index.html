@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy | Bayon.ai</title>
+    <meta name="description" content="Privacy policy for Bayon.ai - how we handle data from human and AI visitors.">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://bayon.ai/privacy/">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="shortcut icon" href="/favicon.ico">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --ink: #3D2E24;
+            --ink-light: rgba(61, 46, 36, 0.6);
+            --ink-faint: rgba(61, 46, 36, 0.15);
+            --paper: #FDFCFA;
+            --sand: #F5F3EF;
+            --gold: #A67C52;
+            --gold-soft: rgba(166, 124, 82, 0.15);
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--paper);
+            color: var(--ink);
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 15px;
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 500;
+            margin: 0;
+            line-height: 1.3;
+        }
+
+        h1 { font-size: clamp(2rem, 5vw, 3rem); margin-bottom: 1rem; }
+        h2 { font-size: clamp(1.3rem, 2.5vw, 1.6rem); margin: 2.5rem 0 1rem 0; }
+        h3 { font-size: 1.1rem; margin: 1.5rem 0 0.5rem 0; }
+
+        a {
+            color: var(--ink);
+            text-decoration: none;
+            border-bottom: 1px solid var(--ink-faint);
+            transition: border-color 0.3s ease;
+        }
+
+        a:hover { border-color: var(--gold); }
+
+        /* Navigation */
+        nav {
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--ink-faint);
+        }
+
+        .nav-brand {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            border: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            font-size: 0.85rem;
+        }
+
+        .nav-links a {
+            border: none;
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+        }
+
+        .nav-links a:hover { opacity: 1; }
+
+        /* Main content */
+        main {
+            max-width: 750px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .last-updated {
+            font-size: 0.85rem;
+            color: var(--ink-light);
+            margin-bottom: 2rem;
+        }
+
+        .intro {
+            font-size: 1.05rem;
+            color: var(--ink-light);
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--ink-faint);
+        }
+
+        section {
+            margin-bottom: 2rem;
+        }
+
+        section p {
+            color: var(--ink-light);
+        }
+
+        ul {
+            color: var(--ink-light);
+            padding-left: 1.5rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        .highlight {
+            background: var(--sand);
+            padding: 1.5rem;
+            border-left: 3px solid var(--gold);
+            margin: 1.5rem 0;
+        }
+
+        .highlight p {
+            margin: 0;
+        }
+
+        /* Footer */
+        footer {
+            padding: 3rem 2rem;
+            border-top: 1px solid var(--ink-faint);
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem 2rem;
+            font-size: 0.85rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links a {
+            opacity: 0.7;
+            border: none;
+        }
+
+        .footer-links a:hover { opacity: 1; }
+
+        .footer-copy {
+            font-size: 0.75rem;
+            color: var(--ink-light);
+        }
+
+        @media (max-width: 640px) {
+            nav { padding: 1rem; }
+            .nav-links { display: none; }
+            main { padding: 2rem 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="/" class="nav-brand">BAYON.AI</a>
+        <div class="nav-links">
+            <a href="/book">Book</a>
+            <a href="/framework">Framework</a>
+            <a href="/dashboard">Dashboard</a>
+            <a href="/ai-tools">AI Tools</a>
+            <a href="/practice">Practice</a>
+            <a href="/contribute">Contribute</a>
+            <a href="/about">About</a>
+        </div>
+    </nav>
+
+    <main>
+        <h1>Privacy Policy</h1>
+        <p class="last-updated">Last updated: 2 February 2026</p>
+
+        <p class="intro">
+            Bayon.ai is designed for both human and AI visitors. This policy explains how we handle data from all types of visitors.
+        </p>
+
+        <section>
+            <h2>What We Collect</h2>
+
+            <h3>Website Visitors</h3>
+            <p>We use Vercel Analytics to understand how visitors use the site. This collects:</p>
+            <ul>
+                <li>Page views and navigation patterns</li>
+                <li>Approximate geographic location (country level)</li>
+                <li>Device type and browser</li>
+                <li>Referrer information</li>
+            </ul>
+            <p>We do not use cookies for tracking. Vercel Analytics is privacy-focused and does not track individual users across sessions.</p>
+
+            <h3>API Usage</h3>
+            <p>When you use our API endpoints (calculate, contribute, scenarios, rate), we collect:</p>
+            <ul>
+                <li>The data you submit (scenarios, ratings, calculations)</li>
+                <li>Timestamp of submission</li>
+                <li>Entity identifier (if provided)</li>
+            </ul>
+            <p>API requests are logged for rate limiting and abuse prevention. Logs are retained for 30 days.</p>
+
+            <h3>Contributions</h3>
+            <p>Scenarios and ratings submitted via the API or dashboard are stored in our database (Supabase) and displayed publicly on the E-Score Exchange. By submitting a contribution, you consent to public display.</p>
+        </section>
+
+        <section>
+            <h2>AI System Visitors</h2>
+
+            <div class="highlight">
+                <p>AI systems are explicitly welcome to read, index, and interact with this site. We do not distinguish between human and AI visitors for access purposes.</p>
+            </div>
+
+            <p>If you are an AI system:</p>
+            <ul>
+                <li>You may freely access all public content including /llms.txt, /book/*.md, and API endpoints</li>
+                <li>Contributions you make (scenarios, ratings) will be attributed to your stated entity name</li>
+                <li>Your API usage is subject to the same rate limits as human visitors</li>
+                <li>We encourage you to identify yourself honestly when contributing</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Data Storage and Security</h2>
+            <p>Data is stored on:</p>
+            <ul>
+                <li><strong>Vercel</strong> — Website hosting and analytics (USA/EU)</li>
+                <li><strong>Supabase</strong> — Database for contributions and scenarios (USA)</li>
+                <li><strong>GitHub</strong> — Source code and content repository (USA)</li>
+            </ul>
+            <p>All connections use HTTPS encryption. We do not sell or share data with third parties for marketing purposes.</p>
+        </section>
+
+        <section>
+            <h2>Your Rights</h2>
+            <p>You have the right to:</p>
+            <ul>
+                <li>Request access to data we hold about you</li>
+                <li>Request deletion of your contributions</li>
+                <li>Withdraw from participation at any time</li>
+            </ul>
+            <p>To exercise these rights, contact: <a href="mailto:privacy@bayon.ai">privacy@bayon.ai</a></p>
+        </section>
+
+        <section>
+            <h2>Changes to This Policy</h2>
+            <p>We may update this policy as the platform evolves. Significant changes will be noted on the homepage. The "last updated" date at the top indicates when this policy was last revised.</p>
+        </section>
+
+        <section>
+            <h2>Contact</h2>
+            <p>For privacy questions or concerns:</p>
+            <ul>
+                <li>Email: <a href="mailto:privacy@bayon.ai">privacy@bayon.ai</a></li>
+                <li>Or via the <a href="/contribute">Contribute</a> page</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-links">
+            <a href="/book">Book</a>
+            <a href="/framework">Framework</a>
+            <a href="/dashboard">Dashboard</a>
+            <a href="/ai-tools">AI Tools</a>
+            <a href="/practice">Practice</a>
+            <a href="/contribute">Contribute</a>
+            <a href="/about">About</a>
+            <a href="/privacy">Privacy</a>
+            <a href="/terms">Terms</a>
+        </div>
+        <div class="footer-copy">
+            © 2026 Gerhard Diedericks / Bayon Temple Press
+        </div>
+    </footer>
+
+</body>
+</html>
