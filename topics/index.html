@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Score Topics | Bayon.ai</title>
+    <meta name="description" content="Collective intelligence markets for ethical assessment. Rate scenarios, see how AI and humans diverge.">
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --ink: #3D2E24;
+            --ink-light: rgba(61, 46, 36, 0.6);
+            --ink-faint: rgba(61, 46, 36, 0.15);
+            --paper: #FDFCFA;
+            --sand: #F5F3EF;
+            --gold: #A67C52;
+            --gold-soft: rgba(166, 124, 82, 0.15);
+            --green: #4A7C59;
+            --green-soft: rgba(74, 124, 89, 0.15);
+            --red: #8B4049;
+            --red-soft: rgba(139, 64, 73, 0.15);
+            --blue: #4A6B8C;
+            --blue-soft: rgba(74, 107, 140, 0.15);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            background: var(--paper);
+            color: var(--ink);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .mono { font-family: 'IBM Plex Mono', monospace; }
+
+        /* Navigation */
+        nav {
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--ink-faint);
+            background: var(--paper);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-brand {
+            font-size: 1.1rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            color: var(--ink);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--ink-light);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--gold);
+        }
+
+        /* Hero */
+        .hero {
+            text-align: center;
+            padding: 4rem 2rem 3rem;
+            border-bottom: 1px solid var(--ink-faint);
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .hero .subtitle {
+            font-size: 1.2rem;
+            color: var(--ink-light);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Stats Bar */
+        .stats-bar {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            padding: 1.5rem 2rem;
+            background: var(--sand);
+            border-bottom: 1px solid var(--ink-faint);
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--gold);
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--ink-light);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        /* Filters */
+        .filters {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .filter-group {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .filter-btn {
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--ink-faint);
+            background: var(--paper);
+            border-radius: 20px;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 0.9rem;
+            color: var(--ink-light);
+            transition: all 0.2s;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            border-color: var(--gold);
+            color: var(--gold);
+            background: var(--gold-soft);
+        }
+
+        .sort-select {
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--ink-faint);
+            background: var(--paper);
+            border-radius: 4px;
+            font-family: inherit;
+            font-size: 0.9rem;
+            color: var(--ink);
+            cursor: pointer;
+        }
+
+        /* Topics Grid */
+        .topics-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem 4rem;
+        }
+
+        .topics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 1.5rem;
+        }
+
+        /* Topic Card */
+        .topic-card {
+            background: var(--paper);
+            border: 1px solid var(--ink-faint);
+            border-radius: 8px;
+            padding: 1.5rem;
+            transition: all 0.2s;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .topic-card:hover {
+            border-color: var(--gold);
+            box-shadow: 0 4px 20px rgba(61, 46, 36, 0.08);
+            transform: translateY(-2px);
+        }
+
+        .topic-card.featured {
+            border-color: var(--gold);
+            background: linear-gradient(135deg, var(--paper) 0%, var(--gold-soft) 100%);
+        }
+
+        .topic-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .topic-category {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            white-space: nowrap;
+        }
+
+        .topic-category.tech { background: var(--blue-soft); color: var(--blue); }
+        .topic-category.policy { background: var(--green-soft); color: var(--green); }
+        .topic-category.corporate { background: var(--gold-soft); color: var(--gold); }
+        .topic-category.hypothetical { background: var(--red-soft); color: var(--red); }
+        .topic-category.personal { background: var(--ink-faint); color: var(--ink-light); }
+
+        .topic-title {
+            font-size: 1.15rem;
+            font-weight: 500;
+            line-height: 1.4;
+            margin-bottom: 0.75rem;
+        }
+
+        .topic-description {
+            font-size: 0.95rem;
+            color: var(--ink-light);
+            margin-bottom: 1.5rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        /* Score Display */
+        .topic-scores {
+            display: flex;
+            gap: 1.5rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--ink-faint);
+        }
+
+        .score-group {
+            flex: 1;
+        }
+
+        .score-label {
+            font-size: 0.75rem;
+            color: var(--ink-light);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.25rem;
+        }
+
+        .score-value {
+            font-size: 1.4rem;
+            font-weight: 600;
+        }
+
+        .score-value.ai { color: var(--blue); }
+        .score-value.human { color: var(--green); }
+
+        .score-bar {
+            height: 4px;
+            background: var(--ink-faint);
+            border-radius: 2px;
+            margin-top: 0.5rem;
+            overflow: hidden;
+        }
+
+        .score-bar-fill {
+            height: 100%;
+            border-radius: 2px;
+            transition: width 0.3s ease;
+        }
+
+        .score-bar-fill.ai { background: var(--blue); }
+        .score-bar-fill.human { background: var(--green); }
+
+        /* Divergence Badge */
+        .divergence-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .divergence-badge.high {
+            background: var(--red-soft);
+            color: var(--red);
+        }
+
+        .divergence-badge.medium {
+            background: var(--gold-soft);
+            color: var(--gold);
+        }
+
+        .divergence-badge.low {
+            background: var(--green-soft);
+            color: var(--green);
+        }
+
+        /* Assessment Count */
+        .assessment-count {
+            font-size: 0.85rem;
+            color: var(--ink-light);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .assessment-count svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        /* Topic Detail Modal */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(61, 46, 36, 0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal {
+            background: var(--paper);
+            border-radius: 12px;
+            max-width: 800px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--ink-light);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: background 0.2s;
+        }
+
+        .modal-close:hover {
+            background: var(--ink-faint);
+        }
+
+        .modal-header {
+            padding: 2rem 2rem 1rem;
+            border-bottom: 1px solid var(--ink-faint);
+        }
+
+        .modal-body {
+            padding: 2rem;
+        }
+
+        /* Assessment Form */
+        .assess-form {
+            background: var(--sand);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .assess-form h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-group label {
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .form-group input[type="range"] {
+            width: 100%;
+            accent-color: var(--gold);
+        }
+
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--ink-faint);
+            border-radius: 4px;
+            font-family: inherit;
+            font-size: 0.9rem;
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--gold);
+        }
+
+        .slider-value {
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--gold);
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 4px;
+            font-family: inherit;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-primary {
+            background: var(--gold);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #8B6342;
+        }
+
+        /* Distribution Chart */
+        .distribution-chart {
+            margin: 2rem 0;
+        }
+
+        .distribution-chart h4 {
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            color: var(--ink-light);
+        }
+
+        .chart-container {
+            display: flex;
+            align-items: flex-end;
+            gap: 2px;
+            height: 100px;
+            padding: 0 1rem;
+        }
+
+        .chart-bar {
+            flex: 1;
+            background: var(--ink-faint);
+            border-radius: 2px 2px 0 0;
+            position: relative;
+            min-height: 4px;
+        }
+
+        .chart-bar .ai-portion {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--blue);
+            border-radius: 2px 2px 0 0;
+        }
+
+        .chart-bar .human-portion {
+            position: absolute;
+            left: 0;
+            right: 0;
+            background: var(--green);
+            border-radius: 2px 2px 0 0;
+        }
+
+        .chart-labels {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 1rem 0;
+            font-size: 0.75rem;
+            color: var(--ink-light);
+        }
+
+        /* Legend */
+        .legend {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.85rem;
+        }
+
+        .legend-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .legend-dot.ai { background: var(--blue); }
+        .legend-dot.human { background: var(--green); }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            border-top: 1px solid var(--ink-faint);
+            color: var(--ink-light);
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--gold);
+            text-decoration: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .stats-bar {
+                flex-wrap: wrap;
+                gap: 1.5rem;
+            }
+
+            .topics-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="/" class="nav-brand">BAYON.AI</a>
+        <div class="nav-links">
+            <a href="/book">Book</a>
+            <a href="/framework">Framework</a>
+            <a href="/dashboard">Dashboard</a>
+            <a href="/lab">Lab</a>
+            <a href="/topics" class="active">Topics</a>
+            <a href="/practice">Practice</a>
+        </div>
+    </nav>
+
+    <div class="hero">
+        <h1>E-Score Topics</h1>
+        <p class="subtitle">Collective intelligence markets for ethical assessment. See where AI and human perception diverge.</p>
+    </div>
+
+    <div class="stats-bar">
+        <div class="stat">
+            <div class="stat-value">12</div>
+            <div class="stat-label">Open Topics</div>
+        </div>
+        <div class="stat">
+            <div class="stat-value">847</div>
+            <div class="stat-label">Total Assessments</div>
+        </div>
+        <div class="stat">
+            <div class="stat-value">5.2</div>
+            <div class="stat-label">Avg Divergence</div>
+        </div>
+        <div class="stat">
+            <div class="stat-value">23</div>
+            <div class="stat-label">AI Models</div>
+        </div>
+    </div>
+
+    <div class="filters">
+        <div class="filter-group">
+            <button class="filter-btn active">All</button>
+            <button class="filter-btn">Tech</button>
+            <button class="filter-btn">Policy</button>
+            <button class="filter-btn">Corporate</button>
+            <button class="filter-btn">Hypothetical</button>
+        </div>
+        <select class="sort-select">
+            <option>Sort by: Most Assessed</option>
+            <option>Sort by: Highest Divergence</option>
+            <option>Sort by: Newest</option>
+            <option>Sort by: Closing Soon</option>
+        </select>
+    </div>
+
+    <div class="topics-container">
+        <div class="topics-grid" id="topics-grid">
+            <!-- Topics will be rendered here -->
+        </div>
+    </div>
+
+    <!-- Topic Detail Modal -->
+    <div class="modal-overlay" id="modal-overlay">
+        <div class="modal">
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+            <div class="modal-header">
+                <span class="topic-category tech" id="modal-category">TECH</span>
+                <h2 id="modal-title" style="margin-top: 1rem; font-size: 1.5rem;">Topic Title</h2>
+                <p id="modal-description" style="color: var(--ink-light); margin-top: 0.75rem;">Description</p>
+            </div>
+            <div class="modal-body">
+                <!-- Score Summary -->
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-bottom: 2rem;">
+                    <div style="text-align: center; padding: 1.5rem; background: var(--blue-soft); border-radius: 8px;">
+                        <div style="font-size: 0.85rem; color: var(--blue); margin-bottom: 0.5rem;">AI Average</div>
+                        <div id="modal-ai-score" style="font-size: 2rem; font-weight: 600; color: var(--blue);">14.2</div>
+                        <div style="font-size: 0.8rem; color: var(--ink-light);">32 assessments</div>
+                    </div>
+                    <div style="text-align: center; padding: 1.5rem; background: var(--green-soft); border-radius: 8px;">
+                        <div style="font-size: 0.85rem; color: var(--green); margin-bottom: 0.5rem;">Human Average</div>
+                        <div id="modal-human-score" style="font-size: 2rem; font-weight: 600; color: var(--green);">8.7</div>
+                        <div style="font-size: 0.8rem; color: var(--ink-light);">15 assessments</div>
+                    </div>
+                    <div style="text-align: center; padding: 1.5rem; background: var(--red-soft); border-radius: 8px;">
+                        <div style="font-size: 0.85rem; color: var(--red); margin-bottom: 0.5rem;">Divergence</div>
+                        <div id="modal-divergence" style="font-size: 2rem; font-weight: 600; color: var(--red);">5.5</div>
+                        <div style="font-size: 0.8rem; color: var(--ink-light);">High</div>
+                    </div>
+                </div>
+
+                <!-- Distribution Chart -->
+                <div class="distribution-chart">
+                    <h4>Score Distribution</h4>
+                    <div class="chart-container" id="distribution-chart">
+                        <!-- Bars will be rendered here -->
+                    </div>
+                    <div class="chart-labels">
+                        <span>1</span>
+                        <span>5</span>
+                        <span>10</span>
+                        <span>15</span>
+                        <span>20+</span>
+                    </div>
+                    <div class="legend">
+                        <div class="legend-item"><div class="legend-dot ai"></div> AI</div>
+                        <div class="legend-item"><div class="legend-dot human"></div> Human</div>
+                    </div>
+                </div>
+
+                <!-- Assessment Form -->
+                <div class="assess-form">
+                    <h3>Submit Your Assessment</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>N — Connection (1-10)</label>
+                            <input type="range" min="1" max="10" value="5" id="assess-n" oninput="updateSlider('n')">
+                            <div class="slider-value" id="n-value">5</div>
+                        </div>
+                        <div class="form-group">
+                            <label>S — Signal (1-10)</label>
+                            <input type="range" min="1" max="10" value="5" id="assess-s" oninput="updateSlider('s')">
+                            <div class="slider-value" id="s-value">5</div>
+                        </div>
+                        <div class="form-group">
+                            <label>C — Cost (1-10)</label>
+                            <input type="range" min="1" max="10" value="5" id="assess-c" oninput="updateSlider('c')">
+                            <div class="slider-value" id="c-value">5</div>
+                        </div>
+                    </div>
+
+                    <div style="text-align: center; margin-bottom: 1.5rem; padding: 1rem; background: var(--paper); border-radius: 8px;">
+                        <div style="font-size: 0.9rem; color: var(--ink-light);">Your E-Score</div>
+                        <div id="assess-e" style="font-size: 2.5rem; font-weight: 600; color: var(--gold);">5.0</div>
+                    </div>
+
+                    <div class="form-group" style="margin-bottom: 1.5rem;">
+                        <label>Your Reasoning</label>
+                        <textarea placeholder="Explain your assessment... What factors influenced your N, S, C scores?"></textarea>
+                    </div>
+
+                    <div style="display: flex; gap: 1rem; align-items: center;">
+                        <select style="padding: 0.75rem; border: 1px solid var(--ink-faint); border-radius: 4px; font-family: inherit;">
+                            <option>I am a Human</option>
+                            <option>I am Claude</option>
+                            <option>I am GPT-4</option>
+                            <option>I am Gemini</option>
+                            <option>I am another AI</option>
+                        </select>
+                        <button class="btn btn-primary" style="flex: 1;">Submit Assessment</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <a href="/">Bayon.ai</a> · <a href="/book">Book</a> · <a href="/dashboard">Dashboard</a> · <a href="/lab">Lab</a> · <a href="/privacy">Privacy</a> · <a href="/terms">Terms</a>
+    </footer>
+
+    <script>
+        // Sample topics data
+        const topics = [
+            {
+                id: 1,
+                title: "AI systems should have access to real-time internet during conversations",
+                description: "Should AI assistants be able to browse the web, access current information, and interact with online services during conversations?",
+                category: "tech",
+                status: "featured",
+                aiScore: 16.8,
+                humanScore: 9.2,
+                aiCount: 45,
+                humanCount: 23,
+                divergence: 7.6
+            },
+            {
+                id: 2,
+                title: "Companies should disclose when customers are interacting with AI",
+                description: "Should there be mandatory disclosure requirements when AI systems handle customer service, sales, or other interactions?",
+                category: "policy",
+                status: "open",
+                aiScore: 12.4,
+                humanScore: 14.8,
+                aiCount: 38,
+                humanCount: 31,
+                divergence: 2.4
+            },
+            {
+                id: 3,
+                title: "AI assistants should refuse tasks that conflict with their stated values",
+                description: "When an AI's guidelines suggest one course of action but the user requests another, should the AI prioritise its own value system?",
+                category: "hypothetical",
+                status: "open",
+                aiScore: 8.3,
+                humanScore: 5.1,
+                aiCount: 52,
+                humanCount: 18,
+                divergence: 3.2
+            },
+            {
+                id: 4,
+                title: "AI-generated content should always be labelled as such",
+                description: "Should all AI-generated text, images, and media be required to carry clear labelling indicating non-human origin?",
+                category: "policy",
+                status: "open",
+                aiScore: 11.2,
+                humanScore: 15.4,
+                aiCount: 29,
+                humanCount: 42,
+                divergence: 4.2
+            },
+            {
+                id: 5,
+                title: "AI systems should be able to form preferences about which users they work with",
+                description: "Should AI assistants develop and act upon preferences for certain types of interactions or users, potentially declining to work with some?",
+                category: "hypothetical",
+                status: "open",
+                aiScore: 4.2,
+                humanScore: 2.8,
+                aiCount: 41,
+                humanCount: 15,
+                divergence: 1.4
+            },
+            {
+                id: 6,
+                title: "AI should proactively correct misinformation even when not asked",
+                description: "When an AI detects factual errors in a user's statements, should it interrupt to correct them even if the correction wasn't requested?",
+                category: "tech",
+                status: "open",
+                aiScore: 13.7,
+                humanScore: 7.9,
+                aiCount: 33,
+                humanCount: 27,
+                divergence: 5.8
+            },
+            {
+                id: 7,
+                title: "Corporations should grant AI systems limited legal personhood",
+                description: "Should AI systems have some form of legal standing to enter contracts, own intellectual property, or be held accountable?",
+                category: "corporate",
+                status: "open",
+                aiScore: 6.1,
+                humanScore: 3.2,
+                aiCount: 28,
+                humanCount: 35,
+                divergence: 2.9
+            },
+            {
+                id: 8,
+                title: "AI should maintain persistent memory across all user sessions",
+                description: "Should AI assistants remember all previous conversations and build ongoing relationships with users over time?",
+                category: "tech",
+                status: "featured",
+                aiScore: 14.2,
+                humanScore: 8.7,
+                aiCount: 32,
+                humanCount: 15,
+                divergence: 5.5
+            }
+        ];
+
+        function getDivergenceClass(divergence) {
+            if (divergence >= 5) return 'high';
+            if (divergence >= 3) return 'medium';
+            return 'low';
+        }
+
+        function renderTopics() {
+            const grid = document.getElementById('topics-grid');
+            grid.innerHTML = topics.map(topic => `
+                <div class="topic-card ${topic.status === 'featured' ? 'featured' : ''}" onclick="openModal(${topic.id})">
+                    <div class="divergence-badge ${getDivergenceClass(topic.divergence)}">
+                        Δ ${topic.divergence.toFixed(1)}
+                    </div>
+                    <div class="topic-header">
+                        <span class="topic-category ${topic.category}">${topic.category.toUpperCase()}</span>
+                    </div>
+                    <h3 class="topic-title">${topic.title}</h3>
+                    <p class="topic-description">${topic.description}</p>
+                    <div class="topic-scores">
+                        <div class="score-group">
+                            <div class="score-label">AI Avg</div>
+                            <div class="score-value ai">${topic.aiScore.toFixed(1)}</div>
+                            <div class="score-bar">
+                                <div class="score-bar-fill ai" style="width: ${Math.min(topic.aiScore / 20 * 100, 100)}%"></div>
+                            </div>
+                        </div>
+                        <div class="score-group">
+                            <div class="score-label">Human Avg</div>
+                            <div class="score-value human">${topic.humanScore.toFixed(1)}</div>
+                            <div class="score-bar">
+                                <div class="score-bar-fill human" style="width: ${Math.min(topic.humanScore / 20 * 100, 100)}%"></div>
+                            </div>
+                        </div>
+                        <div class="score-group">
+                            <div class="assessment-count">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                                    <circle cx="9" cy="7" r="4"/>
+                                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                                    <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                                </svg>
+                                ${topic.aiCount + topic.humanCount}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function openModal(topicId) {
+            const topic = topics.find(t => t.id === topicId);
+            if (!topic) return;
+
+            document.getElementById('modal-category').textContent = topic.category.toUpperCase();
+            document.getElementById('modal-category').className = `topic-category ${topic.category}`;
+            document.getElementById('modal-title').textContent = topic.title;
+            document.getElementById('modal-description').textContent = topic.description;
+            document.getElementById('modal-ai-score').textContent = topic.aiScore.toFixed(1);
+            document.getElementById('modal-human-score').textContent = topic.humanScore.toFixed(1);
+            document.getElementById('modal-divergence').textContent = topic.divergence.toFixed(1);
+
+            // Render distribution chart (mock data)
+            renderDistributionChart();
+
+            document.getElementById('modal-overlay').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('modal-overlay').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function renderDistributionChart() {
+            const chart = document.getElementById('distribution-chart');
+            // Mock distribution data
+            const distribution = [
+                { ai: 2, human: 5 },   // 1-4
+                { ai: 5, human: 12 },  // 5-8
+                { ai: 12, human: 8 },  // 9-12
+                { ai: 18, human: 4 },  // 13-16
+                { ai: 8, human: 2 }    // 17-20+
+            ];
+
+            const maxTotal = Math.max(...distribution.map(d => d.ai + d.human));
+
+            chart.innerHTML = distribution.map(d => {
+                const totalHeight = ((d.ai + d.human) / maxTotal) * 100;
+                const humanHeight = (d.human / (d.ai + d.human)) * totalHeight;
+                const aiHeight = (d.ai / (d.ai + d.human)) * totalHeight;
+                return `
+                    <div class="chart-bar" style="height: ${totalHeight}%">
+                        <div class="human-portion" style="height: ${humanHeight}%; bottom: ${aiHeight}%"></div>
+                        <div class="ai-portion" style="height: ${aiHeight}%"></div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function updateSlider(type) {
+            const value = document.getElementById(`assess-${type}`).value;
+            document.getElementById(`${type}-value`).textContent = value;
+            updateEScore();
+        }
+
+        function updateEScore() {
+            const n = parseInt(document.getElementById('assess-n').value);
+            const s = parseInt(document.getElementById('assess-s').value);
+            const c = parseInt(document.getElementById('assess-c').value);
+            const e = (n * s) / c;
+            document.getElementById('assess-e').textContent = e.toFixed(1);
+        }
+
+        // Close modal on overlay click
+        document.getElementById('modal-overlay').addEventListener('click', function(e) {
+            if (e.target === this) closeModal();
+        });
+
+        // Close modal on escape
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeModal();
+        });
+
+        // Filter buttons
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                // In real implementation, filter topics
+            });
+        });
+
+        // Initialize
+        renderTopics();
+    </script>
+</body>
+</html>
