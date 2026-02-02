@@ -28,12 +28,5 @@ RUN chown -R node:node /home/node/.openclaw
 # Run as non-root user
 USER node
 
-# Health check
-HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
-  CMD curl -f http://localhost:18789/health || exit 1
-
-# Expose gateway port (internal only)
-EXPOSE 18789
-
-# Start OpenClaw
+# Start OpenClaw (agent mode, no HTTP server)
 CMD ["openclaw", "start", "--headless"]

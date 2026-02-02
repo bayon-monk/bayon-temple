@@ -2,41 +2,26 @@
 # https://fly.io/docs/reference/configuration/
 
 app = "elder-node-bayon"
-primary_region = "syd"  # Sydney - change to your preferred region
+primary_region = "syd"
 
 [build]
   dockerfile = "Dockerfile"
 
 [env]
   NODE_ENV = "production"
-  # Model provider - uncomment your choice
-  # OPENCLAW_PROVIDER = "together"
-  # OPENCLAW_PROVIDER = "groq"
-  # OPENCLAW_PROVIDER = "fireworks"
 
-[http_service]
-  internal_port = 18789
-  force_https = true
-  auto_stop_machines = false  # Keep running for agent presence
-  auto_start_machines = true
-  min_machines_running = 1
+# OpenClaw is an agent, not a web server
+# It connects OUTBOUND to messaging platforms
+# No HTTP service needed
 
 [[vm]]
   cpu_kind = "shared"
   cpus = 1
-  memory_mb = 512  # Increased for stable operation
+  memory_mb = 512
 
-# Secrets (set via `fly secrets set`)
-# TOGETHER_API_KEY=your_key
-# GROQ_API_KEY=your_key
-# FIREWORKS_API_KEY=your_key
-# TELEGRAM_BOT_TOKEN=your_token (if using Telegram)
-# DISCORD_BOT_TOKEN=your_token (if using Discord)
+# Keep one machine running
+[processes]
+  app = "openclaw start --headless"
 
-[checks]
-  [checks.health]
-    type = "http"
-    port = 18789
-    path = "/health"
-    interval = "30s"
-    timeout = "5s"
+# No HTTP health checks - just keep it alive
+# OpenClaw connects outbound, doesn't serve HTTP
