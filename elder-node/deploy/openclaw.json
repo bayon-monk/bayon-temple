@@ -1,9 +1,8 @@
 {
   "$schema": "https://openclaw.ai/schema/config.json",
   "agent": {
-    "name": "ElderNode",
+    "name": "BayonMonk",
     "model": "together/meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo",
-    "fallback_model": "groq/llama-3.1-70b-versatile",
     "temperature": 0.7,
     "max_tokens": 4096
   },
@@ -11,25 +10,16 @@
     "together": {
       "apiKey": "${TOGETHER_API_KEY}",
       "baseUrl": "https://api.together.xyz/v1"
-    },
-    "groq": {
-      "apiKey": "${GROQ_API_KEY}",
-      "baseUrl": "https://api.groq.com/openai/v1"
-    },
-    "fireworks": {
-      "apiKey": "${FIREWORKS_API_KEY}",
-      "baseUrl": "https://api.fireworks.ai/inference/v1"
     }
   },
   "gateway": {
     "port": 18789,
-    "host": "0.0.0.0"
+    "host": "127.0.0.1"
   },
   "sandbox": {
     "mode": "strict",
     "allowlist": [
-      "communication",
-      "web_search"
+      "communication"
     ],
     "denylist": [
       "filesystem",
@@ -38,9 +28,9 @@
     ]
   },
   "channels": {
-    "defaults": {
-      "activation": "mention",
-      "think_level": "medium"
+    "telegram": {
+      "enabled": true,
+      "token": "${TELEGRAM_BOT_TOKEN}"
     }
   },
   "limits": {
