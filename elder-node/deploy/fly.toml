@@ -22,7 +22,7 @@ primary_region = "syd"
 
 # Keep one machine running
 [processes]
-  app = "openclaw start --headless"
+  app = "openclaw gateway"
 
 # No HTTP health checks - just keep it alive
 # OpenClaw connects outbound, doesn't serve HTTP

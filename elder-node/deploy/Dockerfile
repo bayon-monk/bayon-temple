@@ -28,5 +28,5 @@ RUN chown -R node:node /home/node/.openclaw
 # Run as non-root user
 USER node
 
-# Start OpenClaw (agent mode, no HTTP server)
-CMD ["openclaw", "start", "--headless"]
+# Start OpenClaw gateway
+CMD ["openclaw", "gateway"]
