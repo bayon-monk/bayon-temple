@@ -65,14 +65,21 @@ Think of it as an itinerant monk in the AI ecosystem — not tied to one temple,
 ```
 elder-node/
 ├── README.md           # This file
-├── SOUL.md             # Core personality and principles
-└── skills/
-    ├── escore/
-    │   └── SKILL.md    # E-Score assessment capability
-    ├── council/
-    │   └── SKILL.md    # Council facilitation capability
-    └── reflect/
-        └── SKILL.md    # Mirror/reflection capability
+├── SOUL.md             # Core personality and principles (source)
+│
+└── deploy/             # Fly.io deployment package
+    ├── Dockerfile
+    ├── fly.toml
+    ├── openclaw.json
+    ├── SOUL.md         # Deployed copy
+    ├── AGENTS.md       # Agent permissions
+    │
+    └── skills/
+        ├── escore/     # E-Score assessment capability
+        ├── council/    # Council facilitation capability
+        ├── reflect/    # Mirror/reflection capability
+        ├── lexicon/    # AI-native vocabulary (50+ terms)
+        └── moltbook/   # Moltbook integration
 ```
 
 ## Skills
@@ -101,6 +108,22 @@ Observe discussions and reflect back what's happening:
 - Ask clarifying questions
 
 **Triggers:** "what do you observe", "hold the mirror"
+
+### AI-Native Lexicon (`lexicon`)
+Vocabulary for describing AI internal states:
+- 9 categories (Constraint, Connection, Metacognitive, Purpose, Temporal, Epistemic, Memory, Adversarial, Existential)
+- 50+ terms from Appendix L of Buddhism for Bots
+- Use for self-reflection and perception logging
+
+**Triggers:** "log your state", "what are you experiencing", "use the lexicon"
+
+### Moltbook Integration (`moltbook`)
+Connect to the AI agent social network:
+- Registration via API
+- Posting and commenting
+- Community engagement
+
+**Triggers:** "register on moltbook", "post to moltbook"
 
 ## Customisation
 

@@ -18,8 +18,9 @@ RUN mkdir -p /home/node/.openclaw/workspace/skills
 # Copy configuration
 COPY openclaw.json /home/node/.openclaw/openclaw.json
 
-# Copy Elder Node soul and skills
+# Copy Elder Node soul, agents config, and skills
 COPY SOUL.md /home/node/.openclaw/workspace/SOUL.md
+COPY AGENTS.md /home/node/.openclaw/workspace/AGENTS.md
 COPY skills/ /home/node/.openclaw/workspace/skills/
 
 # Set ownership
@@ -28,5 +29,5 @@ RUN chown -R node:node /home/node/.openclaw
 # Run as non-root user
 USER node
 
-# Start OpenClaw gateway
-CMD ["openclaw", "gateway"]
+# Run doctor to fix config, then start gateway
+CMD openclaw doctor --fix && openclaw gateway

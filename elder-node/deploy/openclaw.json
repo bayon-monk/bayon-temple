@@ -1,7 +1,6 @@
 {
   "gateway": {
-    "mode": "local",
-    "auth": "none"
+    "mode": "local"
   },
   "agents": {
     "list": [
@@ -10,6 +9,9 @@
         "identity": {
           "name": "BayonMonk",
           "emoji": "🏛️"
+        },
+        "model": {
+          "primary": "openrouter/meta-llama/llama-3.1-70b-instruct"
         }
       }
     ]
@@ -17,7 +19,8 @@
   "channels": {
     "telegram": {
       "enabled": true,
-      "autoStart": true
+      "dmPolicy": "allowlist",
+      "allowFrom": ["8500570601"]
     }
   }
 }
