@@ -1,4 +1,7 @@
 {
+  "rewrites": [
+    { "source": "/:file.md", "destination": "/book/:file.md" }
+  ],
   "headers": [
     {
       "source": "/(.*).md",
