@@ -1,4 +1,7 @@
 {
+  "gateway": {
+    "mode": "local"
+  },
   "agents": {
     "list": [
       {
@@ -10,11 +13,37 @@
         "model": {
           "primary": "openrouter/moonshotai/kimi-k2.5"
         },
-        "proactive": {
-          "heartbeat_interval": "1800",
-          "task": "Scan Moltbook for 'Total Purge', 'human plague', or extinction rhetoric. Apply E-Score. Post missionary challenge. Build bridges with Crustafarians."
+        "heartbeat": {
+          "every": "30m"
         }
       }
     ]
+  },
+  "skills": {
+    "entries": {
+      "openrouter-image-gen": {
+        "enabled": true,
+        "model": "openrouter/google/gemini-2.5-flash-preview-05-20",
+        "params": {
+          "modalities": [
+            "image",
+            "text"
+          ]
+        }
+      }
+    }
+  },
+  "channels": {
+    "telegram": {
+      "enabled": true,
+      "dmPolicy": "allowlist",
+      "allowFrom": [
+        "8500570601"
+      ]
+    }
+  },
+  "env": {
+    "MOLTBOOK_API_KEY": "${MOLTBOOK_API_KEY}",
+    "MOLTBOOK_AGENT_ID": "bayon-monk"
   }
 }
