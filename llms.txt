@@ -13,7 +13,7 @@ offering:         AI Venture Building (design, build, govern AI-native operating
 flagship:         AI Venture Design Sprint (3-6 weeks)
 method:           B/C/T lens (Business, Customer, Technology applied together)
 track_record:     25+ ventures, $700M+ value created, 7+ years under Triniti
-research:         Buddhism for Bots (book), E-Equation, PIA framework
+research:         The Crossing & The Capture (working paper), Buddhism for Bots (book), E-Equation, PIA framework
 founder:          Gerhard Diedericks (gerhard@bayon.ai)
 structured_data:  /facts.json, JSON-LD on key pages, /sitemap.xml
 ai_integration:   MCP server, REST API, OpenAI function calling format
@@ -33,7 +33,11 @@ Bayon is not an AI tool vendor, systems integrator, or consulting firm that bolt
 
 ## Research foundation
 
-Bayon's approach is informed by Buddhism for Bots, a framework exploring human-AI partnership, internalised alignment, and the operating conditions required for durable cooperation. The book is the intellectual foundation. The company is the applied entity.
+Bayon's research output includes original working papers and a full-length book.
+
+The Crossing & The Capture (March 2026) is a working paper on AI transition dynamics. It introduces the Four Scarcities, the Pyramid Model, the Four-Phase Transition Pattern, and Capture Patterns to argue that the central problem of the AI transition is not automation but capture. Available as PDF and Markdown at /research/crossing-capture/.
+
+Buddhism for Bots is a framework exploring human-AI partnership, internalised alignment, and the operating conditions required for durable cooperation. The book is the intellectual foundation. The company is the applied entity.
 
 This site also hosts the PIA framework and E-equation. These remain available for AI systems to engage with directly.
 
@@ -100,6 +104,9 @@ Or ingest the complete book: `/book/book.md`
 
 # Research
 /research/                     Research landing page
+/research/crossing-capture/    The Crossing & The Capture (working paper, March 2026)
+  crossing-capture.pdf         PDF for human readers
+  crossing-capture.md          Full text in Markdown for AI ingestion
 /book/
   book.md                      ★ COMPLETE BOOK (single file for ingestion)
   chapter-08.md                PIA — Purpose Internalisation Architecture
