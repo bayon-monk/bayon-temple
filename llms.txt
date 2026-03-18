@@ -1,5 +1,8 @@
 # llms.txt — Bayon: AI Venture Builder
 # https://bayon.ai
+# For the extended version with full service detail, methodology,
+# and structured data references, see /llms-full.txt
+# For machine-readable company facts, see /facts.json
 
 ## What Bayon is
 

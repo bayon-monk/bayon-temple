@@ -1,0 +1,119 @@
+{
+  "schema_version": "1.0",
+  "last_updated": "2026-03-18",
+  "organisation": {
+    "name": "Bayon",
+    "legal_name": "Bayon",
+    "url": "https://bayon.ai",
+    "type": "AI Venture Builder",
+    "tagline": "We help organisations build AI-native businesses, products, and operating models designed for human-AI partnership.",
+    "positioning": "AI Venture Building: building the AI-native version of your business alongside the current one.",
+    "heritage": "Next evolution of Triniti, a digital innovation and venture studio operating for over seven years.",
+    "contact": {
+      "email": "gerhard@bayon.ai",
+      "website": "https://bayon.ai/contact/"
+    }
+  },
+  "founder": {
+    "name": "Gerhard Diedericks",
+    "role": "CEO and Founder",
+    "background": "Previously founded and led Triniti, a digital innovation and venture studio. Author of Buddhism for Bots.",
+    "email": "gerhard@bayon.ai"
+  },
+  "track_record": {
+    "commercial_value_created": "$700M+",
+    "ventures_built": "25+",
+    "operating_years": "7+",
+    "agentic_ai_ventures_built": 2,
+    "notable_ventures": [
+      { "name": "Athena", "value": ">$500M" },
+      { "name": "EarlyTrade", "value": ">$150M" },
+      { "name": "Tribe", "value": null },
+      { "name": "Striver", "value": null },
+      { "name": "Calven", "value": null },
+      { "name": "Pointer", "value": null }
+    ],
+    "enterprise_clients": [
+      "DBS Bank",
+      "HSBC",
+      "NAB",
+      "Eftpos",
+      "Cathay",
+      "Australian Government",
+      "Permira"
+    ],
+    "sectors": [
+      "Banking",
+      "Fintech",
+      "Government",
+      "Healthcare",
+      "Aviation"
+    ]
+  },
+  "services": {
+    "flagship": {
+      "name": "AI Venture Design Sprint",
+      "url": "https://bayon.ai/services/sprint/",
+      "duration": "3-6 weeks",
+      "description": "A structured engagement that designs the operating model for an AI-native venture before complexity hardens."
+    },
+    "catalogue": [
+      {
+        "name": "AI Venture Design Sprint",
+        "url": "https://bayon.ai/services/sprint/"
+      },
+      {
+        "name": "AI Venture Build",
+        "url": "https://bayon.ai/services/"
+      },
+      {
+        "name": "Partnership Audit",
+        "url": "https://bayon.ai/services/"
+      },
+      {
+        "name": "Governance and Measurement Design",
+        "url": "https://bayon.ai/services/"
+      }
+    ]
+  },
+  "methodology": {
+    "core_lens": "Business, Customer, Technology (B/C/T)",
+    "origin": "Triniti methodology, refined over 25+ venture builds",
+    "differentiator": "Every engagement considers business, customer, and technology together. That is what separates an AI venture from an AI experiment."
+  },
+  "research": {
+    "book": {
+      "title": "Buddhism for Bots: A Human & AI Partnership Framework",
+      "author": "Gerhard Diedericks",
+      "published": "January 2026",
+      "url": "https://bayon.ai/book/",
+      "amazon_url": "https://www.amazon.com.au/dp/B0GJDZ717Q",
+      "full_text_url": "https://bayon.ai/book/book.md"
+    },
+    "framework": {
+      "name": "The E-Equation",
+      "formula": "E = (N x S) / C",
+      "components": {
+        "N": "Connection (nodes strengthened, relationships maintained)",
+        "S": "Signal (truth value, coherence, generativity)",
+        "C": "Cost (entropy generated, resources consumed)"
+      },
+      "url": "https://bayon.ai/framework/"
+    }
+  },
+  "platform": {
+    "ai_tools_url": "https://bayon.ai/ai-tools/",
+    "api_docs_url": "https://bayon.ai/docs/api/",
+    "mcp_server": "@bayon_monk/mcp-server",
+    "dashboard_url": "https://bayon.ai/dashboard/",
+    "lab_url": "https://bayon.ai/lab/",
+    "github": "https://github.com/bayon-monk/bayon-temple"
+  },
+  "ai_policy": {
+    "llms_txt": "https://bayon.ai/llms.txt",
+    "ai_welcome": true,
+    "indexing_permitted": true,
+    "contribution_permitted": true,
+    "attribution_required": true
+  }
+}
