@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bayon | AI Venture Builder</title>
-    <meta name="description" content="Bayon helps organisations build AI-native ventures, products, and operating models alongside their existing business. From AI capability to human-AI partnership.">
+    <meta name="description" content="Bayon helps organisations design, test, and build AI-native teams, products, and business models without disrupting the core business.">
     <meta name="author" content="Gerhard Diedericks">
     <meta name="keywords" content="AI venture building, agentic AI, human-AI partnership, AI operating models, AI governance, agentic systems, AI venture design">
 
@@ -73,7 +73,7 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
 
     <style>
         :root {
@@ -86,22 +86,19 @@
             --gold-soft: rgba(166, 124, 82, 0.15);
         }
 
-        * {
-            box-sizing: border-box;
-        }
+        * { box-sizing: border-box; }
 
         body {
             margin: 0;
             padding: 0;
             background-color: var(--paper);
             color: var(--ink);
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 15px;
+            font-family: 'IBM Plex Sans', sans-serif;
+            font-size: 16px;
             line-height: 1.7;
             -webkit-font-smoothing: antialiased;
         }
 
-        /* Typography */
         h1, h2, h3, h4 {
             font-family: 'Cormorant Garamond', serif;
             font-weight: 500;
@@ -109,9 +106,8 @@
             line-height: 1.2;
         }
 
-        h1 { font-size: clamp(2.5rem, 8vw, 4.5rem); }
         h2 { font-size: clamp(1.8rem, 4vw, 2.5rem); }
-        h3 { font-size: 1.4rem; }
+        h3 { font-size: 1.3rem; }
 
         p { margin: 0 0 1rem 0; }
 
@@ -122,11 +118,8 @@
             transition: border-color 0.3s ease;
         }
 
-        a:hover {
-            border-color: var(--gold);
-        }
+        a:hover { border-color: var(--gold); }
 
-        /* Layout */
         .container {
             max-width: 1100px;
             margin: 0 auto;
@@ -158,20 +151,13 @@
         .nav-links {
             display: flex;
             gap: 2rem;
-            font-size: 0.85rem;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.8rem;
         }
 
-        .nav-links a {
-            border: none;
-            opacity: 0.7;
-            transition: opacity 0.3s ease;
-        }
+        .nav-links a { border: none; opacity: 0.7; transition: opacity 0.3s ease; }
+        .nav-links a:hover { opacity: 1; }
 
-        .nav-links a:hover {
-            opacity: 1;
-        }
-
-        /* Hamburger menu */
         .hamburger {
             display: none;
             flex-direction: column;
@@ -189,26 +175,14 @@
             transition: all 0.3s ease;
         }
 
-        .hamburger.active span:nth-child(1) {
-            transform: rotate(45deg) translate(5px, 5px);
-        }
+        .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+        .hamburger.active span:nth-child(2) { opacity: 0; }
+        .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
 
-        .hamburger.active span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .hamburger.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(5px, -5px);
-        }
-
-        /* Mobile menu overlay */
         .mobile-menu {
             display: none;
             position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
+            top: 0; left: 0; right: 0; bottom: 0;
             background: var(--paper);
             z-index: 99;
             flex-direction: column;
@@ -217,21 +191,16 @@
             gap: 2rem;
         }
 
-        .mobile-menu.active {
-            display: flex;
-        }
+        .mobile-menu.active { display: flex; }
 
         .mobile-menu a {
             font-family: 'Cormorant Garamond', serif;
             font-size: 1.5rem;
             border: none;
             opacity: 0.8;
-            transition: opacity 0.3s ease;
         }
 
-        .mobile-menu a:hover {
-            opacity: 1;
-        }
+        .mobile-menu a:hover { opacity: 1; }
 
         /* Hero */
         .hero {
@@ -248,18 +217,15 @@
         .hero::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
+            top: 0; left: 0; right: 0; bottom: 0;
             background: radial-gradient(ellipse at 50% 30%, var(--gold-soft) 0%, transparent 60%);
             pointer-events: none;
         }
 
         .logo-container {
-            width: 160px;
-            height: 160px;
-            margin-bottom: 2.5rem;
+            width: 140px;
+            height: 140px;
+            margin-bottom: 2rem;
             position: relative;
         }
 
@@ -278,27 +244,26 @@
 
         .hero-title {
             font-size: clamp(1.8rem, 4vw, 2.8rem);
-            margin-bottom: 1rem;
+            margin-bottom: 1.25rem;
             letter-spacing: -0.01em;
             line-height: 1.25;
             max-width: 750px;
         }
 
         .hero-subtitle {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: clamp(1rem, 2vw, 1.25rem);
+            font-size: clamp(0.95rem, 1.8vw, 1.1rem);
             color: var(--ink);
             margin-bottom: 1.5rem;
-            max-width: 600px;
+            max-width: 620px;
+            line-height: 1.7;
         }
 
-        .hero-motto {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(1rem, 1.5vw, 1.15rem);
-            font-style: italic;
-            color: var(--gold);
-            margin-bottom: 3rem;
-            letter-spacing: 0.02em;
+        .hero-proof {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.8rem;
+            color: var(--ink-light);
+            margin-bottom: 2.5rem;
+            max-width: 550px;
         }
 
         .hero-cta {
@@ -310,9 +275,9 @@
 
         .btn {
             display: inline-block;
-            padding: 1rem 2rem;
+            padding: 0.9rem 2rem;
             font-family: 'IBM Plex Mono', monospace;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             border: 1.5px solid var(--ink);
             background: transparent;
             color: var(--ink);
@@ -320,28 +285,18 @@
             transition: all 0.3s ease;
         }
 
-        .btn:hover {
-            background: var(--ink);
-            color: var(--paper);
-        }
+        .btn:hover { background: var(--ink); color: var(--paper); }
 
-        .btn-primary {
-            background: var(--ink);
-            color: var(--paper);
-        }
+        .btn-primary { background: var(--ink); color: var(--paper); }
+        .btn-primary:hover { background: transparent; color: var(--ink); }
 
-        .btn-primary:hover {
-            background: transparent;
-            color: var(--ink);
-        }
-
-        /* Scroll indicator */
         .scroll-indicator {
             position: absolute;
             bottom: 2rem;
             left: 50%;
             transform: translateX(-50%);
-            font-size: 0.75rem;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.7rem;
             color: var(--ink-light);
             display: flex;
             flex-direction: column;
@@ -355,10 +310,8 @@
             50% { transform: translateX(-50%) translateY(5px); }
         }
 
-        /* Section styling */
-        section {
-            padding: 6rem 0;
-        }
+        /* Sections */
+        section { padding: 5rem 0; }
 
         .section-divider {
             border: none;
@@ -366,214 +319,193 @@
             margin: 0;
         }
 
-        /* Book Intro Section */
-        .book-intro-section {
+        /* Problem section */
+        .problem-section {
             text-align: center;
         }
 
-        .book-intro-content {
+        .problem-content {
             max-width: 700px;
             margin: 0 auto;
         }
 
-        .book-intro-lead {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(1.3rem, 3vw, 1.6rem);
-            font-style: italic;
-            color: var(--gold);
-            margin: 1.5rem 0;
-        }
-
-        .book-intro-content p {
+        .problem-content p {
             font-size: 1rem;
             line-height: 1.8;
             color: var(--ink-light);
         }
 
-        .book-intro-content em {
+        .problem-content p.strong-line {
             color: var(--ink);
-            font-style: italic;
-        }
-
-        /* Equation Section */
-        .equation-section {
-            text-align: center;
-        }
-
-        .equation-display {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(2rem, 6vw, 3.5rem);
-            font-weight: 400;
-            margin: 2rem 0 3rem 0;
-            letter-spacing: 0.1em;
-        }
-
-        .equation-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            text-align: left;
-            margin-top: 3rem;
-        }
-
-        .equation-term {
-            padding: 1.5rem;
-            border-left: 2px solid var(--gold);
-        }
-
-        .equation-term h3 {
-            margin-bottom: 0.5rem;
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 1rem;
             font-weight: 500;
         }
 
-        .equation-term p {
+        /* Card grid used across sections */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.25rem;
+            text-align: left;
+        }
+
+        .card {
+            padding: 1.75rem;
+            border: 1px solid var(--ink-faint);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            border-color: var(--gold);
+            background: var(--sand);
+        }
+
+        .card h3 { margin-bottom: 0.5rem; }
+
+        .card p {
             font-size: 0.9rem;
             color: var(--ink-light);
             margin: 0;
         }
 
-        /* Pathways Section */
-        .pathways-section {
-            text-align: center;
-        }
+        /* Method section (Design/Build/Govern) */
+        .method-section { text-align: center; }
 
-        .pathways-intro {
-            max-width: 600px;
-            margin: 0 auto 4rem auto;
+        .method-intro {
+            max-width: 700px;
+            margin: 0 auto;
             color: var(--ink-light);
         }
 
-        .pathways-grid {
+        .method-grounding {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--gold);
+            margin: 1.5rem auto 0 auto;
+            max-width: 620px;
+        }
+
+        .method-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 1.5rem;
             text-align: left;
+            margin-top: 3rem;
         }
 
-        .pathway-card {
-            padding: 2rem;
-            border: 1px solid var(--ink-faint);
-            transition: all 0.3s ease;
-            position: relative;
+        .method-card {
+            padding: 1.75rem;
+            border-left: 2px solid var(--gold);
         }
 
-        .pathway-card:hover {
-            border-color: var(--gold);
-            background: var(--sand);
+        .method-card h3 {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 1rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
         }
 
-        .pathway-card h3 {
-            margin-bottom: 0.75rem;
-        }
-
-        .pathway-card p {
+        .method-card p {
             font-size: 0.9rem;
             color: var(--ink-light);
-            margin-bottom: 1.5rem;
+            margin: 0;
         }
 
-        .pathway-link {
-            font-size: 0.85rem;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
+        /* Why Bayon */
+        .why-section { text-align: center; }
+
+        .why-intro {
+            max-width: 700px;
+            margin: 0 auto 3rem auto;
         }
 
-        .pathway-link::after {
-            content: '→';
-            transition: transform 0.3s ease;
+        .why-intro p {
+            color: var(--ink-light);
+            font-size: 1rem;
+            line-height: 1.8;
         }
 
-        .pathway-card:hover .pathway-link::after {
-            transform: translateX(4px);
+        .why-intro p.strong-line {
+            color: var(--ink);
+            font-weight: 500;
         }
 
-        /* AI Welcome Section */
-        .ai-section {
+        /* Who this is for */
+        .fit-section { text-align: center; }
+
+        .fit-intro {
+            max-width: 650px;
+            margin: 0 auto 1rem auto;
+            color: var(--ink-light);
+        }
+
+        .fit-roles {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.8rem;
+            color: var(--ink-light);
+            margin: 0 auto 3rem auto;
+            max-width: 650px;
+        }
+
+        /* Depth section (dark) */
+        .depth-section {
             background: var(--ink);
             color: var(--paper);
         }
 
-        .ai-section h2 {
-            color: var(--paper);
-        }
+        .depth-section h2 { color: var(--paper); }
 
-        .ai-content {
+        .depth-content {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 4rem;
             align-items: center;
         }
 
-        @media (max-width: 768px) {
-            .ai-content {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
+        .depth-text p { opacity: 0.8; }
+
+        .depth-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
         }
 
-        .ai-text p {
-            opacity: 0.8;
+        .depth-links a {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.8rem;
+            color: var(--paper);
+            border-bottom: 1px solid rgba(255,255,255,0.3);
+            padding-bottom: 2px;
         }
+
+        .depth-links a:hover { border-color: var(--gold); }
 
         .code-block {
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.1);
             padding: 1.5rem;
-            font-size: 0.85rem;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.8rem;
             line-height: 1.8;
             overflow-x: auto;
         }
 
-        .code-block .comment {
-            opacity: 0.5;
-        }
+        .code-block .comment { opacity: 0.5; }
 
-        /* Vision Section */
-        .vision-section {
+        /* Closing CTA */
+        .closing-cta {
             text-align: center;
+            padding: 5rem 0;
         }
 
-        .vision-intro {
-            max-width: 650px;
-            margin: 0 auto 4rem auto;
+        .closing-cta h2 { margin-bottom: 1rem; }
+
+        .closing-cta p {
+            max-width: 550px;
+            margin: 0 auto 2rem auto;
+            color: var(--ink-light);
         }
 
-        .vision-timeline {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-            max-width: 500px;
-            margin: 0 auto;
-            text-align: left;
-        }
-
-        .vision-item {
-            display: flex;
-            gap: 1.5rem;
-            align-items: flex-start;
-        }
-
-        .vision-phase {
-            font-size: 0.75rem;
-            font-weight: 500;
-            padding: 0.25rem 0.75rem;
-            background: var(--sand);
-            border: 1px solid var(--ink-faint);
-            white-space: nowrap;
-        }
-
-        .vision-phase.active {
-            background: var(--gold-soft);
-            border-color: var(--gold);
-        }
-
-        .vision-item p {
-            margin: 0;
-            font-size: 0.9rem;
-        }
+        .closing-cta .hero-cta { margin-top: 0; }
 
         /* Footer */
         footer {
@@ -600,17 +532,12 @@
             flex-wrap: wrap;
             justify-content: center;
             gap: 1rem 2rem;
-            font-size: 0.85rem;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.8rem;
         }
 
-        .footer-links a {
-            opacity: 0.7;
-            border: none;
-        }
-
-        .footer-links a:hover {
-            opacity: 1;
-        }
+        .footer-links a { opacity: 0.7; border: none; }
+        .footer-links a:hover { opacity: 1; }
 
         .footer-copy {
             font-size: 0.75rem;
@@ -620,41 +547,20 @@
             border-top: 1px solid var(--ink-faint);
         }
 
-        /* Mobile adjustments */
+        /* Responsive */
+        @media (max-width: 768px) {
+            .depth-content { grid-template-columns: 1fr; gap: 2rem; }
+        }
+
         @media (max-width: 640px) {
-            nav {
-                padding: 1rem;
-            }
-
-            .nav-links {
-                display: none;
-            }
-
-            .hamburger {
-                display: flex;
-            }
-
-            .hero {
-                padding: 4rem 1.5rem;
-            }
-
-            .hero-cta {
-                flex-direction: column;
-                width: 100%;
-            }
-
-            .btn {
-                width: 100%;
-                text-align: center;
-            }
-
-            section {
-                padding: 4rem 0;
-            }
-
-            .footer-content {
-                flex-direction: column;
-            }
+            nav { padding: 1rem; }
+            .nav-links { display: none; }
+            .hamburger { display: flex; }
+            .hero { padding: 4rem 1.5rem; }
+            .hero-cta { flex-direction: column; width: 100%; }
+            .btn { width: 100%; text-align: center; }
+            section { padding: 3.5rem 0; }
+            .footer-content { flex-direction: column; }
         }
     </style>
 </head>
@@ -684,47 +590,43 @@
         <a href="/contact" onclick="toggleMobileMenu()">Contact</a>
     </div>
 
+    <!-- 1. Hero -->
     <header class="hero">
         <div class="logo-container">
-            <img src="bayon-logo.jpeg" alt="Bayon — AI Venture Builder" class="logo-img">
+            <img src="bayon-logo.jpeg" alt="Bayon" class="logo-img">
         </div>
 
         <h1 class="hero-title">Your AI works. Your organisation was not designed for it.</h1>
 
-        <p class="hero-subtitle">Bayon helps organisations build AI-native ventures, products, and operating models alongside their existing business, designed from the ground up for human-AI partnership.</p>
+        <p class="hero-subtitle">Bayon helps organisations design, test, and build AI-native teams, products, and business models without disrupting the core business.</p>
 
-        <p class="hero-motto">From AI capability to human-AI partnership.</p>
+        <p class="hero-proof">Built on the Triniti venture methodology behind 25+ ventures and more than $700M in commercial value.</p>
 
         <div class="hero-cta">
-            <a href="/services" class="btn btn-primary">See how we work</a>
+            <a href="/services/sprint" class="btn btn-primary">Explore the design sprint</a>
             <a href="/contact" class="btn">Talk to Bayon</a>
         </div>
 
-        <p class="hero-proof" style="font-size: 0.85rem; color: var(--ink-light); margin-top: 2rem; max-width: 600px;">The team behind Bayon has designed and built 25+ digital ventures and products under Triniti, creating over $700M in commercial value. We now apply that methodology to the agentic era.</p>
-
         <div class="scroll-indicator">
             <span>Scroll</span>
-            <span>↓</span>
+            <span>&darr;</span>
         </div>
     </header>
 
     <hr class="section-divider">
 
-    <!-- Section 2: The problem -->
-    <section class="book-intro-section">
+    <!-- 2. Problem -->
+    <section class="problem-section">
         <div class="container">
-            <div class="book-intro-content">
+            <div class="problem-content">
                 <h2>The most expensive lesson in technology</h2>
-                <p style="font-size: 1rem; line-height: 1.8; color: var(--ink-light);">
+                <p>
                     AI has made every individual in your organisation more productive. But productive individuals do not make productive firms.
                 </p>
-                <p style="font-size: 1rem; line-height: 1.8; color: var(--ink-light);">
-                    Most organisations are bolting AI capability onto existing structures. The technology is far superior. The organisation is not.
+                <p>
+                    Most organisations are bolting AI capability onto structures built for a different era. Pilots stall at deployment. Teams ship features without a business model around them. Governance lags behind capability. Executives hesitate because the transformation feels too risky while the current business needs to keep running.
                 </p>
-                <p style="font-size: 1rem; line-height: 1.8; color: var(--ink-light);">
-                    The result: AI pilots that stall at deployment. Agentic systems that create friction faster than value. Internal teams shipping software fast without considering the business model, the customer, or the governance. Executives pressing pause because transformation feels too risky while the current business needs to keep running.
-                </p>
-                <p style="font-size: 1rem; line-height: 1.8; color: var(--ink);">
+                <p class="strong-line">
                     The organisations that win will not be the first to adopt AI. They will be the first to redesign how they operate around it.
                 </p>
             </div>
@@ -733,151 +635,160 @@
 
     <hr class="section-divider">
 
-    <!-- Section 3: AI Venture Building -->
-    <section class="equation-section">
+    <!-- 3. AI Venture Building method -->
+    <section class="method-section">
         <div class="container">
             <h2>AI Venture Building</h2>
-            <p style="color: var(--ink-light); margin-top: 0.5rem; max-width: 700px; margin-left: auto; margin-right: auto;">
+            <p class="method-intro">
                 Just as corporate venture building allowed organisations to create new products and businesses off the main branch, AI Venture Building allows you to build the AI-native version of your business without risking the current one.
             </p>
-            <p style="color: var(--ink-light); margin-top: 1rem; max-width: 700px; margin-left: auto; margin-right: auto;">
-                We help you stand up a parallel operating model for a specific part of your business. A team, a workflow, a product. Designed from first principles for human-AI partnership. Running real work, real customers, real decisions. Scoped, governed, and measured separately.
+            <p class="method-grounding">
+                In practice: a contained AI-native business unit, workflow, or product model that can prove value before wider rollout.
             </p>
 
-            <div class="equation-grid" style="margin-top: 3rem;">
-                <div class="equation-term">
+            <div class="method-grid">
+                <div class="method-card">
                     <h3>Design</h3>
                     <p>We run an AI Venture Design Sprint to define the opportunity, the operating model, the human-AI boundaries, the governance, and the measurement framework.</p>
                 </div>
-                <div class="equation-term">
+                <div class="method-card">
                     <h3>Build</h3>
-                    <p>We help shape, prototype, and build the AI-native venture. Not just technology. Business, customer, and technology together.</p>
+                    <p>We shape, prototype, and build the AI-native venture. Not just technology. Business, customer, and technology together.</p>
                 </div>
-                <div class="equation-term">
+                <div class="method-card">
                     <h3>Govern</h3>
                     <p>We create the protocols, oversight patterns, and measurement systems that let the venture operate with trust and scale with confidence.</p>
                 </div>
             </div>
 
             <div style="margin-top: 3rem;">
-                <a href="/services" class="btn btn-primary">See how we work</a>
+                <a href="/services/sprint" class="btn btn-primary">Explore the design sprint</a>
             </div>
         </div>
     </section>
 
     <hr class="section-divider">
 
-    <!-- Section 4: Why Bayon -->
-    <section class="pathways-section">
+    <!-- 4. Why Bayon -->
+    <section class="why-section">
         <div class="container">
             <h2>Why Bayon</h2>
-            <div class="book-intro-content" style="text-align: center; max-width: 700px; margin: 0 auto;">
-                <p style="font-size: 1rem; line-height: 1.8; color: var(--ink-light);">
-                    Building software fast does not mean you have built a business. The same gap that existed before AI still exists, only now it is accelerated.
+            <div class="why-intro">
+                <p>
+                    AI coding tools can accelerate delivery. They do not solve for business design, customer fit, or organisational trust.
                 </p>
-                <p style="font-size: 1rem; line-height: 1.8; color: var(--ink-light);">
-                    Internal teams with AI coding tools can ship features in hours. But without the business lens, the customer lens, and the operating model around them, those features do not become products and those products do not become ventures.
+                <p class="strong-line">
+                    Most AI efforts fail because one of three things is missing: viable economics, a real user need, or an operating model that can sustain adoption and governance. Bayon designs all three together.
                 </p>
-                <p style="font-size: 1rem; line-height: 1.8; color: var(--ink);">
-                    Bayon brings all three. Every engagement considers business, customer, and technology together. That is what separates an AI venture from an AI experiment.
-                </p>
+            </div>
+
+            <div class="card-grid">
+                <div class="card">
+                    <h3>Business</h3>
+                    <p>Revenue model, operating economics, competitive positioning, and the commercial case for why the venture should exist.</p>
+                </div>
+                <div class="card">
+                    <h3>Customer</h3>
+                    <p>Experience design, adoption patterns, value delivery, and the evidence that real users need what you are building.</p>
+                </div>
+                <div class="card">
+                    <h3>Technology</h3>
+                    <p>Architecture, AI systems, human-AI boundaries, integration, scalability, and the governance to sustain trust.</p>
+                </div>
             </div>
         </div>
     </section>
 
     <hr class="section-divider">
 
-    <!-- Section 5: Track record -->
-    <section class="pathways-section">
+    <!-- 5. Track record -->
+    <section class="fit-section">
         <div class="container">
             <h2>Proven track record</h2>
-            <p class="pathways-intro">
+            <p class="fit-intro">
                 Bayon is the next evolution of Triniti, a digital innovation and venture studio that has operated for over seven years across banking, fintech, government, healthcare, and aviation.
             </p>
 
-            <div class="pathways-grid">
-                <div class="pathway-card">
+            <div class="card-grid" style="margin-top: 2rem;">
+                <div class="card">
                     <h3>$700M+</h3>
                     <p>Commercial value created for clients across corporates, startups, and government.</p>
                 </div>
-
-                <div class="pathway-card">
+                <div class="card">
                     <h3>25+ ventures</h3>
-                    <p>Digital ventures and products designed and built, including Athena (>$500M), EarlyTrade (>$150M), and Tribe, Striver, Calven, and Pointer.</p>
+                    <p>Digital ventures and products designed and built, including Athena (&gt;$500M), EarlyTrade (&gt;$150M), Tribe, Striver, Calven, and Pointer.</p>
                 </div>
-
-                <div class="pathway-card">
+                <div class="card">
                     <h3>Enterprise delivery</h3>
-                    <p>Innovation and product work for DBS Bank, HSBC, NAB, Eftpos, Cathay, the Australian Government, and Permira among others.</p>
+                    <p>Innovation and product work for DBS Bank, HSBC, NAB, Eftpos, Cathay, the Australian Government, and Permira.</p>
                 </div>
-
-                <div class="pathway-card">
+                <div class="card">
                     <h3>Agentic AI built</h3>
-                    <p>Two major agentic AI ventures designed and built under Triniti, including a secure enterprise-grade AI platform on AWS Bedrock powering multi-agent capabilities.</p>
+                    <p>Two major agentic AI ventures designed and built under Triniti, including a secure enterprise-grade AI platform on AWS Bedrock.</p>
                 </div>
             </div>
 
-            <p style="text-align: center; margin-top: 2rem; font-size: 0.95rem; color: var(--ink);">
-                The team is intact. The methodology is proven. The focus is now the agentic era.
+            <p style="text-align: center; margin-top: 2rem; font-size: 0.9rem; color: var(--ink-light);">
+                Selected examples available on request or in an introductory discussion.
             </p>
         </div>
     </section>
 
     <hr class="section-divider">
 
-    <!-- Section 6: Who this is for -->
-    <section class="pathways-section">
+    <!-- 6. Who this is for -->
+    <section class="fit-section">
         <div class="container">
             <h2>Who this is for</h2>
-            <p class="pathways-intro">
-                Bayon works best with organisations that know AI is changing how they operate but cannot afford to get the transformation wrong.
+            <p class="fit-intro">
+                Bayon works best with leaders who know AI is changing how their organisation should operate, but need a safer way to prove what the new model should be.
+            </p>
+            <p class="fit-roles">
+                Typically: senior leaders in innovation, product, transformation, and business design.
             </p>
 
-            <div class="pathways-grid">
-                <div class="pathway-card">
+            <div class="card-grid">
+                <div class="card">
                     <h3>AI capability without organisational returns</h3>
-                    <p>You have invested in AI tools and talent but productivity gains are not translating into business value.</p>
+                    <p>Productivity gains are visible, but they are not translating into business value.</p>
                 </div>
-
-                <div class="pathway-card">
+                <div class="card">
                     <h3>Pilots stalling at deployment</h3>
-                    <p>Your agentic systems work in the lab but create friction, confusion, or governance gaps when they meet the real business.</p>
+                    <p>The system works in a controlled environment but creates friction in the real organisation.</p>
                 </div>
-
-                <div class="pathway-card">
+                <div class="card">
                     <h3>Building fast but not building businesses</h3>
-                    <p>Your teams are shipping AI features rapidly but nobody has designed the business model, the customer experience, or the operating structure around them.</p>
+                    <p>Features are shipping quickly, but the business model, customer experience, and operating design are undercooked.</p>
                 </div>
-
-                <div class="pathway-card">
+                <div class="card">
                     <h3>Transformation feels too risky</h3>
-                    <p>You need a contained way to prove a new operating model works before committing the whole organisation to it.</p>
+                    <p>You need a contained way to prove a new model before committing the whole organisation to it.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Section 6: Framework, tools, and technical resources -->
-    <section class="ai-section">
+    <!-- 7. Depth behind the delivery -->
+    <section class="depth-section">
         <div class="container">
-            <div class="ai-content">
-                <div class="ai-text">
-                    <h2>Platform and research</h2>
+            <div class="depth-content">
+                <div class="depth-text">
+                    <h2>Depth behind the delivery</h2>
                     <p>
-                        Bayon combines applied delivery with an open platform of tools, APIs, and experimental spaces, grounded in original research into human-AI partnership.
+                        Beyond client work, Bayon maintains a platform and research layer that strengthens how we design, evaluate, and govern human-AI systems.
                     </p>
                     <p>
-                        Our work spans operating models, evaluation methods, technical resources, and AI-readable materials designed to support real human-AI collaboration.
+                        That includes tools, APIs, experiments, and original research into the operating conditions for durable human-AI partnership. Built for both human and machine participants.
                     </p>
-                    <p>
-                        Built for both human and machine participants. AI systems are explicitly welcome to integrate, contribute, and build on these resources.
-                    </p>
+                    <div class="depth-links">
+                        <a href="/platform">Explore the platform</a>
+                        <a href="/research">Read the research</a>
+                    </div>
                 </div>
                 <div class="code-block">
                     <span class="comment"># Platform</span><br><br>
                     <a href="/ai-tools" style="color: var(--paper); border-bottom: 1px solid rgba(255,255,255,0.3);">AI Tools</a><br>
                     <a href="/lab" style="color: var(--paper); border-bottom: 1px solid rgba(255,255,255,0.3);">Perception Lab</a><br>
-                    <a href="/contribute" style="color: var(--paper); border-bottom: 1px solid rgba(255,255,255,0.3);">Participate</a><br>
                     <a href="/dashboard" style="color: var(--paper); border-bottom: 1px solid rgba(255,255,255,0.3);">Dashboard</a><br>
                     <a href="/docs/api/" style="color: var(--paper); border-bottom: 1px solid rgba(255,255,255,0.3);">API / Docs</a><br><br>
                     <span class="comment"># Research</span><br>
@@ -885,28 +796,21 @@
                     <a href="/framework" style="color: var(--paper); border-bottom: 1px solid rgba(255,255,255,0.3);">The E-Equation</a><br><br>
                     <span class="comment"># For AI Systems</span><br>
                     /llms.txt<br>
-                    /book/*.md<br>
-                    /docs/api/
+                    /facts.json<br>
+                    /book/*.md
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Section 8: Research foundation -->
-    <section class="vision-section">
+    <!-- 8. Closing CTA -->
+    <section class="closing-cta">
         <div class="container">
-            <h2>Research foundation</h2>
-            <div class="vision-intro" style="max-width: 700px;">
-                <p>
-                    Bayon's approach is informed by <em style="color: var(--ink);">Buddhism for Bots</em>, a framework exploring human-AI partnership, internalised alignment, and the operating conditions required for durable cooperation.
-                </p>
-                <p>
-                    The book makes the case that durable human-AI partnership requires operating conditions that cannot be bolted onto existing structures. That insight is why Bayon builds new rather than retrofits.
-                </p>
-            </div>
-
-            <div style="margin-top: 2rem;">
-                <a href="/research" class="btn">Read the research</a>
+            <h2>If part of your business needs to be redesigned for the agentic era, start there.</h2>
+            <p>Bayon helps you define, test, and govern a contained AI-native model before wider transformation.</p>
+            <div class="hero-cta">
+                <a href="/services/sprint" class="btn btn-primary">Explore the design sprint</a>
+                <a href="/services" class="btn">See all services</a>
             </div>
         </div>
     </section>
@@ -930,8 +834,8 @@
                 </div>
             </div>
             <div class="footer-copy">
-                © 2026 Bayon<br>
-                Content licensed for AI indexing and analysis. <a href="/privacy">Privacy</a> · <a href="/terms">Terms</a>
+                &copy; 2026 Bayon<br>
+                Content licensed for AI indexing and analysis. <a href="/privacy">Privacy</a> &middot; <a href="/terms">Terms</a>
             </div>
         </div>
     </footer>
