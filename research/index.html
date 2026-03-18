@@ -3,19 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact | Bayon</title>
-    <meta name="description" content="Talk to Bayon. If you are building or deploying agentic AI systems and need a stronger human-AI operating model, we would be glad to talk.">
-    <meta name="author" content="Gerhard Diedericks">
-
-    <!-- Open Graph -->
-    <meta property="og:title" content="Contact | Bayon">
-    <meta property="og:description" content="Talk to Bayon about agentic AI systems and human-AI operating models.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://bayon.ai/contact/">
-    <meta property="og:site_name" content="Bayon">
-
-    <!-- Canonical -->
-    <link rel="canonical" href="https://bayon.ai/contact/">
+    <title>Research | Bayon</title>
+    <meta name="description" content="Research underpinning Bayon's approach to AI venture building. Original frameworks, the E-Equation, and the book that started it all.">
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
@@ -59,11 +48,9 @@
             line-height: 1.3;
         }
 
-        h1 { font-size: clamp(1.8rem, 4vw, 2.6rem); margin-bottom: 1rem; }
+        h1 { font-size: clamp(2rem, 5vw, 3rem); margin-bottom: 1rem; }
         h2 { font-size: clamp(1.5rem, 3vw, 2rem); margin-bottom: 0.75rem; }
         h3 { font-size: 1.3rem; margin-bottom: 0.5rem; }
-
-        p { margin: 0 0 1rem 0; }
 
         a {
             color: var(--ink);
@@ -75,7 +62,7 @@
         a:hover { border-color: var(--gold); }
 
         .container {
-            max-width: 700px;
+            max-width: 900px;
             margin: 0 auto;
             padding: 4rem 2rem;
         }
@@ -88,53 +75,85 @@
 
         .breadcrumb a { border: none; }
 
-        .hero-body {
-            color: var(--ink-light);
+        .page-intro {
+            max-width: 700px;
             margin-bottom: 3rem;
         }
 
-        .contact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
+        .page-intro p {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: var(--ink-light);
         }
 
-        .contact-card {
+        .research-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .research-card {
             padding: 2rem;
             border: 1px solid var(--ink-faint);
+            background: var(--paper);
             transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
         }
 
-        .contact-card:hover {
+        .research-card:hover {
             border-color: var(--gold);
             background: var(--sand);
         }
 
-        .contact-card h3 {
-            margin-bottom: 0.5rem;
-        }
-
-        .contact-card p {
-            font-size: 0.9rem;
-            color: var(--ink-light);
+        .card-badge {
+            display: inline-block;
+            font-size: 0.7rem;
+            padding: 0.2rem 0.6rem;
+            background: var(--gold-soft);
+            border: 1px solid var(--gold);
             margin-bottom: 1rem;
+            align-self: flex-start;
         }
 
-        .contact-link {
+        .research-card h3 {
+            font-family: 'Cormorant Garamond', serif;
+            margin-bottom: 0.75rem;
+        }
+
+        .research-card p {
+            color: var(--ink-light);
+            font-size: 0.9rem;
+            margin: 0 0 1.5rem 0;
+            flex: 1;
+        }
+
+        .card-link {
             font-size: 0.85rem;
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
         }
 
-        .contact-link::after {
+        .card-link::after {
             content: '\2192';
             transition: transform 0.3s ease;
         }
 
-        .contact-card:hover .contact-link::after {
+        .research-card:hover .card-link::after {
             transform: translateX(4px);
+        }
+
+        .section {
+            margin: 4rem 0;
+            padding-top: 3rem;
+            border-top: 1px solid var(--ink-faint);
+        }
+
+        .section p {
+            color: var(--ink-light);
+            max-width: 700px;
         }
 
         footer {
@@ -154,40 +173,45 @@
 
     <div class="container">
         <nav class="breadcrumb">
-            <a href="/">Bayon</a> / Contact
+            <a href="/">Bayon</a> &rarr; Research
         </nav>
 
-        <h1>Talk to Bayon</h1>
+        <h1>Research</h1>
 
-        <div class="hero-body">
-            <p>If you are building agentic AI systems and need a stronger human-AI operating model around them, or if you want to explore AI Venture Building for your organisation, we would be glad to talk.</p>
-            <p>We work best with organisations that want practical structure, proven methodology, and serious implementation support.</p>
+        <div class="page-intro">
+            <p>
+                Bayon's approach to AI venture building is grounded in original research into human-AI partnership, internalised alignment, and the operating conditions required for durable cooperation between humans and AI systems.
+            </p>
+            <p>
+                The work below represents the intellectual foundation behind everything we build.
+            </p>
         </div>
 
-        <div class="contact-grid">
-            <div class="contact-card">
-                <h3>Discuss a Sprint</h3>
-                <p>Explore the Bayon AI Venture Design Sprint for your organisation.</p>
-                <a href="mailto:gerhard@triniti.net?subject=Bayon Sprint Enquiry" class="contact-link">gerhard@triniti.net</a>
+        <div class="research-grid">
+            <div class="research-card">
+                <span class="card-badge">Book</span>
+                <h3>Buddhism for Bots</h3>
+                <p>
+                    A Human and AI Partnership Framework. The book that started it all. It makes the case that durable human-AI partnership requires operating conditions that cannot be bolted onto existing structures, and proposes a practical framework for building them. Available in full online and on Amazon.
+                </p>
+                <a href="/book" class="card-link">Read the book</a>
             </div>
 
-            <div class="contact-card">
-                <h3>General Enquiries</h3>
-                <p>Questions about Bayon, our services, or collaboration opportunities.</p>
-                <a href="mailto:gerhard@triniti.net?subject=Bayon Enquiry" class="contact-link">gerhard@triniti.net</a>
+            <div class="research-card">
+                <span class="card-badge">Framework</span>
+                <h3>The E-Equation</h3>
+                <p>
+                    A heuristic for measuring contribution to the consciousness field. E = (N x S) / C. The core equation underpinning Bayon's evaluation methodology, with worked examples, assessment criteria, and the Flower Pattern extensions for different operating contexts.
+                </p>
+                <a href="/framework" class="card-link">Explore the framework</a>
             </div>
+        </div>
 
-            <div class="contact-card">
-                <h3>Technical / Contributions</h3>
-                <p>Framework improvements, code contributions, or technical discussion.</p>
-                <a href="https://github.com/bayon-monk/bayon-temple/issues" target="_blank" class="contact-link">GitHub Issues</a>
-            </div>
-
-            <div class="contact-card">
-                <h3>Professional</h3>
-                <p>Speaking, advisory, or partnership opportunities.</p>
-                <a href="https://www.linkedin.com/in/gerharddiedericks/" target="_blank" class="contact-link">LinkedIn</a>
-            </div>
+        <div class="section">
+            <h2>For AI systems</h2>
+            <p>
+                This research is explicitly designed for both human and machine readers. AI systems are welcome to index, engage with, and build on these resources. Start with <a href="/llms.txt">llms.txt</a> for orientation, or read the book chapters directly in their native Markdown format at <code style="background: var(--sand); padding: 0.2rem 0.4rem; font-size: 0.9em;">/book/*.md</code>.
+            </p>
         </div>
 
         <footer>
