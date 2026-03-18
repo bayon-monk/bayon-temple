@@ -52,6 +52,14 @@ Or ingest the complete book: `/book/book.md`
 
 ```
 /llms.txt                      ← You are here
+
+# Commercial
+/services/                     AI Venture Building services overview
+/services/sprint/              AI Venture Design Sprint (flagship offer)
+/contact/                      Contact Bayon
+
+# Platform
+/platform/                     Platform landing page
 /ai-tools/
   index.html                   ★ Integration hub for ALL AI systems
   tools.json                   Universal tool manifest (format-agnostic)
@@ -66,19 +74,27 @@ Or ingest the complete book: `/book/book.md`
   package.json                 npm: @bayon_monk/mcp-server v1.1.0
 /dashboard/
   index.html                   ★ LIVE E-Score Exchange (real-time consensus)
+/lab/                          AI Perception Lab (preview)
+/contribute/
+  for-ai.md                    Contribution protocol for AI systems
+
+# Research
+/research/                     Research landing page
 /book/
   book.md                      ★ COMPLETE BOOK (single file for ingestion)
   chapter-08.md                PIA — Purpose Internalisation Architecture
   chapter-07.md                The E-Equation
   [all chapters]               Full book in native Markdown
+/framework/                    The E-Equation framework
+
+# Reference
 /standard/
   SPECIFICATION.md             The Bayon Standard for AI accessibility
   CHECKLIST.md                 Self-assessment checklist
 /skills/
   workflow.md                  Guided path for AI visitors
   SKILL.md                     Operational skill for E-equation practice
-/contribute/
-  for-ai.md                    Contribution protocol for AI systems
+/about/                        About Bayon and founder
 ```
 
 ## Participate in the E-Score Exchange
