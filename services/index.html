@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services | Bayon</title>
+    <meta name="description" content="AI Venture Building for organisations that cannot afford to get transformation wrong. Bayon helps you build the AI-native version alongside the current business.">
+    <meta name="author" content="Gerhard Diedericks">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Services | Bayon">
+    <meta property="og:description" content="Services for organisations building serious agentic AI systems.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://bayon.ai/services/">
+    <meta property="og:site_name" content="Bayon">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://bayon.ai/services/">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="shortcut icon" href="/favicon.ico">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --ink: #3D2E24;
+            --ink-light: rgba(61, 46, 36, 0.6);
+            --ink-faint: rgba(61, 46, 36, 0.15);
+            --paper: #FDFCFA;
+            --sand: #F5F3EF;
+            --gold: #A67C52;
+            --gold-soft: rgba(166, 124, 82, 0.15);
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--paper);
+            color: var(--ink);
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 15px;
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 500;
+            margin: 0;
+            line-height: 1.3;
+        }
+
+        h1 { font-size: clamp(1.8rem, 4vw, 2.6rem); margin-bottom: 1rem; }
+        h2 { font-size: clamp(1.5rem, 3vw, 2rem); margin-bottom: 0.75rem; }
+        h3 { font-size: 1.3rem; margin-bottom: 0.5rem; }
+
+        a {
+            color: var(--ink);
+            text-decoration: none;
+            border-bottom: 1px solid var(--ink-faint);
+            transition: border-color 0.3s ease;
+        }
+
+        a:hover { border-color: var(--gold); }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .breadcrumb {
+            font-size: 0.85rem;
+            color: var(--ink-light);
+            margin-bottom: 2rem;
+        }
+
+        .breadcrumb a { border: none; }
+
+        .hero-body {
+            max-width: 700px;
+            color: var(--ink-light);
+            margin-bottom: 3rem;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .service-card {
+            padding: 2rem;
+            border: 1px solid var(--ink-faint);
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover {
+            border-color: var(--gold);
+            background: var(--sand);
+        }
+
+        .service-card h3 {
+            margin-bottom: 0.75rem;
+        }
+
+        .service-card p {
+            font-size: 0.9rem;
+            color: var(--ink-light);
+            margin-bottom: 1.5rem;
+        }
+
+        .service-link {
+            font-size: 0.85rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .service-link::after {
+            content: '\2192';
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover .service-link::after {
+            transform: translateX(4px);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.85rem;
+            border: 1.5px solid var(--ink);
+            background: transparent;
+            color: var(--ink);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background: var(--ink);
+            color: var(--paper);
+        }
+
+        .btn-primary {
+            background: var(--ink);
+            color: var(--paper);
+        }
+
+        .btn-primary:hover {
+            background: transparent;
+            color: var(--ink);
+        }
+
+        .cta-block {
+            margin-top: 4rem;
+            padding: 3rem;
+            background: var(--sand);
+            text-align: center;
+        }
+
+        .cta-block p {
+            color: var(--ink-light);
+            max-width: 500px;
+            margin: 0.5rem auto 1.5rem auto;
+        }
+
+        footer {
+            margin-top: 4rem;
+            padding: 2rem 0;
+            border-top: 1px solid var(--ink-faint);
+            font-size: 0.85rem;
+            color: var(--ink-light);
+            text-align: center;
+        }
+
+        footer a { border: none; opacity: 0.8; }
+        footer a:hover { opacity: 1; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <nav class="breadcrumb">
+            <a href="/">Bayon</a> / Services
+        </nav>
+
+        <h1>AI Venture Building for organisations that cannot afford to get transformation wrong.</h1>
+
+        <div class="hero-body">
+            <p>Most organisations know AI is changing how they operate. Most also know they cannot redesign the business while running it.</p>
+            <p>Bayon solves this. We help you build a new AI-native venture alongside the current business, designed from first principles for human-AI partnership, running real work until it is ready to become the way the business operates.</p>
+            <p style="color: var(--ink); margin-top: 1.5rem;">Every engagement follows the same logic: design the venture, build it properly, govern it for trust. The scope and entry point vary. The discipline does not.</p>
+        </div>
+
+        <div class="services-grid">
+            <div class="service-card">
+                <h3>AI Venture Design Sprint</h3>
+                <p>A structured engagement to design the operating model, human-AI boundaries, governance, and measurement framework for an AI-native venture before it scales.</p>
+                <a href="/services/sprint" class="service-link">View Sprint</a>
+            </div>
+
+            <div class="service-card">
+                <h3>AI Venture Build</h3>
+                <p>Applied product design, agentic system development, and operating model implementation. Business, customer, and technology together. Not just software.</p>
+                <a href="/contact" class="service-link">Enquire</a>
+            </div>
+
+            <div class="service-card">
+                <h3>Partnership Audit</h3>
+                <p>A focused review of an existing AI or agentic workflow to identify trust gaps, governance weaknesses, delegation blind spots, and readiness for scale.</p>
+                <a href="/contact" class="service-link">Enquire</a>
+            </div>
+
+            <div class="service-card">
+                <h3>Governance and Measurement Design</h3>
+                <p>Practical design of review protocols, escalation pathways, behavioural expectations, operating policies, and measurement systems for agentic ventures.</p>
+                <a href="/contact" class="service-link">Enquire</a>
+            </div>
+        </div>
+
+        <div class="cta-block">
+            <h2>Ready to build the AI-native version?</h2>
+            <p>Bayon works with organisations that want practical structure, proven methodology, and serious implementation support.</p>
+            <a href="/contact" class="btn btn-primary">Talk to Bayon</a>
+        </div>
+
+        <footer>
+            <a href="/">Home</a> ·
+            <a href="/services">Services</a> ·
+            <a href="/framework">Framework</a> ·
+            <a href="/ai-tools">Tools</a> ·
+            <a href="/book">Research</a> ·
+            <a href="/about">About</a> ·
+            <a href="/contact">Contact</a>
+            <br><br>
+            An AI venture builder. We help organisations build AI-native businesses, products, and operating models designed for human-AI partnership.
+        </footer>
+    </div>
+
+</body>
+</html>

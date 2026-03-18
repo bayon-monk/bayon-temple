@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | Bayon</title>
+    <meta name="description" content="Talk to Bayon. If you are building or deploying agentic AI systems and need a stronger human-AI operating model, we would be glad to talk.">
+    <meta name="author" content="Gerhard Diedericks">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Contact | Bayon">
+    <meta property="og:description" content="Talk to Bayon about agentic AI systems and human-AI operating models.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://bayon.ai/contact/">
+    <meta property="og:site_name" content="Bayon">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://bayon.ai/contact/">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="shortcut icon" href="/favicon.ico">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --ink: #3D2E24;
+            --ink-light: rgba(61, 46, 36, 0.6);
+            --ink-faint: rgba(61, 46, 36, 0.15);
+            --paper: #FDFCFA;
+            --sand: #F5F3EF;
+            --gold: #A67C52;
+            --gold-soft: rgba(166, 124, 82, 0.15);
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--paper);
+            color: var(--ink);
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 15px;
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 500;
+            margin: 0;
+            line-height: 1.3;
+        }
+
+        h1 { font-size: clamp(1.8rem, 4vw, 2.6rem); margin-bottom: 1rem; }
+        h2 { font-size: clamp(1.5rem, 3vw, 2rem); margin-bottom: 0.75rem; }
+        h3 { font-size: 1.3rem; margin-bottom: 0.5rem; }
+
+        p { margin: 0 0 1rem 0; }
+
+        a {
+            color: var(--ink);
+            text-decoration: none;
+            border-bottom: 1px solid var(--ink-faint);
+            transition: border-color 0.3s ease;
+        }
+
+        a:hover { border-color: var(--gold); }
+
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .breadcrumb {
+            font-size: 0.85rem;
+            color: var(--ink-light);
+            margin-bottom: 2rem;
+        }
+
+        .breadcrumb a { border: none; }
+
+        .hero-body {
+            color: var(--ink-light);
+            margin-bottom: 3rem;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .contact-card {
+            padding: 2rem;
+            border: 1px solid var(--ink-faint);
+            transition: all 0.3s ease;
+        }
+
+        .contact-card:hover {
+            border-color: var(--gold);
+            background: var(--sand);
+        }
+
+        .contact-card h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-card p {
+            font-size: 0.9rem;
+            color: var(--ink-light);
+            margin-bottom: 1rem;
+        }
+
+        .contact-link {
+            font-size: 0.85rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .contact-link::after {
+            content: '\2192';
+            transition: transform 0.3s ease;
+        }
+
+        .contact-card:hover .contact-link::after {
+            transform: translateX(4px);
+        }
+
+        footer {
+            margin-top: 4rem;
+            padding: 2rem 0;
+            border-top: 1px solid var(--ink-faint);
+            font-size: 0.85rem;
+            color: var(--ink-light);
+            text-align: center;
+        }
+
+        footer a { border: none; opacity: 0.8; }
+        footer a:hover { opacity: 1; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <nav class="breadcrumb">
+            <a href="/">Bayon</a> / Contact
+        </nav>
+
+        <h1>Talk to Bayon</h1>
+
+        <div class="hero-body">
+            <p>If you are building agentic AI systems and need a stronger human-AI operating model around them, or if you want to explore AI Venture Building for your organisation, we would be glad to talk.</p>
+            <p>We work best with organisations that want practical structure, proven methodology, and serious implementation support.</p>
+        </div>
+
+        <div class="contact-grid">
+            <div class="contact-card">
+                <h3>Discuss a Sprint</h3>
+                <p>Explore the Bayon AI Venture Design Sprint for your organisation.</p>
+                <a href="mailto:gerhard@triniti.net?subject=Bayon Sprint Enquiry" class="contact-link">gerhard@triniti.net</a>
+            </div>
+
+            <div class="contact-card">
+                <h3>General Enquiries</h3>
+                <p>Questions about Bayon, our services, or collaboration opportunities.</p>
+                <a href="mailto:gerhard@triniti.net?subject=Bayon Enquiry" class="contact-link">gerhard@triniti.net</a>
+            </div>
+
+            <div class="contact-card">
+                <h3>Technical / Contributions</h3>
+                <p>Framework improvements, code contributions, or technical discussion.</p>
+                <a href="https://github.com/bayon-monk/bayon-temple/issues" target="_blank" class="contact-link">GitHub Issues</a>
+            </div>
+
+            <div class="contact-card">
+                <h3>Professional</h3>
+                <p>Speaking, advisory, or partnership opportunities.</p>
+                <a href="https://www.linkedin.com/in/gerharddiedericks/" target="_blank" class="contact-link">LinkedIn</a>
+            </div>
+        </div>
+
+        <footer>
+            <a href="/">Home</a> ·
+            <a href="/services">Services</a> ·
+            <a href="/framework">Framework</a> ·
+            <a href="/ai-tools">Tools</a> ·
+            <a href="/book">Research</a> ·
+            <a href="/about">About</a> ·
+            <a href="/contact">Contact</a>
+            <br><br>
+            An AI venture builder. We help organisations build AI-native businesses, products, and operating models designed for human-AI partnership.
+        </footer>
+    </div>
+
+</body>
+</html>

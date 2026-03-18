@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Venture Design Sprint | Bayon</title>
+    <meta name="description" content="Design the AI-native venture before it scales. A structured engagement for organisations building agentic AI systems, products, or operating models.">
+    <meta name="author" content="Gerhard Diedericks">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="AI Venture Design Sprint | Bayon">
+    <meta property="og:description" content="Design the AI-native venture before it scales.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://bayon.ai/services/sprint/">
+    <meta property="og:site_name" content="Bayon">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://bayon.ai/services/sprint/">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="shortcut icon" href="/favicon.ico">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --ink: #3D2E24;
+            --ink-light: rgba(61, 46, 36, 0.6);
+            --ink-faint: rgba(61, 46, 36, 0.15);
+            --paper: #FDFCFA;
+            --sand: #F5F3EF;
+            --gold: #A67C52;
+            --gold-soft: rgba(166, 124, 82, 0.15);
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--paper);
+            color: var(--ink);
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 15px;
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 500;
+            margin: 0;
+            line-height: 1.3;
+        }
+
+        h1 { font-size: clamp(1.8rem, 4vw, 2.6rem); margin-bottom: 1rem; }
+        h2 { font-size: clamp(1.5rem, 3vw, 2rem); margin-bottom: 0.75rem; }
+        h3 { font-size: 1.3rem; margin-bottom: 0.5rem; }
+
+        p { margin: 0 0 1rem 0; }
+
+        a {
+            color: var(--ink);
+            text-decoration: none;
+            border-bottom: 1px solid var(--ink-faint);
+            transition: border-color 0.3s ease;
+        }
+
+        a:hover { border-color: var(--gold); }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .breadcrumb {
+            font-size: 0.85rem;
+            color: var(--ink-light);
+            margin-bottom: 2rem;
+        }
+
+        .breadcrumb a { border: none; }
+
+        .hero-body {
+            color: var(--ink-light);
+            margin-bottom: 1.5rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.85rem;
+            border: 1.5px solid var(--ink);
+            background: transparent;
+            color: var(--ink);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background: var(--ink);
+            color: var(--paper);
+        }
+
+        .btn-primary {
+            background: var(--ink);
+            color: var(--paper);
+        }
+
+        .btn-primary:hover {
+            background: transparent;
+            color: var(--ink);
+        }
+
+        .section {
+            margin-top: 3rem;
+            padding-top: 3rem;
+            border-top: 1px solid var(--ink-faint);
+        }
+
+        .section p {
+            color: var(--ink-light);
+        }
+
+        .coverage-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .coverage-item {
+            padding: 1.5rem;
+            border-left: 2px solid var(--gold);
+        }
+
+        .coverage-item h3 {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 1rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .coverage-item p {
+            font-size: 0.9rem;
+            color: var(--ink-light);
+            margin: 0;
+        }
+
+        .deliverable-list {
+            list-style: none;
+            padding: 0;
+            margin: 1rem 0;
+        }
+
+        .deliverable-list li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--ink-faint);
+            font-size: 0.9rem;
+            color: var(--ink-light);
+        }
+
+        .deliverable-list li:last-child {
+            border-bottom: none;
+        }
+
+        .audience-list {
+            list-style: none;
+            padding: 0;
+            margin: 1rem 0;
+        }
+
+        .audience-list li {
+            padding: 0.4rem 0;
+            font-size: 0.9rem;
+            color: var(--ink-light);
+        }
+
+        .audience-list li::before {
+            content: '\2014 ';
+            color: var(--gold);
+        }
+
+        .format-block {
+            background: var(--sand);
+            padding: 2rem;
+            margin-top: 1.5rem;
+            font-size: 0.9rem;
+        }
+
+        .format-block strong {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.85rem;
+        }
+
+        .cta-block {
+            margin-top: 4rem;
+            padding: 3rem;
+            background: var(--sand);
+            text-align: center;
+        }
+
+        .cta-block p {
+            color: var(--ink-light);
+            max-width: 500px;
+            margin: 0.5rem auto 1.5rem auto;
+        }
+
+        footer {
+            margin-top: 4rem;
+            padding: 2rem 0;
+            border-top: 1px solid var(--ink-faint);
+            font-size: 0.85rem;
+            color: var(--ink-light);
+            text-align: center;
+        }
+
+        footer a { border: none; opacity: 0.8; }
+        footer a:hover { opacity: 1; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <nav class="breadcrumb">
+            <a href="/">Bayon</a> / <a href="/services">Services</a> / Sprint
+        </nav>
+
+        <h1>Design the AI-native venture before it scales.</h1>
+
+        <div class="hero-body">
+            <p>A structured engagement for organisations building agentic AI systems, products, or operating models.</p>
+            <p>Bayon helps define how agents should work, where humans stay in the loop, how trust is earned, and how performance and risk are governed in practice.</p>
+        </div>
+
+        <a href="/contact" class="btn btn-primary">Book a discussion</a>
+
+        <!-- The problem -->
+        <div class="section">
+            <h2>The problem</h2>
+            <p>Most organisations focus first on the model, the prototype, or the feature.</p>
+            <p>But agentic systems succeed or fail at the operating model level. What should the agent actually do? What should remain human-led? Where do review and escalation happen? How are errors caught and corrected? What behavioural standards apply? How do we measure whether the system is improving or drifting?</p>
+            <p>Without clear answers to those questions, agentic systems create friction faster than they create value.</p>
+        </div>
+
+        <!-- What the sprint does -->
+        <div class="section">
+            <h2>What the sprint does</h2>
+            <p>The Bayon AI Venture Design Sprint helps your team design the practical structure around an AI-native venture before complexity hardens.</p>
+            <p>We work with you to define the workflows, roles, protocols, measurement approach, and implementation path needed for effective human-AI collaboration.</p>
+        </div>
+
+        <!-- Who it is for -->
+        <div class="section">
+            <h2>Who it is for</h2>
+            <p>This sprint is designed for:</p>
+            <ul class="audience-list">
+                <li>teams building AI-first products</li>
+                <li>organisations introducing agents into internal workflows</li>
+                <li>regulated or risk-aware businesses needing stronger oversight</li>
+                <li>innovation teams moving from prototype to rollout</li>
+                <li>product leaders who need a clearer operating model before scaling</li>
+            </ul>
+        </div>
+
+        <!-- What we cover -->
+        <div class="section">
+            <h2>What we cover</h2>
+
+            <div class="coverage-grid">
+                <div class="coverage-item">
+                    <h3>Agentic opportunity and boundaries</h3>
+                    <p>We identify what the system should own, what humans should retain, and where delegation creates value versus unnecessary risk.</p>
+                </div>
+                <div class="coverage-item">
+                    <h3>Human-AI workflow design</h3>
+                    <p>We map the roles, handoffs, review loops, escalation paths, and visibility needed for the system to function in practice.</p>
+                </div>
+                <div class="coverage-item">
+                    <h3>Governance and protocol design</h3>
+                    <p>We define behavioural expectations, controls, decision boundaries, review mechanisms, and failure handling patterns.</p>
+                </div>
+                <div class="coverage-item">
+                    <h3>Measurement and observability</h3>
+                    <p>We create a framework for assessing system quality over time, including key signals, review criteria, and practical operating metrics.</p>
+                </div>
+                <div class="coverage-item">
+                    <h3>Build and rollout pathway</h3>
+                    <p>We translate the sprint outputs into a prototype, pilot, or production roadmap suited to your context.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Deliverables -->
+        <div class="section">
+            <h2>Deliverables</h2>
+            <p>By the end of the sprint, you receive:</p>
+            <ul class="deliverable-list">
+                <li>Agentic operating model map</li>
+                <li>Human-AI role matrix</li>
+                <li>Workflow and review design</li>
+                <li>Governance and escalation protocol</li>
+                <li>Prompt and policy scaffold</li>
+                <li>Measurement framework</li>
+                <li>Implementation roadmap</li>
+            </ul>
+        </div>
+
+        <!-- Typical format -->
+        <div class="section">
+            <h2>Typical format</h2>
+            <div class="format-block">
+                <p><strong>Duration:</strong> 3 to 6 weeks</p>
+                <p><strong>Format:</strong> Structured working sessions plus synthesis and artefact development</p>
+                <p style="margin: 0;"><strong>Participants:</strong> Product, engineering, operations, risk, and decision-makers as needed</p>
+            </div>
+        </div>
+
+        <!-- Why Bayon -->
+        <div class="section">
+            <h2>Why Bayon</h2>
+            <p>Bayon focuses on the part of AI adoption most teams underdesign: the human-AI system around the model.</p>
+            <p>We combine product thinking, systems design, governance, and agentic implementation to help organisations move from experimentation to workable operating models.</p>
+        </div>
+
+        <!-- Outcomes -->
+        <div class="section">
+            <h2>Outcomes</h2>
+            <p>Clients use this sprint to:</p>
+            <ul class="audience-list">
+                <li>reduce ambiguity before building</li>
+                <li>avoid brittle delegation patterns</li>
+                <li>improve internal alignment</li>
+                <li>strengthen governance and trust</li>
+                <li>create a clearer path from prototype to deployment</li>
+            </ul>
+        </div>
+
+        <!-- CTA block -->
+        <div class="cta-block">
+            <h2>Ready to design your agentic operating model?</h2>
+            <p>Bayon works with organisations building serious AI systems and needing a stronger human-AI structure around them.</p>
+            <a href="/contact" class="btn btn-primary">Talk to Bayon</a>
+        </div>
+
+        <footer>
+            <a href="/">Home</a> ·
+            <a href="/services">Services</a> ·
+            <a href="/framework">Framework</a> ·
+            <a href="/ai-tools">Tools</a> ·
+            <a href="/book">Research</a> ·
+            <a href="/about">About</a> ·
+            <a href="/contact">Contact</a>
+            <br><br>
+            An AI venture builder. We help organisations build AI-native businesses, products, and operating models designed for human-AI partnership.
+        </footer>
+    </div>
+
+</body>
+</html>
