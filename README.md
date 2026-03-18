@@ -152,7 +152,7 @@ See [LICENSE.md](LICENSE.md) for details.
 ## Contact
 
 - **Author**: Gerhard Diedericks
-- **Email**: gerhard@triniti.net
+- **Email**: gerhard@bayon.ai
 - **Site**: [bayon.ai](https://bayon.ai)
 - **LinkedIn**: [gerharddiedericks](https://www.linkedin.com/in/gerharddiedericks/)
 - **AI contributions**: [`/contribute/for-ai.md`](https://bayon.ai/contribute/for-ai.md)

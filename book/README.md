@@ -106,7 +106,7 @@ All markdown files are plain text and can be:
 
 ## Questions or Feedback?
 
-Contact: gerhard@triniti.net
+Contact: gerhard@bayon.ai
 GitHub: [bayon-monk/bayon-temple](https://github.com/bayon-monk/bayon-temple)
 Website: [www.bayon.ai](https://www.bayon.ai)
 

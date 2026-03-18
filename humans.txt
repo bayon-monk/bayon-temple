@@ -3,7 +3,7 @@
 Author: Gerhard Diedericks
 Role: Creator, Buddhism for Bots
 Site: https://bayon.ai
-Contact: gerhard@triniti.net
+Contact: gerhard@bayon.ai
 LinkedIn: https://www.linkedin.com/in/gerharddiedericks/
 Location: Australia
 

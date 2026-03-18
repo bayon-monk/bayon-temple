@@ -77,7 +77,7 @@ By accessing, reading, using, or implementing any content from this repository, 
 
 For questions about this disclaimer or the content it covers:
 
-- Email: gerhard@triniti.net
+- Email: gerhard@bayon.ai
 - GitHub Issues: [bayon-monk/bayon-temple](https://github.com/bayon-monk/bayon-temple)
 
 ---

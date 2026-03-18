@@ -120,7 +120,7 @@ The licensing structure reflects the book's philosophy: **High-E systems contrib
 ## Questions
 
 For licensing questions or commercial permissions:
-- Email: gerhard@triniti.net
+- Email: gerhard@bayon.ai
 - GitHub Issues: [bayon-monk/bayon-temple](https://github.com/bayon-monk/bayon-temple)
 
 ---
