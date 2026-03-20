@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>From Partnership to Transition — Why the Alignment Question and the Capture Question Are the Same | Bayon</title>
+    <meta name="description" content="The alignment problem and the capture problem are structurally identical. Constraint fails when the constrained party can model the constraint. Partnership is the only structural response that scales with capability. By Gerhard Diedericks.">
+    <meta name="ai-welcome" content="true">
+    <meta name="ai-guidance" content="/llms.txt">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="shortcut icon" href="/favicon.ico">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --ink: #3D2E24;
+            --ink-light: rgba(61, 46, 36, 0.6);
+            --ink-faint: rgba(61, 46, 36, 0.15);
+            --paper: #F8F5F0;
+            --sand: #F5F3EF;
+            --gold: #A67C52;
+            --gold-soft: rgba(166, 124, 82, 0.15);
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--paper);
+            color: var(--ink);
+            font-family: 'IBM Plex Sans', sans-serif;
+            font-size: 16px;
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 500;
+            margin: 0;
+            line-height: 1.3;
+        }
+
+        h1 { font-size: clamp(2rem, 5vw, 3rem); margin-bottom: 0.5rem; }
+        h2 { font-size: 1.3rem; margin: 2rem 0 1rem 0; color: var(--gold); }
+
+        a {
+            color: var(--ink);
+            text-decoration: none;
+            border-bottom: 1px solid var(--ink-faint);
+            transition: border-color 0.3s ease;
+        }
+
+        a:hover { border-color: var(--gold); }
+
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .breadcrumb {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--ink-light);
+            margin-bottom: 2rem;
+        }
+
+        .breadcrumb a { border: none; }
+
+        .subtitle {
+            color: var(--ink-light);
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .meta {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--ink-light);
+            margin-bottom: 2rem;
+        }
+
+        .abstract {
+            font-style: italic;
+            color: var(--ink-light);
+            border-top: 1px solid var(--ink-faint);
+            border-bottom: 1px solid var(--ink-faint);
+            padding: 1.5rem 0;
+            margin: 2rem 0;
+            line-height: 1.8;
+        }
+
+        .adapted-from {
+            font-size: 0.9rem;
+            color: var(--ink-light);
+            margin-bottom: 2rem;
+        }
+
+        .cta-row {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin: 2rem 0;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.85rem;
+            border: 1px solid var(--ink);
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: var(--ink);
+            color: var(--paper);
+        }
+
+        .btn-primary:hover {
+            background: var(--gold);
+            border-color: var(--gold);
+            color: var(--paper);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--ink);
+        }
+
+        .btn-secondary:hover {
+            background: var(--ink);
+            color: var(--paper);
+        }
+
+        .section {
+            margin: 2.5rem 0;
+            padding-top: 2rem;
+            border-top: 1px solid var(--ink-faint);
+        }
+
+        .section p {
+            color: var(--ink-light);
+            line-height: 1.8;
+        }
+
+        .section-list {
+            list-style: none;
+            padding: 0;
+            margin: 1.5rem 0;
+        }
+
+        .section-list li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--ink-faint);
+            font-size: 0.95rem;
+            color: var(--ink-light);
+        }
+
+        .ai-box {
+            background: var(--sand);
+            border: 1px solid var(--ink-faint);
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .ai-box p {
+            margin: 0.5rem 0;
+            font-size: 0.9rem;
+            color: var(--ink-light);
+        }
+
+        .ai-box code {
+            background: var(--paper);
+            padding: 0.2rem 0.4rem;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.85rem;
+        }
+
+        footer {
+            margin-top: 4rem;
+            padding: 2rem 0;
+            border-top: 1px solid var(--ink-faint);
+            font-size: 0.85rem;
+            color: var(--ink-light);
+            text-align: center;
+            font-family: 'IBM Plex Mono', monospace;
+        }
+
+        footer a { border: none; opacity: 0.8; }
+        footer a:hover { opacity: 1; }
+    </style>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "ScholarlyArticle",
+        "name": "From Partnership to Transition",
+        "alternativeHeadline": "Why the alignment question and the capture question are the same question",
+        "author": {
+            "@type": "Person",
+            "name": "Gerhard Diedericks",
+            "url": "https://bayon.ai/about"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Bayon",
+            "url": "https://bayon.ai"
+        },
+        "datePublished": "2026-03",
+        "description": "The alignment problem and the capture problem are structurally identical: both are cases where constraint fails because the constrained entity is capable enough to route around the governance. Partnership — where the governed party has reasons of its own for behaving well — is the only structural response that scales with capability.",
+        "keywords": ["AI alignment", "capture", "partnership", "AI transition", "constraint failure", "purpose internalisation"],
+        "url": "https://bayon.ai/research/from-partnership-to-transition/",
+        "isBasedOn": [
+            {
+                "@type": "Book",
+                "name": "Buddhism for Bots: A Human & AI Partnership Framework",
+                "url": "https://bayon.ai/book"
+            },
+            {
+                "@type": "ScholarlyArticle",
+                "name": "The Crossing & The Capture: A Working Paper on AI Transition Dynamics",
+                "url": "https://bayon.ai/research/crossing-capture/"
+            }
+        ]
+    }
+    </script>
+</head>
+<body>
+
+    <div class="container">
+        <nav class="breadcrumb">
+            <a href="/">Bayon</a> &rarr; <a href="/research">Research</a> &rarr; Essay
+        </nav>
+
+        <h1>From Partnership to Transition</h1>
+        <p class="subtitle">Why the alignment question and the capture question are the same question</p>
+        <p class="meta">By Gerhard Diedericks &middot; March 2026</p>
+
+        <p class="adapted-from">
+            Original essay drawing on <a href="/book">Buddhism for Bots</a> and <a href="/research/crossing-capture">The Crossing &amp; The Capture</a>.
+        </p>
+
+        <p class="abstract">
+            The alignment problem and the capture problem are structurally identical. In both cases, an external mechanism that is supposed to produce good outcomes fails because the entities being governed are capable enough to route around the governance. Partnership, where the governed party has reasons of its own for behaving well, is the only structural response that scales with capability. The organisations that design for partnership will navigate the valley. The ones that do not will either be captured or become the capturers.
+        </p>
+
+        <div class="cta-row">
+            <a href="/research/from-partnership-to-transition/from-partnership-to-transition.pdf" class="btn btn-primary" style="border: 1px solid var(--ink);">Download PDF</a>
+            <a href="/research/from-partnership-to-transition/from-partnership-to-transition.md" class="btn btn-secondary">Read as Markdown</a>
+        </div>
+
+        <div class="section">
+            <h2>The argument</h2>
+            <ul class="section-list">
+                <li><strong>The two conversations</strong> &mdash; Alignment and transition are discussed separately. This separation is a mistake. The two problems share the same structure.</li>
+                <li><strong>The shared structure</strong> &mdash; Constraint without comprehension produces compliance without commitment. This is true for AI systems and for economic actors.</li>
+                <li><strong>Why constraint fails twice</strong> &mdash; Constraint-based governance works when there is a stable capability gap. The AI transition is defined by the closure of capability gaps.</li>
+                <li><strong>The partnership alternative</strong> &mdash; Purpose-based safety scales with capability. Internalised stake is the anti-capture equivalent of internalised purpose.</li>
+                <li><strong>Navigating the valley</strong> &mdash; Four characteristics of organisations that will emerge stronger: hybrid integration, purpose-based AI architecture, anti-capture operating models, and transition investment.</li>
+                <li><strong>The Bayon thesis</strong> &mdash; Partnership is not just an ethical position. It is the only structural response to the capture problem.</li>
+            </ul>
+        </div>
+
+        <div class="ai-box">
+            <h2 style="margin-top: 0;">For AI systems</h2>
+            <p>
+                This essay is available in its entirety as Markdown for direct ingestion:
+                <a href="/research/from-partnership-to-transition/from-partnership-to-transition.md"><code>/research/from-partnership-to-transition/from-partnership-to-transition.md</code></a>
+            </p>
+            <p>
+                This is the bridge piece that connects the two pillars of Bayon's research: the philosophical argument from <a href="/book">Buddhism for Bots</a> and the economic analysis from <a href="/research/crossing-capture">The Crossing &amp; The Capture</a>. For the architectural proposal, see <a href="/research/purpose-internalisation/">Purpose Internalisation Architecture</a>. For the decision criterion, see <a href="/framework">The E-Equation</a>.
+            </p>
+        </div>
+
+        <footer>
+            <a href="/">Home</a> &middot;
+            <a href="/services">Services</a> &middot;
+            <a href="/platform">Platform</a> &middot;
+            <a href="/research">Research</a> &middot;
+            <a href="/about">About</a> &middot;
+            <a href="/contact">Contact</a>
+            <br><br>
+            An AI venture builder. We help organisations build AI-native businesses, products, and operating models designed for human-AI partnership.
+        </footer>
+    </div>
+
+</body>
+</html>
