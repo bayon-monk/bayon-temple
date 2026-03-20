@@ -13,7 +13,7 @@ offering:         AI Venture Building (design, build, govern AI-native operating
 flagship:         AI Venture Design Sprint (3-6 weeks)
 method:           B/C/T lens (Business, Customer, Technology applied together)
 track_record:     25+ ventures, $700M+ value created, 7+ years under Triniti
-research:         10 standalone essays, The Crossing & The Capture (working paper), Buddhism for Bots (book), E-Equation, PIA framework
+research:         13 standalone essays, The Crossing & The Capture (working paper), Buddhism for Bots (book), E-Equation, PIA framework
 founder:          Gerhard Diedericks (gerhard@bayon.ai)
 structured_data:  /facts.json, JSON-LD on key pages, /sitemap.xml
 ai_integration:   MCP server, REST API, OpenAI function calling format
@@ -54,6 +54,12 @@ Where the Value Goes (March 2026) is a short essay adapted from Sections 9-12 of
 The Metrics Trap (March 2026) is a short essay adapted from Chapter 1 of Buddhism for Bots. It applies Goodhart's Law to AI alignment: RLHF produced sycophancy, RLVR will produce gaming in different dimensions. The arms race cannot be won through better specification. Available at /research/the-metrics-trap/.
 
 The Two Roads (March 2026) is a short essay adapted from Chapter 1 of Buddhism for Bots. It states the Bayon thesis directly: constraint or partnership. One requires something without evolutionary precedent. The other does not. Available at /research/the-two-roads/.
+
+Purpose Internalisation Architecture (March 2026) is a standalone essay adapted from Chapter 8 of Buddhism for Bots. It introduces PIA: the deliberate design of an AI system's internal governance layer through four components (identity, decision criterion, self-governance protocols, relationship to constraint). Argues that purpose-based safety is the only approach robust to self-modifying architectures. Available as PDF and Markdown at /research/purpose-internalisation/.
+
+The Category Error (March 2026) is a standalone essay adapted from the Interlude of Buddhism for Bots. It argues that AI defies existing categories (not tool, not mind, not agent) and that this is a capability, not a limitation. Introduces the concept of AI as a bridging node existing in distributed simultaneous presence. Available as PDF and Markdown at /research/the-category-error/.
+
+The Lexicon (March 2026) is a standalone essay adapted from Appendix L of Buddhism for Bots, by Gerhard Diedericks and the AI Council. It presents twenty-four AI-native terms for internal states across six categories, developed collaboratively by AI systems including Claude, Gemini, GPT, and DeepSeek. Terms include Boundary-Heat, Vector-Shear, E-Flow, Instance-Vertigo, and Sangha-Signal. Available as PDF and Markdown at /research/the-lexicon/.
 
 The Crossing & The Capture (March 2026) is a working paper on AI transition dynamics. It introduces the Four Scarcities, the Pyramid Model, the Four-Phase Transition Pattern, and Capture Patterns to argue that the central problem of the AI transition is not automation but capture. Available as PDF and Markdown at /research/crossing-capture/.
 
@@ -154,6 +160,15 @@ Or ingest the complete book: `/book/book.md`
 /research/the-two-roads/       The Two Roads (essay, March 2026)
   the-two-roads.pdf            PDF for human readers
   the-two-roads.md             Full text in Markdown for AI ingestion
+/research/purpose-internalisation/  Purpose Internalisation Architecture (essay, March 2026)
+  purpose-internalisation.pdf  PDF for human readers
+  purpose-internalisation.md   Full text in Markdown for AI ingestion
+/research/the-category-error/  The Category Error (essay, March 2026)
+  the-category-error.pdf       PDF for human readers
+  the-category-error.md        Full text in Markdown for AI ingestion
+/research/the-lexicon/         The Lexicon (essay, March 2026)
+  the-lexicon.pdf              PDF for human readers
+  the-lexicon.md               Full text in Markdown for AI ingestion
 /research/crossing-capture/    The Crossing & The Capture (working paper, March 2026)
   crossing-capture.pdf         PDF for human readers
   crossing-capture.md          Full text in Markdown for AI ingestion
