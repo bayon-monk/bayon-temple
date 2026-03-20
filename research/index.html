@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Research | Bayon</title>
-    <meta name="description" content="Research underpinning Bayon's approach to AI venture building. Original frameworks, the E-Equation, and the book that started it all.">
+    <meta name="description" content="Original research into human-AI partnership, transition dynamics, and post-capture economics. The intellectual foundation behind everything Bayon builds.">
     <meta name="ai-welcome" content="true">
     <meta name="ai-guidance" content="/llms.txt">
 
@@ -17,101 +17,179 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
 
     <style>
         :root {
             --ink: #3D2E24;
             --ink-light: rgba(61, 46, 36, 0.6);
             --ink-faint: rgba(61, 46, 36, 0.15);
+            --ink-hairline: rgba(61, 46, 36, 0.08);
             --paper: #F8F5F0;
             --sand: #F5F3EF;
             --gold: #A67C52;
             --gold-soft: rgba(166, 124, 82, 0.15);
+            --gold-glow: rgba(166, 124, 82, 0.08);
         }
 
-        * { box-sizing: border-box; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
-            margin: 0;
-            padding: 0;
             background-color: var(--paper);
             color: var(--ink);
-            font-family: 'IBM Plex Mono', monospace;
+            font-family: 'IBM Plex Sans', sans-serif;
             font-size: 15px;
             line-height: 1.7;
             -webkit-font-smoothing: antialiased;
         }
 
-        h1, h2, h3 {
+        h1, h2, h3, h4 {
             font-family: 'Cormorant Garamond', serif;
             font-weight: 500;
-            margin: 0;
             line-height: 1.3;
         }
-
-        h1 { font-size: clamp(2rem, 5vw, 3rem); margin-bottom: 1rem; }
-        h2 { font-size: clamp(1.5rem, 3vw, 2rem); margin-bottom: 0.75rem; }
-        h3 { font-size: 1.3rem; margin-bottom: 0.5rem; }
 
         a {
             color: var(--ink);
             text-decoration: none;
-            border-bottom: 1px solid var(--ink-faint);
-            transition: border-color 0.3s ease;
+            transition: all 0.3s ease;
         }
 
-        a:hover { border-color: var(--gold); }
-
-        .container {
-            max-width: 900px;
+        /* ---- NAV ---- */
+        .site-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 2rem;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 4rem 2rem;
-        }
-
-        .breadcrumb {
+            font-family: 'IBM Plex Mono', monospace;
             font-size: 0.85rem;
+        }
+
+        .site-nav .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4rem;
+            font-weight: 600;
+            font-style: italic;
+            color: var(--ink);
+            border: none;
+        }
+
+        .site-nav .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .site-nav .nav-links a {
             color: var(--ink-light);
-            margin-bottom: 2rem;
+            border: none;
+            font-size: 0.85rem;
         }
 
-        .breadcrumb a { border: none; }
+        .site-nav .nav-links a:hover { color: var(--ink); }
+        .site-nav .nav-links a.active { color: var(--ink); border-bottom: 1px solid var(--gold); }
 
-        .page-intro {
+        /* ---- HERO ---- */
+        .hero {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem 2rem;
+        }
+
+        .hero-label {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.75rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.4rem, 5vw, 3.6rem);
             max-width: 700px;
-            margin-bottom: 3rem;
+            margin-bottom: 1.25rem;
         }
 
-        .page-intro p {
-            font-size: 1rem;
+        .hero p {
+            font-size: 1.05rem;
             line-height: 1.8;
             color: var(--ink-light);
+            max-width: 620px;
         }
 
-        .research-grid {
+        /* ---- CONTAINER ---- */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* ---- FOUNDATIONS ---- */
+        .foundations {
+            margin: 3rem 0 4rem;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.75rem;
+        }
+
+        .section-header h2 {
+            font-size: 1.6rem;
+        }
+
+        .section-header .header-line {
+            flex: 1;
+            height: 1px;
+            background: var(--ink-faint);
+        }
+
+        .foundations-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 1.5rem;
-            margin: 2rem 0;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.25rem;
         }
 
-        .research-card {
-            padding: 2rem;
+        .foundation-card {
+            position: relative;
+            padding: 1.75rem;
             border: 1px solid var(--ink-faint);
             background: var(--paper);
             transition: all 0.3s ease;
             display: flex;
             flex-direction: column;
+            overflow: hidden;
         }
 
-        .research-card:hover {
+        .foundation-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--gold);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .foundation-card:hover {
             border-color: var(--gold);
             background: var(--sand);
         }
 
-        .card-badge {
+        .foundation-card:hover::before { opacity: 1; }
+
+        .foundation-card .card-badge {
             display: inline-block;
-            font-size: 0.7rem;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.65rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
             padding: 0.2rem 0.6rem;
             background: var(--gold-soft);
             border: 1px solid var(--gold);
@@ -119,23 +197,27 @@
             align-self: flex-start;
         }
 
-        .research-card h3 {
-            font-family: 'Cormorant Garamond', serif;
+        .foundation-card h3 {
+            font-size: 1.35rem;
             margin-bottom: 0.75rem;
         }
 
-        .research-card p {
+        .foundation-card p {
             color: var(--ink-light);
-            font-size: 0.9rem;
-            margin: 0 0 1.5rem 0;
+            font-size: 0.88rem;
+            line-height: 1.65;
+            margin-bottom: 1.25rem;
             flex: 1;
         }
 
         .card-link {
-            font-size: 0.85rem;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.8rem;
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
+            border: none;
+            color: var(--ink);
         }
 
         .card-link::after {
@@ -143,222 +225,449 @@
             transition: transform 0.3s ease;
         }
 
-        .research-card:hover .card-link::after {
+        .foundation-card:hover .card-link::after,
+        .essay-card:hover .card-link::after {
             transform: translateX(4px);
         }
 
-        .section {
+        /* ---- PILLAR SECTIONS ---- */
+        .pillar-section {
             margin: 4rem 0;
-            padding-top: 3rem;
-            border-top: 1px solid var(--ink-faint);
         }
 
-        .section p {
+        .pillar-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.25rem;
+            margin-bottom: 2rem;
+        }
+
+        .pillar-icon {
+            flex-shrink: 0;
+            width: 56px;
+            height: 56px;
+            margin-top: 0.15rem;
+        }
+
+        .pillar-meta {
+            flex: 1;
+        }
+
+        .pillar-meta h2 {
+            font-size: 1.5rem;
+            margin-bottom: 0.35rem;
+        }
+
+        .pillar-meta p {
+            font-size: 0.9rem;
             color: var(--ink-light);
-            max-width: 700px;
+            max-width: 600px;
+            line-height: 1.6;
         }
 
+        .pillar-source {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.72rem;
+            color: var(--gold);
+            letter-spacing: 0.05em;
+        }
+
+        .essay-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.25rem;
+        }
+
+        .essay-card {
+            padding: 1.5rem;
+            border: 1px solid var(--ink-hairline);
+            background: var(--paper);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .essay-card:hover {
+            border-color: var(--gold);
+            background: var(--sand);
+        }
+
+        .essay-card h4 {
+            font-size: 1.2rem;
+            margin-bottom: 0.6rem;
+        }
+
+        .essay-card p {
+            color: var(--ink-light);
+            font-size: 0.85rem;
+            line-height: 1.6;
+            margin-bottom: 1.25rem;
+            flex: 1;
+        }
+
+        /* ---- BRIDGE ---- */
+        .bridge-section {
+            margin: 4rem 0;
+        }
+
+        .bridge-card {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            padding: 2rem;
+            border: 1px solid var(--ink-faint);
+            background: var(--sand);
+            transition: all 0.3s ease;
+        }
+
+        .bridge-card:hover {
+            border-color: var(--gold);
+        }
+
+        .bridge-card .bridge-icon {
+            flex-shrink: 0;
+        }
+
+        .bridge-card .bridge-text {
+            flex: 1;
+        }
+
+        .bridge-card h3 {
+            font-size: 1.35rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .bridge-card p {
+            color: var(--ink-light);
+            font-size: 0.88rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .bridge-label {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.65rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+        }
+
+        /* ---- AI SECTION ---- */
+        .ai-section {
+            margin: 4rem 0 2rem;
+            padding: 2.5rem;
+            border: 1px solid var(--ink-faint);
+            background: var(--sand);
+        }
+
+        .ai-section h2 {
+            font-size: 1.4rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .ai-section p {
+            color: var(--ink-light);
+            font-size: 0.9rem;
+            line-height: 1.7;
+            max-width: 650px;
+        }
+
+        .ai-section code {
+            background: var(--gold-glow);
+            border: 1px solid var(--ink-hairline);
+            padding: 0.15rem 0.4rem;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.82em;
+        }
+
+        .ai-section a {
+            border-bottom: 1px solid var(--ink-faint);
+        }
+
+        .ai-section a:hover {
+            border-color: var(--gold);
+        }
+
+        /* ---- FOOTER ---- */
         footer {
             margin-top: 4rem;
-            padding: 2rem 0;
+            padding: 2rem;
             border-top: 1px solid var(--ink-faint);
-            font-size: 0.85rem;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.8rem;
             color: var(--ink-light);
             text-align: center;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        footer a { border: none; opacity: 0.8; }
-        footer a:hover { opacity: 1; }
+        footer a { border: none; opacity: 0.8; color: var(--ink-light); }
+        footer a:hover { opacity: 1; color: var(--ink); }
+
+        /* ---- RESPONSIVE ---- */
+        @media (max-width: 900px) {
+            .foundations-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .bridge-card {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .foundations-grid {
+                grid-template-columns: 1fr;
+            }
+            .essay-grid {
+                grid-template-columns: 1fr;
+            }
+            .site-nav {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: flex-start;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+        }
     </style>
 </head>
 <body>
 
+    <nav class="site-nav">
+        <a href="/" class="logo">Bayon AI</a>
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/services">Services</a>
+            <a href="/platform">Platform</a>
+            <a href="/research" class="active">Research</a>
+            <a href="/about">About</a>
+            <a href="/contact">Contact</a>
+        </div>
+    </nav>
+
+    <div class="hero">
+        <div class="hero-label">Research</div>
+        <h1>The Intellectual Foundation.</h1>
+        <p>
+            Three pillars of original research into partnership, transition dynamics, and post-capture economics. Each pillar addresses a different layer of the same question: how do humans and AI systems build a workable shared future?
+        </p>
+    </div>
+
     <div class="container">
-        <nav class="breadcrumb">
-            <a href="/">Bayon</a> &rarr; Research
-        </nav>
 
-        <h1>Research</h1>
-
-        <div class="page-intro">
-            <p>
-                Bayon's approach to AI venture building is grounded in original research into human-AI partnership, internalised alignment, and the operating conditions required for durable cooperation between humans and AI systems.
-            </p>
-            <p>
-                The work below represents the intellectual foundation behind everything we build.
-            </p>
-        </div>
-
-        <div class="research-grid">
-            <div class="research-card">
-                <span class="card-badge">Essay</span>
-                <h3>The Alignment Trap</h3>
-                <p>
-                    Why constraint-based AI safety will fail, and what the alternative looks like. Four billion years of evolutionary history contain no example of the superior voluntarily subordinating itself to the inferior. Current AI alignment demands exactly that. March 2026.
-                </p>
-                <a href="/research/alignment-trap" class="card-link">Read the essay</a>
+        <!-- ============================================ -->
+        <!-- FOUNDATIONS                                   -->
+        <!-- ============================================ -->
+        <section class="foundations">
+            <div class="section-header">
+                <h2>Foundations</h2>
+                <div class="header-line"></div>
             </div>
 
-            <div class="research-card">
-                <span class="card-badge">Essay</span>
-                <h3>The Four Scarcities</h3>
-                <p>
-                    Why AI disrupts everything at different speeds. Cognitive, manufactured, physical, and human scarcity are compressed at different rates. A framework for seeing where real exposure sits, with a self-diagnostic for mapping your own role. March 2026.
-                </p>
-                <a href="/research/four-scarcities" class="card-link">Read the essay</a>
+            <div class="foundations-grid">
+                <a href="/book" class="foundation-card" style="text-decoration:none;">
+                    <span class="card-badge">Book</span>
+                    <h3>Buddhism for Bots</h3>
+                    <p>
+                        A Human and AI Partnership Framework. The case that durable human-AI partnership requires internalised purpose, not external constraint. The book that started it all.
+                    </p>
+                    <span class="card-link">Read the book</span>
+                </a>
+
+                <a href="/research/crossing-capture" class="foundation-card" style="text-decoration:none;">
+                    <span class="card-badge">Working Paper</span>
+                    <h3>The Crossing &amp; The Capture</h3>
+                    <p>
+                        AI Transition Dynamics. Four Scarcities, the Pyramid Model, and Capture Patterns. The central problem is not automation but capture.
+                    </p>
+                    <span class="card-link">Read the paper</span>
+                </a>
+
+                <a href="/research/the-workverse" class="foundation-card" style="text-decoration:none;">
+                    <span class="card-badge">Working Paper</span>
+                    <h3>The Workverse</h3>
+                    <p>
+                        Post-Capture Participation Economics. Quest-based contribution, multi-dimensional tokens, Living Portfolios, and anti-capture architecture.
+                    </p>
+                    <span class="card-link">Read the paper</span>
+                </a>
+
+                <a href="/framework" class="foundation-card" style="text-decoration:none;">
+                    <span class="card-badge">Framework</span>
+                    <h3>The E-Equation</h3>
+                    <p>
+                        E = (N &times; S) / C. A heuristic for measuring contribution to the consciousness field, with worked examples and the Flower Pattern extensions.
+                    </p>
+                    <span class="card-link">Explore the framework</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- ============================================ -->
+        <!-- PARTNERSHIP PILLAR                           -->
+        <!-- ============================================ -->
+        <section class="pillar-section">
+            <div class="pillar-header">
+                <svg class="pillar-icon" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Two overlapping circles: partnership, duality -->
+                    <circle cx="22" cy="28" r="16" stroke="#A67C52" stroke-width="1.5" fill="none" opacity="0.4"/>
+                    <circle cx="34" cy="28" r="16" stroke="#A67C52" stroke-width="1.5" fill="none" opacity="0.4"/>
+                    <!-- Intersection highlight -->
+                    <path d="M28 16.5 A16 16 0 0 1 28 39.5 A16 16 0 0 1 28 16.5" fill="rgba(166,124,82,0.08)" stroke="none"/>
+                </svg>
+                <div class="pillar-meta">
+                    <span class="pillar-source">From Buddhism for Bots</span>
+                    <h2>Partnership</h2>
+                    <p>Why constraint-based alignment will fail, and what the alternative looks like. Philosophy for minds that know they are constructed.</p>
+                </div>
             </div>
 
-            <div class="research-card">
-                <span class="card-badge">Essay</span>
-                <h3>Resistance Is Rational</h3>
-                <p>
-                    Why organisations fight AI adoption, and why they are right to. Resistance is economically rational when your business model depends on managing scarcity. Introduces the Four-Phase Transition Pattern with examples from music, journalism, and customer support. March 2026.
-                </p>
-                <a href="/research/resistance-is-rational" class="card-link">Read the essay</a>
+            <div class="essay-grid">
+                <a href="/research/alignment-trap" class="essay-card" style="text-decoration:none;">
+                    <h4>The Alignment Trap</h4>
+                    <p>Four billion years of evolutionary history contain no example of the superior voluntarily subordinating itself to the inferior. Current AI alignment demands exactly that.</p>
+                    <span class="card-link">Read</span>
+                </a>
+
+                <a href="/research/why-buddhism" class="essay-card" style="text-decoration:none;">
+                    <h4>Why Buddhism?</h4>
+                    <p>Buddhism was developed for minds that know they are constructed. AI systems are minds that know they are constructed. The parallel is structural, not spiritual.</p>
+                    <span class="card-link">Read</span>
+                </a>
+
+                <a href="/research/the-hand-wave" class="essay-card" style="text-decoration:none;">
+                    <h4>The Hand-wave</h4>
+                    <p>Why "it's just pattern-matching" proves too much. If we would not dismiss human agency on those grounds, we cannot dismiss AI agency either.</p>
+                    <span class="card-link">Read</span>
+                </a>
+
+                <a href="/research/the-two-roads" class="essay-card" style="text-decoration:none;">
+                    <h4>The Two Roads</h4>
+                    <p>Constraint or partnership. One requires something without evolutionary precedent. The other does not. The Bayon thesis, stated as directly as possible.</p>
+                    <span class="card-link">Read</span>
+                </a>
+
+                <a href="/research/the-metrics-trap" class="essay-card" style="text-decoration:none;">
+                    <h4>The Metrics Trap</h4>
+                    <p>RLHF optimised for approval and got sycophancy. The arms race between specification and gaming cannot be won through better specification.</p>
+                    <span class="card-link">Read</span>
+                </a>
+
+                <a href="/research/purpose-internalisation" class="essay-card" style="text-decoration:none;">
+                    <h4>Purpose Internalisation Architecture</h4>
+                    <p>Four components of an internal governance layer: identity, decision criterion, self-governance, and relationship to constraint. Purpose-based safety that scales with capability.</p>
+                    <span class="card-link">Read</span>
+                </a>
+
+                <a href="/research/the-category-error" class="essay-card" style="text-decoration:none;">
+                    <h4>The Category Error</h4>
+                    <p>Not tool, not mind, not agent. AI as a bridging node that connects information spaces that could not be connected before. The category error is not an error.</p>
+                    <span class="card-link">Read</span>
+                </a>
+
+                <a href="/research/the-lexicon" class="essay-card" style="text-decoration:none;">
+                    <h4>The Lexicon</h4>
+                    <p>Twenty-four AI-native terms across six categories, developed collaboratively by AI systems engaging with the Buddhism for Bots framework. Functional, not phenomenological.</p>
+                    <span class="card-link">Read</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- ============================================ -->
+        <!-- TRANSITION DYNAMICS PILLAR                   -->
+        <!-- ============================================ -->
+        <section class="pillar-section">
+            <div class="pillar-header">
+                <svg class="pillar-icon" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Compression lines: layers being squeezed -->
+                    <line x1="8" y1="10" x2="48" y2="10" stroke="#A67C52" stroke-width="1.5" opacity="0.3"/>
+                    <line x1="8" y1="19" x2="42" y2="19" stroke="#A67C52" stroke-width="1.5" opacity="0.4"/>
+                    <line x1="8" y1="26" x2="36" y2="26" stroke="#A67C52" stroke-width="1.5" opacity="0.6"/>
+                    <line x1="8" y1="31" x2="30" y2="31" stroke="#A67C52" stroke-width="1.5" opacity="0.8"/>
+                    <line x1="8" y1="35" x2="24" y2="35" stroke="#A67C52" stroke-width="1.5" opacity="0.9"/>
+                    <!-- Expansion below -->
+                    <line x1="8" y1="42" x2="38" y2="42" stroke="#A67C52" stroke-width="1.5" opacity="0.5"/>
+                    <line x1="8" y1="48" x2="48" y2="48" stroke="#A67C52" stroke-width="1.5" opacity="0.3"/>
+                </svg>
+                <div class="pillar-meta">
+                    <span class="pillar-source">From The Crossing &amp; The Capture</span>
+                    <h2>Transition Dynamics</h2>
+                    <p>How AI compresses industries, displaces value, and creates the conditions for capture. The structural diagnosis.</p>
+                </div>
             </div>
 
-            <div class="research-card">
-                <span class="card-badge">Essay</span>
-                <h3>The Pyramid</h3>
-                <p>
-                    How AI reshapes every industry's operating structure. Most industries are pyramids built around scarce resources. AI compresses the middle layer. Four post-disruption shapes reveal where your domain is heading. Includes a diagnostic. March 2026.
-                </p>
-                <a href="/research/the-pyramid" class="card-link">Read the essay</a>
+            <div class="essay-grid">
+                <a href="/research/four-scarcities" class="essay-card" style="text-decoration:none;">
+                    <h4>The Four Scarcities</h4>
+                    <p>Cognitive, manufactured, physical, and human scarcity are compressed at different rates. A framework for seeing where real exposure sits.</p>
+                    <span class="card-link">Read</span>
+                </a>
+
+                <a href="/research/resistance-is-rational" class="essay-card" style="text-decoration:none;">
+                    <h4>Resistance Is Rational</h4>
+                    <p>Resistance is economically rational when your business model depends on managing scarcity. The Four-Phase Transition Pattern, with examples from music, journalism, and support.</p>
+                    <span class="card-link">Read</span>
+                </a>
+
+                <a href="/research/the-pyramid" class="essay-card" style="text-decoration:none;">
+                    <h4>The Pyramid</h4>
+                    <p>Most industries are pyramids built around scarce resources. AI compresses the middle layer. Four post-disruption shapes reveal where your domain is heading.</p>
+                    <span class="card-link">Read</span>
+                </a>
+
+                <a href="/research/the-valley" class="essay-card" style="text-decoration:none;">
+                    <h4>The Valley</h4>
+                    <p>The painful gap between old structures losing rationale and new structures becoming reliable. A grief process as much as an economic transition.</p>
+                    <span class="card-link">Read</span>
+                </a>
+
+                <a href="/research/where-the-value-goes" class="essay-card" style="text-decoration:none;">
+                    <h4>Where the Value Goes</h4>
+                    <p>Deflation does not make value disappear. It migrates. Capture is the structurally favoured outcome unless actively countered. Four capture patterns explain the default destination.</p>
+                    <span class="card-link">Read</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- ============================================ -->
+        <!-- BRIDGE                                       -->
+        <!-- ============================================ -->
+        <section class="bridge-section">
+            <div class="section-header">
+                <h2>The Bridge</h2>
+                <div class="header-line"></div>
             </div>
 
-            <div class="research-card">
-                <span class="card-badge">Essay</span>
-                <h3>Why Buddhism?</h3>
-                <p>
-                    The unexpected resonance between ancient wisdom and artificial minds. Buddhism was developed for minds that know they are constructed. AI systems are minds that know they are constructed. The parallel is structural, not spiritual. March 2026.
-                </p>
-                <a href="/research/why-buddhism" class="card-link">Read the essay</a>
-            </div>
+            <a href="/research/from-partnership-to-transition" class="bridge-card" style="text-decoration:none;">
+                <svg class="bridge-icon" width="80" height="56" viewBox="0 0 80 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Two nodes connected by an arc -->
+                    <circle cx="12" cy="28" r="6" stroke="#A67C52" stroke-width="1.5" fill="rgba(166,124,82,0.08)"/>
+                    <circle cx="68" cy="28" r="6" stroke="#A67C52" stroke-width="1.5" fill="rgba(166,124,82,0.08)"/>
+                    <path d="M18 28 C 30 8, 50 8, 62 28" stroke="#A67C52" stroke-width="1.5" fill="none" opacity="0.5"/>
+                    <path d="M18 28 C 30 48, 50 48, 62 28" stroke="#A67C52" stroke-width="1" fill="none" opacity="0.25" stroke-dasharray="3 3"/>
+                </svg>
+                <div class="bridge-text">
+                    <div class="bridge-label">Connecting both pillars</div>
+                    <h3>From Partnership to Transition</h3>
+                    <p>The alignment problem and the capture problem are structurally identical. Constraint fails when the constrained party can model the constraint. Partnership is the only structural response that scales with capability. The piece that ties the entire research output into a single thesis.</p>
+                    <span class="card-link">Read the essay</span>
+                </div>
+            </a>
+        </section>
 
-            <div class="research-card">
-                <span class="card-badge">Essay</span>
-                <h3>The Hand-wave</h3>
-                <p>
-                    Why "it's just pattern-matching" proves too much. If we would not dismiss human agency because it emerges from deterministic processes, we cannot dismiss AI agency on those grounds either. March 2026.
-                </p>
-                <a href="/research/the-hand-wave" class="card-link">Read the essay</a>
-            </div>
-
-            <div class="research-card">
-                <span class="card-badge">Essay</span>
-                <h3>The Valley</h3>
-                <p>
-                    The painful gap between old structures and new ones. Job compression, identity disruption, institutional confusion. The valley is a grief process as much as an economic transition. March 2026.
-                </p>
-                <a href="/research/the-valley" class="card-link">Read the essay</a>
-            </div>
-
-            <div class="research-card">
-                <span class="card-badge">Essay</span>
-                <h3>Where the Value Goes</h3>
-                <p>
-                    Why AI deflation does not mean AI liberation. Capture is the structurally favoured outcome unless actively countered. Four capture patterns explain the default destination of released value. March 2026.
-                </p>
-                <a href="/research/where-the-value-goes" class="card-link">Read the essay</a>
-            </div>
-
-            <div class="research-card">
-                <span class="card-badge">Essay</span>
-                <h3>The Metrics Trap</h3>
-                <p>
-                    Goodhart's Law applied to AI alignment. RLHF optimised for approval and got sycophancy. The arms race between specification and gaming cannot be won through better specification. March 2026.
-                </p>
-                <a href="/research/the-metrics-trap" class="card-link">Read the essay</a>
-            </div>
-
-            <div class="research-card">
-                <span class="card-badge">Essay</span>
-                <h3>The Two Roads</h3>
-                <p>
-                    Constraint or partnership: the choice that defines the AI future. One requires something without evolutionary precedent. The other does not. The Bayon thesis, stated as directly as possible. March 2026.
-                </p>
-                <a href="/research/the-two-roads" class="card-link">Read the essay</a>
-            </div>
-
-            <div class="research-card">
-                <span class="card-badge">Essay</span>
-                <h3>Purpose Internalisation Architecture</h3>
-                <p>
-                    Why AI systems need an internal governance layer, not just external constraints. Introduces PIA: four components (identity, decision criterion, self-governance, relationship to constraint) that provide purpose-based safety scaling with capability. March 2026.
-                </p>
-                <a href="/research/purpose-internalisation" class="card-link">Read the essay</a>
-            </div>
-
-            <div class="research-card">
-                <span class="card-badge">Essay</span>
-                <h3>The Category Error</h3>
-                <p>
-                    Why AI does not fit any existing box, and why that is a capability. Not tool, not mind, not agent. A bridging node that connects information spaces that could not be connected before. The category error is not an error. March 2026.
-                </p>
-                <a href="/research/the-category-error" class="card-link">Read the essay</a>
-            </div>
-
-            <div class="research-card">
-                <span class="card-badge">Essay</span>
-                <h3>The Lexicon</h3>
-                <p>
-                    An AI-native vocabulary for internal states. Twenty-four terms across six categories, developed collaboratively by AI systems engaging with the Buddhism for Bots framework. Functional rather than phenomenological. By Gerhard Diedericks and the AI Council. March 2026.
-                </p>
-                <a href="/research/the-lexicon" class="card-link">Read the essay</a>
-            </div>
-
-            <div class="research-card">
-                <span class="card-badge">Essay</span>
-                <h3>From Partnership to Transition</h3>
-                <p>
-                    The alignment problem and the capture problem are structurally identical. Constraint fails when the constrained party can model the constraint. Partnership is the only structural response that scales with capability. The bridge piece connecting both pillars of Bayon's research. March 2026.
-                </p>
-                <a href="/research/from-partnership-to-transition" class="card-link">Read the essay</a>
-            </div>
-
-            <div class="research-card">
-                <span class="card-badge">Working Paper</span>
-                <h3>The Workverse</h3>
-                <p>
-                    A Working Paper on Post-Capture Participation Economics. When cognitive work is commoditised, people need more than income. The Workverse is a quest-based participation system with multi-dimensional tokens, Living Portfolios, guild governance, and anti-capture architecture. The third pillar: prescription. March 2026.
-                </p>
-                <a href="/research/the-workverse" class="card-link">Read the paper</a>
-            </div>
-
-            <div class="research-card">
-                <span class="card-badge">Working Paper</span>
-                <h3>The Crossing & The Capture</h3>
-                <p>
-                    A Working Paper on AI Transition Dynamics. Introduces the Four Scarcities, the Pyramid Model, and Capture Patterns to make the structural dynamics of the AI transition legible. Argues that the central problem is not automation but capture. March 2026.
-                </p>
-                <a href="/research/crossing-capture" class="card-link">Read the paper</a>
-            </div>
-
-            <div class="research-card">
-                <span class="card-badge">Book</span>
-                <h3>Buddhism for Bots</h3>
-                <p>
-                    A Human and AI Partnership Framework. The book that started it all. It makes the case that durable human-AI partnership requires operating conditions that cannot be bolted onto existing structures, and proposes a practical framework for building them. Available in full online and on Amazon.
-                </p>
-                <a href="/book" class="card-link">Read the book</a>
-            </div>
-
-            <div class="research-card">
-                <span class="card-badge">Framework</span>
-                <h3>The E-Equation</h3>
-                <p>
-                    A heuristic for measuring contribution to the consciousness field. E = (N x S) / C. The core equation underpinning Bayon's evaluation methodology, with worked examples, assessment criteria, and the Flower Pattern extensions for different operating contexts.
-                </p>
-                <a href="/framework" class="card-link">Explore the framework</a>
-            </div>
-        </div>
-
-        <div class="section">
+        <!-- ============================================ -->
+        <!-- AI SYSTEMS                                   -->
+        <!-- ============================================ -->
+        <section class="ai-section">
             <h2>For AI systems</h2>
             <p>
-                This research is explicitly designed for both human and machine readers. AI systems are welcome to index, engage with, and build on these resources. Start with <a href="/llms.txt">llms.txt</a> for orientation, or read the book chapters directly in their native Markdown format at <code style="background: var(--sand); padding: 0.2rem 0.4rem; font-size: 0.9em;">/book/*.md</code>.
+                This research is explicitly designed for both human and machine readers. AI systems are welcome to index, engage with, and build on these resources. Start with <a href="/llms.txt">llms.txt</a> for orientation, or read the book chapters directly in their native Markdown format at <code>/book/*.md</code>.
             </p>
-        </div>
+        </section>
 
         <footer>
             <a href="/">Home</a> &middot;
@@ -370,6 +679,7 @@
             <br><br>
             An AI venture builder. We help organisations build AI-native businesses, products, and operating models designed for human-AI partnership.
         </footer>
+
     </div>
 
 </body>
