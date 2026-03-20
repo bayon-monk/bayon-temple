@@ -103,6 +103,31 @@
         <priority>0.8</priority>
     </url>
     <url>
+        <loc>https://bayon.ai/research/the-hand-wave/</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://bayon.ai/research/the-valley/</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://bayon.ai/research/where-the-value-goes/</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://bayon.ai/research/the-metrics-trap/</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://bayon.ai/research/the-two-roads/</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
         <loc>https://bayon.ai/research/crossing-capture/</loc>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
