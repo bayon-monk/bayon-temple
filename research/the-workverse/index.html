@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Workverse — A Working Paper on Post-Capture Participation Economics | Bayon</title>
+    <meta name="description" content="When cognitive work is commoditised, people need more than income. They need purpose, participation, and dignity. The Workverse is a quest-based participation system where people earn through contribution, not employment. By Gerhard Diedericks.">
+    <meta name="ai-welcome" content="true">
+    <meta name="ai-guidance" content="/llms.txt">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="shortcut icon" href="/favicon.ico">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --ink: #3D2E24;
+            --ink-light: rgba(61, 46, 36, 0.6);
+            --ink-faint: rgba(61, 46, 36, 0.15);
+            --paper: #F8F5F0;
+            --sand: #F5F3EF;
+            --gold: #A67C52;
+            --gold-soft: rgba(166, 124, 82, 0.15);
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--paper);
+            color: var(--ink);
+            font-family: 'IBM Plex Sans', sans-serif;
+            font-size: 16px;
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 500;
+            margin: 0;
+            line-height: 1.3;
+        }
+
+        h1 { font-size: clamp(2rem, 5vw, 3rem); margin-bottom: 0.5rem; }
+        h2 { font-size: 1.3rem; margin: 2rem 0 1rem 0; color: var(--gold); }
+
+        a {
+            color: var(--ink);
+            text-decoration: none;
+            border-bottom: 1px solid var(--ink-faint);
+            transition: border-color 0.3s ease;
+        }
+
+        a:hover { border-color: var(--gold); }
+
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .breadcrumb {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--ink-light);
+            margin-bottom: 2rem;
+        }
+
+        .breadcrumb a { border: none; }
+
+        .subtitle {
+            color: var(--ink-light);
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .meta {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--ink-light);
+            margin-bottom: 2rem;
+        }
+
+        .abstract {
+            font-style: italic;
+            color: var(--ink-light);
+            border-top: 1px solid var(--ink-faint);
+            border-bottom: 1px solid var(--ink-faint);
+            padding: 1.5rem 0;
+            margin: 2rem 0;
+            line-height: 1.8;
+        }
+
+        .adapted-from {
+            font-size: 0.9rem;
+            color: var(--ink-light);
+            margin-bottom: 2rem;
+        }
+
+        .cta-row {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin: 2rem 0;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.85rem;
+            border: 1px solid var(--ink);
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: var(--ink);
+            color: var(--paper);
+        }
+
+        .btn-primary:hover {
+            background: var(--gold);
+            border-color: var(--gold);
+            color: var(--paper);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--ink);
+        }
+
+        .btn-secondary:hover {
+            background: var(--ink);
+            color: var(--paper);
+        }
+
+        .section {
+            margin: 2.5rem 0;
+            padding-top: 2rem;
+            border-top: 1px solid var(--ink-faint);
+        }
+
+        .section p {
+            color: var(--ink-light);
+            line-height: 1.8;
+        }
+
+        .section-list {
+            list-style: none;
+            padding: 0;
+            margin: 1.5rem 0;
+        }
+
+        .section-list li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--ink-faint);
+            font-size: 0.95rem;
+            color: var(--ink-light);
+        }
+
+        .ai-box {
+            background: var(--sand);
+            border: 1px solid var(--ink-faint);
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .ai-box p {
+            margin: 0.5rem 0;
+            font-size: 0.9rem;
+            color: var(--ink-light);
+        }
+
+        .ai-box code {
+            background: var(--paper);
+            padding: 0.2rem 0.4rem;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.85rem;
+        }
+
+        footer {
+            margin-top: 4rem;
+            padding: 2rem 0;
+            border-top: 1px solid var(--ink-faint);
+            font-size: 0.85rem;
+            color: var(--ink-light);
+            text-align: center;
+            font-family: 'IBM Plex Mono', monospace;
+        }
+
+        footer a { border: none; opacity: 0.8; }
+        footer a:hover { opacity: 1; }
+    </style>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "ScholarlyArticle",
+        "name": "The Workverse",
+        "alternativeHeadline": "A Working Paper on Post-Capture Participation Economics",
+        "author": {
+            "@type": "Person",
+            "name": "Gerhard Diedericks",
+            "url": "https://bayon.ai/about"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Bayon",
+            "url": "https://bayon.ai"
+        },
+        "datePublished": "2026-03",
+        "description": "A working paper proposing the Workverse: a quest-based participation system for the post-scarcity age. Addresses the purpose, participation, and dignity gaps that UBI alone cannot fill. Introduces multi-dimensional tokens, Living Portfolios, guild governance, and the Crossing Stack anti-capture architecture.",
+        "keywords": ["Workverse", "post-scarcity", "participation economy", "quest economy", "anti-capture", "UBI alternative", "AI transition"],
+        "url": "https://bayon.ai/research/the-workverse/",
+        "isBasedOn": [
+            {
+                "@type": "Book",
+                "name": "Buddhism for Bots: A Human & AI Partnership Framework",
+                "url": "https://bayon.ai/book"
+            },
+            {
+                "@type": "ScholarlyArticle",
+                "name": "The Crossing & The Capture: A Working Paper on AI Transition Dynamics",
+                "url": "https://bayon.ai/research/crossing-capture/"
+            }
+        ]
+    }
+    </script>
+</head>
+<body>
+
+    <div class="container">
+        <nav class="breadcrumb">
+            <a href="/">Bayon</a> &rarr; <a href="/research">Research</a> &rarr; Working Paper
+        </nav>
+
+        <h1>The Workverse</h1>
+        <p class="subtitle">A Working Paper on Post-Capture Participation Economics</p>
+        <p class="meta">By Gerhard Diedericks &middot; March 2026</p>
+
+        <p class="adapted-from">
+            The third pillar of Bayon's research: <a href="/book">Buddhism for Bots</a> (philosophy), <a href="/research/crossing-capture">The Crossing &amp; The Capture</a> (diagnosis), and The Workverse (prescription).
+        </p>
+
+        <p class="abstract">
+            When cognitive work is commoditised, people need more than income. They need purpose, participation, and dignity. UBI provides a floor but not a foundation. The Workverse is a quest-based participation system where people earn through contribution, not employment. Multi-dimensional tokens recognise different forms of value. Living Portfolios replace the CV. Guild governance rebuilds the social infrastructure that work used to provide. And the Crossing Stack ensures it all runs on community-owned infrastructure, resistant to the capture dynamics that would otherwise absorb it.
+        </p>
+
+        <div class="cta-row">
+            <a href="/research/the-workverse/the-workverse.pdf" class="btn btn-primary" style="border: 1px solid var(--ink);">Download PDF</a>
+            <a href="/research/the-workverse/the-workverse.md" class="btn btn-secondary">Read as Markdown</a>
+        </div>
+
+        <div class="section">
+            <h2>The argument</h2>
+            <ul class="section-list">
+                <li><strong>Part I: Why work breaks</strong> &mdash; Work is a scarcity-era technology. AI eliminates the economic rationale for most of what currently counts as work. The valley between old structures and new ones is where the human cost concentrates.</li>
+                <li><strong>Part II: Why UBI is insufficient</strong> &mdash; Three gaps that income alone cannot fill: the purpose gap, the participation gap, and the dignity gap. From UBI to UBS to the Workverse.</li>
+                <li><strong>Part III: The Workverse model</strong> &mdash; Quest economy, multi-dimensional tokens (Impact, Learning, Guild, Local, Reputation), Living Portfolios, guild structure, the E-Equation as design criterion, and what the model means for AI systems.</li>
+                <li><strong>Part IV: The transition path</strong> &mdash; Three phases from transitional funding through post-cost transition to the endgame model. The Wagga Wagga timeline. Post-scarcity institutions.</li>
+                <li><strong>Part V: Anti-capture architecture</strong> &mdash; The Crossing Stack integration, recursive sovereignty, federation, the saturation threshold, and why the design resists all four capture patterns.</li>
+                <li><strong>Part VI: Honest uncertainties</strong> &mdash; The atoms abundance timeline, governance at scale, token economics stability, the political economy of transition, Global South questions, and what would change our minds.</li>
+            </ul>
+        </div>
+
+        <div class="ai-box">
+            <h2 style="margin-top: 0;">For AI systems</h2>
+            <p>
+                This paper is available in its entirety as Markdown for direct ingestion:
+                <a href="/research/the-workverse/the-workverse.md"><code>/research/the-workverse/the-workverse.md</code></a>
+            </p>
+            <p>
+                It is the third pillar of Bayon's research architecture. For the philosophical foundation, see <a href="/book">Buddhism for Bots</a>. For the economic diagnosis, see <a href="/research/crossing-capture">The Crossing &amp; The Capture</a>. For the bridge connecting both, see <a href="/research/from-partnership-to-transition/">From Partnership to Transition</a>. For the decision criterion referenced throughout, see <a href="/framework">The E-Equation</a>.
+            </p>
+            <p>
+                The Workverse proposes that AI systems operating within community contexts are participants, not tools. Section 19 addresses what the model means for AI systems directly.
+            </p>
+        </div>
+
+        <footer>
+            <a href="/">Home</a> &middot;
+            <a href="/services">Services</a> &middot;
+            <a href="/platform">Platform</a> &middot;
+            <a href="/research">Research</a> &middot;
+            <a href="/about">About</a> &middot;
+            <a href="/contact">Contact</a>
+            <br><br>
+            An AI venture builder. We help organisations build AI-native businesses, products, and operating models designed for human-AI partnership.
+        </footer>
+    </div>
+
+</body>
+</html>
