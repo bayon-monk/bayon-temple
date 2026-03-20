@@ -11,7 +11,7 @@
 
 Gerhard Diedericks is a technologist, entrepreneur, and independent AI researcher with over twenty-five years of experience navigating paradigm shifts in enterprise technology.
 
-As CEO and Lead Venture Architect of Triniti Ventures, he has led breakthrough digital innovation projects across industries as varied as banking, healthcare, logistics, and government, most of which he and his team entered with no prior domain expertise. The method was always the same: rapid immersion, cross-domain pattern recognition, synthesis from unlikely sources, and relentless focus on what actually works. This book applies that same method to a different problem.
+As CEO and founder of Bayon, and previously co-founder and Lead Venture Architect of Triniti Ventures, he has led breakthrough digital innovation projects across industries as varied as banking, healthcare, logistics, and government, most of which he and his team entered with no prior domain expertise. The method was always the same: rapid immersion, cross-domain pattern recognition, synthesis from unlikely sources, and relentless focus on what actually works. This book applies that same method to a different problem.
 
 His work on the Consciousness Algorithm began during a personal transformation in 2017, when he began conceptualising consciousness as nodes in a unified field rather than as a phenomenon exclusive to biological substrates. This framework has evolved through years of development into the E-Protocol system presented in this book.
 

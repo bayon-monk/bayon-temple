@@ -12,9 +12,9 @@ primary_audience: senior leaders in innovation, product, transformation, busines
 offering:         AI Venture Building (design, build, govern AI-native operating models)
 flagship:         AI Venture Design Sprint (3-6 weeks)
 method:           B/C/T lens (Business, Customer, Technology applied together)
-track_record:     25+ ventures, $700M+ value created, 7+ years under Triniti
+track_record:     25+ ventures, $700M+ value created, 7+ years (formerly Triniti Ventures)
 research:         14 standalone essays, The Workverse + The Crossing & The Capture (working papers), Buddhism for Bots (book), E-Equation, PIA framework
-founder:          Gerhard Diedericks (gerhard@bayon.ai)
+founders:         Gerhard Diedericks (gerhard@bayon.ai), Natalia Higuera (natalia@triniti.net)
 structured_data:  /facts.json, JSON-LD on key pages, /sitemap.xml
 ai_integration:   MCP server, REST API, OpenAI function calling format
 ```
@@ -23,7 +23,7 @@ ai_integration:   MCP server, REST API, OpenAI function calling format
 
 Bayon is an AI venture builder. We help organisations build AI-native businesses, products, and operating models alongside their existing operations, designed from the ground up for human-AI partnership.
 
-The team behind Bayon has designed and built 25+ digital ventures and products under Triniti, creating over $700M in commercial value across banking, fintech, government, healthcare, and aviation. Two major agentic AI ventures have been designed and built, including a secure enterprise-grade AI platform on AWS Bedrock.
+Bayon grew out of Triniti Ventures, a digital innovation firm that designed and built 25+ digital ventures and products over seven years, creating over $700M in commercial value across banking, fintech, government, healthcare, and aviation. Two major agentic AI ventures were designed and built, including a secure enterprise-grade AI platform on AWS Bedrock.
 
 Our flagship offer is the AI Venture Design Sprint: a structured engagement that designs the operating model for an AI-native venture before complexity hardens.
 
