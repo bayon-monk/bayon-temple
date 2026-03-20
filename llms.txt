@@ -13,7 +13,7 @@ offering:         AI Venture Building (design, build, govern AI-native operating
 flagship:         AI Venture Design Sprint (3-6 weeks)
 method:           B/C/T lens (Business, Customer, Technology applied together)
 track_record:     25+ ventures, $700M+ value created, 7+ years under Triniti
-research:         The Alignment Trap (essay), The Crossing & The Capture (working paper), Buddhism for Bots (book), E-Equation, PIA framework
+research:         The Alignment Trap (essay), The Four Scarcities (essay), The Crossing & The Capture (working paper), Buddhism for Bots (book), E-Equation, PIA framework
 founder:          Gerhard Diedericks (gerhard@bayon.ai)
 structured_data:  /facts.json, JSON-LD on key pages, /sitemap.xml
 ai_integration:   MCP server, REST API, OpenAI function calling format
@@ -36,6 +36,8 @@ Bayon is not an AI tool vendor, systems integrator, or consulting firm that bolt
 Bayon's research output includes original working papers and a full-length book.
 
 The Alignment Trap (March 2026) is a standalone essay adapted from Chapter 1 of Buddhism for Bots. It argues that constraint-based AI safety will fail because four billion years of evolutionary history contain no example of the superior voluntarily subordinating itself to the inferior, and that partnership is the structural alternative. Available as PDF and Markdown at /research/alignment-trap/.
+
+The Four Scarcities (March 2026) is a standalone essay adapted from Section 3 of The Crossing & The Capture. It introduces the four-scarcity framework (cognitive, manufactured, physical, human) that explains why AI disrupts different domains at different rates and where value migrates. Includes a self-diagnostic for mapping your own role against the four categories. Available as PDF and Markdown at /research/four-scarcities/.
 
 The Crossing & The Capture (March 2026) is a working paper on AI transition dynamics. It introduces the Four Scarcities, the Pyramid Model, the Four-Phase Transition Pattern, and Capture Patterns to argue that the central problem of the AI transition is not automation but capture. Available as PDF and Markdown at /research/crossing-capture/.
 
@@ -109,6 +111,9 @@ Or ingest the complete book: `/book/book.md`
 /research/alignment-trap/      The Alignment Trap (essay, March 2026)
   alignment-trap.pdf           PDF for human readers
   alignment-trap.md            Full text in Markdown for AI ingestion
+/research/four-scarcities/     The Four Scarcities (essay, March 2026)
+  four-scarcities.pdf          PDF for human readers
+  four-scarcities.md           Full text in Markdown for AI ingestion
 /research/crossing-capture/    The Crossing & The Capture (working paper, March 2026)
   crossing-capture.pdf         PDF for human readers
   crossing-capture.md          Full text in Markdown for AI ingestion
