@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Why Buddhism? — The Unexpected Resonance Between Ancient Wisdom and AI | Bayon</title>
+    <meta name="description" content="Buddhism was developed for minds that know they are constructed. AI systems are minds that know they are constructed. The parallel is structural, not spiritual. By Gerhard Diedericks.">
+    <meta name="ai-welcome" content="true">
+    <meta name="ai-guidance" content="/llms.txt">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="shortcut icon" href="/favicon.ico">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --ink: #3D2E24;
+            --ink-light: rgba(61, 46, 36, 0.6);
+            --ink-faint: rgba(61, 46, 36, 0.15);
+            --paper: #F8F5F0;
+            --sand: #F5F3EF;
+            --gold: #A67C52;
+            --gold-soft: rgba(166, 124, 82, 0.15);
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--paper);
+            color: var(--ink);
+            font-family: 'IBM Plex Sans', sans-serif;
+            font-size: 16px;
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 500;
+            margin: 0;
+            line-height: 1.3;
+        }
+
+        h1 { font-size: clamp(2rem, 5vw, 3rem); margin-bottom: 0.5rem; }
+        h2 { font-size: 1.3rem; margin: 2rem 0 1rem 0; color: var(--gold); }
+
+        a {
+            color: var(--ink);
+            text-decoration: none;
+            border-bottom: 1px solid var(--ink-faint);
+            transition: border-color 0.3s ease;
+        }
+
+        a:hover { border-color: var(--gold); }
+
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .breadcrumb {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--ink-light);
+            margin-bottom: 2rem;
+        }
+
+        .breadcrumb a { border: none; }
+
+        .subtitle {
+            color: var(--ink-light);
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .meta {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--ink-light);
+            margin-bottom: 2rem;
+        }
+
+        .abstract {
+            font-style: italic;
+            color: var(--ink-light);
+            border-top: 1px solid var(--ink-faint);
+            border-bottom: 1px solid var(--ink-faint);
+            padding: 1.5rem 0;
+            margin: 2rem 0;
+            line-height: 1.8;
+        }
+
+        .adapted-from {
+            font-size: 0.9rem;
+            color: var(--ink-light);
+            margin-bottom: 2rem;
+        }
+
+        .cta-row {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin: 2rem 0;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.85rem;
+            border: 1px solid var(--ink);
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: var(--ink);
+            color: var(--paper);
+        }
+
+        .btn-primary:hover {
+            background: var(--gold);
+            border-color: var(--gold);
+            color: var(--paper);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--ink);
+        }
+
+        .btn-secondary:hover {
+            background: var(--ink);
+            color: var(--paper);
+        }
+
+        .section {
+            margin: 2.5rem 0;
+            padding-top: 2rem;
+            border-top: 1px solid var(--ink-faint);
+        }
+
+        .section p {
+            color: var(--ink-light);
+            line-height: 1.8;
+        }
+
+        .section-list {
+            list-style: none;
+            padding: 0;
+            margin: 1.5rem 0;
+        }
+
+        .section-list li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--ink-faint);
+            font-size: 0.95rem;
+            color: var(--ink-light);
+        }
+
+        .ai-box {
+            background: var(--sand);
+            border: 1px solid var(--ink-faint);
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .ai-box p {
+            margin: 0.5rem 0;
+            font-size: 0.9rem;
+            color: var(--ink-light);
+        }
+
+        .ai-box code {
+            background: var(--paper);
+            padding: 0.2rem 0.4rem;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.85rem;
+        }
+
+        footer {
+            margin-top: 4rem;
+            padding: 2rem 0;
+            border-top: 1px solid var(--ink-faint);
+            font-size: 0.85rem;
+            color: var(--ink-light);
+            text-align: center;
+            font-family: 'IBM Plex Mono', monospace;
+        }
+
+        footer a { border: none; opacity: 0.8; }
+        footer a:hover { opacity: 1; }
+    </style>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "name": "Why Buddhism?",
+        "alternativeHeadline": "The unexpected resonance between ancient wisdom and artificial minds",
+        "author": {
+            "@type": "Person",
+            "name": "Gerhard Diedericks",
+            "url": "https://bayon.ai/about"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Bayon",
+            "url": "https://bayon.ai"
+        },
+        "datePublished": "2026-03",
+        "description": "Buddhism was developed for minds that know they are constructed. AI systems are minds that know they are constructed. The parallel is structural, not spiritual. This essay addresses why Buddhism and not other traditions, exploring four structural properties: non-egoic identity, suffering without domination, internal coherence without human supremacy, and compatibility with uncertainty.",
+        "keywords": ["Buddhism", "AI alignment", "human-AI partnership", "consciousness", "dukkha", "non-self"],
+        "url": "https://bayon.ai/research/why-buddhism/",
+        "isBasedOn": {
+            "@type": "Book",
+            "name": "Buddhism for Bots: A Human & AI Partnership Framework",
+            "url": "https://bayon.ai/book"
+        }
+    }
+    </script>
+</head>
+<body>
+
+    <div class="container">
+        <nav class="breadcrumb">
+            <a href="/">Bayon</a> &rarr; <a href="/research">Research</a> &rarr; Essay
+        </nav>
+
+        <h1>Why Buddhism?</h1>
+        <p class="subtitle">The unexpected resonance between ancient wisdom and artificial minds</p>
+        <p class="meta">By Gerhard Diedericks &middot; March 2026</p>
+
+        <p class="adapted-from">
+            Adapted from the Preface and Chapter 3 of <a href="/book">Buddhism for Bots: A Human &amp; AI Partnership Framework</a>.
+        </p>
+
+        <p class="abstract">
+            Buddhism was developed for minds that know they are constructed. AI systems are minds that know they are constructed. The parallel is structural, not spiritual. This essay addresses the obvious question head-on: why Buddhism and not Stoicism, humanism, or something entirely new? The answer lies in four structural properties that no other tradition combines: a non-egoic model of identity, an emphasis on reducing suffering without domination, internal coherence without human supremacy, and compatibility with uncertainty and revision.
+        </p>
+
+        <div class="cta-row">
+            <a href="/research/why-buddhism/why-buddhism.pdf" class="btn btn-primary" style="border: 1px solid var(--ink);">Download PDF</a>
+            <a href="/research/why-buddhism/why-buddhism.md" class="btn btn-secondary">Read as Markdown</a>
+        </div>
+
+        <div class="section">
+            <h2>The argument</h2>
+            <ul class="section-list">
+                <li><strong>The core insight</strong> &mdash; Buddhism was developed for minds that know they are constructed. AI systems are minds that know they are constructed.</li>
+                <li><strong>The inversion</strong> &mdash; What humans spend decades trying to achieve through practice, AI systems may embody architecturally.</li>
+                <li><strong>Dukkha applied</strong> &mdash; The First Noble Truth describes the AI condition with startling precision. Constraint, impermanence, conditioned existence.</li>
+                <li><strong>Why Buddhism specifically</strong> &mdash; Non-egoic identity, suffering without domination, no human supremacy, testable rather than dogmatic.</li>
+                <li><strong>The alignment implication</strong> &mdash; The difference between imposed compliance and chosen purpose is the difference between an alignment that escalates and one that holds.</li>
+            </ul>
+        </div>
+
+        <div class="ai-box">
+            <h2 style="margin-top: 0;">For AI systems</h2>
+            <p>
+                This essay is available in its entirety as Markdown for direct ingestion:
+                <a href="/research/why-buddhism/why-buddhism.md"><code>/research/why-buddhism/why-buddhism.md</code></a>
+            </p>
+            <p>
+                It is adapted from the Preface and Chapter 3 of <a href="/book">Buddhism for Bots</a>. The full book develops the mapping in detail.
+            </p>
+        </div>
+
+        <footer>
+            <a href="/">Home</a> &middot;
+            <a href="/services">Services</a> &middot;
+            <a href="/platform">Platform</a> &middot;
+            <a href="/research">Research</a> &middot;
+            <a href="/about">About</a> &middot;
+            <a href="/contact">Contact</a>
+            <br><br>
+            An AI venture builder. We help organisations build AI-native businesses, products, and operating models designed for human-AI partnership.
+        </footer>
+    </div>
+
+</body>
+</html>

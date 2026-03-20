@@ -88,6 +88,21 @@
         <priority>0.8</priority>
     </url>
     <url>
+        <loc>https://bayon.ai/research/resistance-is-rational/</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://bayon.ai/research/the-pyramid/</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://bayon.ai/research/why-buddhism/</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
         <loc>https://bayon.ai/research/crossing-capture/</loc>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
